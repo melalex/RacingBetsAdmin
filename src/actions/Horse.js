@@ -2,9 +2,7 @@
  * Created by Alexander Melashchenko on 4/1/17.
  */
 
-import {ajax} from "jquery";
-import API_DOMAIN from '../constants/Api'
-
+import {create, get, search, update, remove} from './CrudUtil'
 import {
     CREATE_HORSE_REQUEST,
     CREATE_HORSE_SUCCESS,
@@ -24,156 +22,54 @@ import {
 } from '../constants/Horse'
 
 let createHorse = horse => {
-    return dispatch => {
-        dispatch({
-            type: CREATE_HORSE_REQUEST,
-            payload: horse
-        });
-
-        ajax({
-            type: 'POST',
-            url: API_DOMAIN + '/api/horse',
-            dataType: 'json',
-            data: horse,
-            success: response => {
-                if (response.status === 'error') {
-                    dispatch({
-                        type: CREATE_HORSE_FAILED,
-                        payload: response.result
-                    })
-                } else {
-                    dispatch({
-                        type: CREATE_HORSE_SUCCESS,
-                        payload: response.result
-                    })
-                }
-            }
-        });
-    }
+    return create({
+        entity: horse,
+        path: '/api/horse',
+        requestType: CREATE_HORSE_REQUEST,
+        failType: CREATE_HORSE_FAILED,
+        successType: CREATE_HORSE_SUCCESS
+    })
 };
 
 let getHorses = page => {
-    return dispatch => {
-        dispatch({
-            type: GET_HORSES_REQUEST,
-            payload: page
-        });
-
-        ajax({
-            type: 'GET',
-            url: API_DOMAIN + '/api/horse',
-            dataType: 'json',
-            data: {
-                page: page
-            },
-            success: response => {
-                if (response.status === 'error') {
-                    dispatch({
-                        type: GET_HORSES_FAILED,
-                        payload: response.result
-                    })
-                } else {
-                    dispatch({
-                        type: GET_HORSES_SUCCESS,
-                        payload: response.result
-                    })
-                }
-            }
-        });
-    }
+    return get({
+        page: page,
+        path: '/api/horse',
+        requestType: GET_HORSES_REQUEST,
+        failType: GET_HORSES_FAILED,
+        successType: GET_HORSES_SUCCESS
+    })
 };
 
 let searchHorse = (req, page) => {
-    return dispatch => {
-        dispatch({
-            type: SEARCH_HORSES_REQUEST,
-            payload: {
-                req: req,
-                page: page
-            }
-        });
-
-        ajax({
-            type: 'GET',
-            url: API_DOMAIN + '/api/horse',
-            dataType: 'json',
-            data: {
-                req: req,
-                page: page
-            },
-            success: response => {
-                if (response.status === 'error') {
-                    dispatch({
-                        type: SEARCH_HORSES_FAILED,
-                        payload: response.result
-                    })
-                } else {
-                    dispatch({
-                        type: SEARCH_HORSES_SUCCESS,
-                        payload: response.result
-                    })
-                }
-            }
-        });
-    }
+    return search({
+        req: req,
+        page: page,
+        path: '/api/horse',
+        requestType: SEARCH_HORSES_REQUEST,
+        failType: SEARCH_HORSES_FAILED,
+        successType: SEARCH_HORSES_SUCCESS
+    })
 };
 
 let updateHorse = horse => {
-    return dispatch => {
-        dispatch({
-            type: UPDATE_HORSE_REQUEST,
-            payload: horse
-        });
-
-        ajax({
-            type: 'PUT',
-            url: API_DOMAIN + '/api/horse',
-            dataType: 'json',
-            data: horse,
-            success: response => {
-                if (response.status === 'error') {
-                    dispatch({
-                        type: UPDATE_HORSE_FAILED,
-                        payload: response.result
-                    })
-                } else {
-                    dispatch({
-                        type: UPDATE_HORSE_SUCCESS,
-                        payload: response.result
-                    })
-                }
-            }
-        });
-    }
+    return update({
+        entity: horse,
+        path: '/api/horse',
+        requestType: UPDATE_HORSE_REQUEST,
+        failType: UPDATE_HORSE_FAILED,
+        successType: UPDATE_HORSE_SUCCESS
+    })
 };
 
-let deleteHorse = horse => {
-    return dispatch => {
-        dispatch({
-            type: DELETE_HORSE_REQUEST,
-            payload: horse
-        });
-
-        ajax({
-            type: 'DELETE',
-            url: API_DOMAIN + '/api/horse',
-            dataType: 'json',
-            data: horse,
-            success: response => {
-                if (response.status === 'error') {
-                    dispatch({
-                        type: DELETE_HORSE_FAILED,
-                        payload: response.result
-                    })
-                } else {
-                    dispatch({
-                        type: DELETE_HORSE_SUCCESS,
-                        payload: response.result
-                    })
-                }
-            }
-        });
-    }
+let deleteHorse = id => {
+    return remove({
+        id: id,
+        path: '/api/horse',
+        requestType: DELETE_HORSE_REQUEST,
+        failType: DELETE_HORSE_FAILED,
+        successType: DELETE_HORSE_SUCCESS
+    })
 };
 
 export {createHorse, getHorses, searchHorse, updateHorse, deleteHorse}

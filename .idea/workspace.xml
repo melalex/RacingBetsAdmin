@@ -15,11 +15,24 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Horse.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Horse.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Horse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-524">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="394">
+              <caret line="70" column="41" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="70" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#57#119#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrudUtil.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/CrudUtil.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="628">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#57#85#0" expanded="true" />
@@ -28,65 +41,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/node_modules/jquery/dist/jquery.js">
+      <file leaf-file-name="Jockey.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Jockey.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="9141" column="26" lean-forward="true" selection-start-line="9141" selection-start-column="26" selection-end-line="9141" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ajax.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/node_modules/jquery/src/ajax.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="848" column="12" lean-forward="false" selection-start-line="848" selection-start-column="12" selection-end-line="848" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Api.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Api.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+            <state relative-caret-position="-452">
+              <caret line="23" column="25" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="75" />
               <folding>
-                <element signature="e#0#55#0" expanded="false" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#57#119#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Horse.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Horse.js">
+      <file leaf-file-name="Owner.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Owner.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="414">
+              <caret line="23" column="23" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="70" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#57#119#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Jockey.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Jockey.js">
+      <file leaf-file-name="Racecourse.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Racecourse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+            <state relative-caret-position="414">
+              <caret line="23" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="95" />
               <folding>
-                <element signature="e#0#55#0" expanded="false" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#57#119#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Trainer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Trainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#57#119#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,11 +96,9 @@
       <file leaf-file-name="Owner.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Owner.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#55#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="18">
+              <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,8 +106,8 @@
       <file leaf-file-name="Race.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Race.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+            <state relative-caret-position="270">
+              <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
               <folding>
                 <element signature="e#0#55#0" expanded="false" />
               </folding>
@@ -116,11 +115,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/public/index.html">
+      <file leaf-file-name="Racecourse.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Racecourse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="18">
+              <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Trainer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Trainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -139,21 +148,23 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>horse</find>
-      <find>jockey</find>
-      <find>JOCKEY</find>
-      <find>Jockey</find>
-      <find>owner</find>
-      <find>OWNER</find>
-      <find>Owner</find>
       <find>race</find>
       <find>Race</find>
       <find>RACE</find>
-      <find>Racecourse</find>
-      <find>racecourse</find>
-      <find>RACECOURSE</find>
-      <find>HORSE</find>
+      <find>action</find>
       <find>succ</find>
+      <find>HORSE</find>
+      <find>Horse</find>
+      <find>horse</find>
+      <find>JOCKEY</find>
+      <find>Jockey</find>
+      <find>jockey</find>
+      <find>OWNER</find>
+      <find>Owner</find>
+      <find>owner</find>
+      <find>Racecourse</find>
+      <find>RACECOURSE</find>
+      <find>racecourse</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -174,15 +185,21 @@
         <option value="$PROJECT_DIR$/../racing-bets-admin/src/app/actions/horse-actions.js" />
         <option value="$PROJECT_DIR$/../racing-bets-admin/src/app/reducers/cud-reducer.js" />
         <option value="$PROJECT_DIR$/../racing-bets-admin/src/reducers/index.js" />
-        <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Jockey.js" />
-        <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Trainer.js" />
-        <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Racecourse.js" />
         <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Race.js" />
-        <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Owner.js" />
         <option value="$PROJECT_DIR$/../racing-bets-admin/package.json" />
         <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Api.js" />
         <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Horse.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Jockey.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Owner.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Racecourse.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/constants/Trainer.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/actions/Crud.js" />
         <option value="$PROJECT_DIR$/../racing-bets-admin/src/actions/Horse.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/actions/CrudUtil.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/actions/Jockey.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/actions/Owner.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/actions/Racecourse.js" />
+        <option value="$PROJECT_DIR$/../racing-bets-admin/src/actions/Trainer.js" />
       </list>
     </option>
   </component>
@@ -442,12 +459,12 @@
       <option name="presentableId" value="Default" />
       <updated>1490993772390</updated>
       <workItem from="1490993774095" duration="225000" />
-      <workItem from="1490994040521" duration="15105000" />
+      <workItem from="1490994040521" duration="18709000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15330000" />
+    <option name="totallyTimeSpent" value="18934000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="1" />
@@ -479,7 +496,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -668,38 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Owner.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Jockey.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Racecourse.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Trainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/reducers/cud-reducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -713,54 +700,6 @@
         <state relative-caret-position="18">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Trainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Racecourse.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#55#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Race.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#55#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Owner.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#55#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Jockey.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#55#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -790,14 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/node_modules/jquery/dist/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="9141" column="26" lean-forward="true" selection-start-line="9141" selection-start-column="26" selection-end-line="9141" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../racing-bets-admin/node_modules/jquery/src/ajax.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -808,16 +739,121 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Horse.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="268">
+          <caret line="24" column="8" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Jockey.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Owner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Racecourse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Trainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/constants/Race.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#55#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/node_modules/jquery/dist/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="9212" column="38" lean-forward="false" selection-start-line="9212" selection-start-column="38" selection-end-line="9212" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Horse.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-524">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="394">
+          <caret line="70" column="41" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="70" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#57#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Jockey.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-452">
+          <caret line="23" column="25" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="75" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#57#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Owner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="23" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="70" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#57#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Racecourse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="95" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#57#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/Trainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="27" lean-forward="false" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#57#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../racing-bets-admin/src/actions/CrudUtil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#57#85#0" expanded="true" />
