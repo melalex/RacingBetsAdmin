@@ -1,3 +1,7 @@
+/**
+ * Created by Alexander Melashchenko on 4/1/17.
+ */
+
 let createRace = race => {
     return {
         type: "CREATE_RACE",

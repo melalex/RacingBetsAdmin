@@ -1,3 +1,7 @@
+/**
+ * Created by Alexander Melashchenko on 4/1/17.
+ */
+
 let createHorse = horse => {
   return {
       type: "CREATE_HORSE",

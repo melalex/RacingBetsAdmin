@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/App.css';
+import '../../styles/App.css';
 
 let Router = ReactRouter.Router;
 let Route = ReactRouter.Route;

@@ -1,3 +1,7 @@
+/**
+ * Created by Alexander Melashchenko on 4/1/17.
+ */
+
 let createRacecourse = racecourse => {
     return {
         type: "CREATE_RACECOURSE",

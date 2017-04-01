@@ -1,3 +1,7 @@
+/**
+ * Created by Alexander Melashchenko on 4/1/17.
+ */
+
 let createJockey = jockey => {
     return {
         type: "CREATE_JOCKEY",
