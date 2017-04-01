@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 
+let Router = ReactRouter.Router;
+let Route = ReactRouter.Route;
+let IndexRoute = ReactRouter.IndexRoute;
+let browserHistory = ReactRouter.browserHistory;
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router history="browserHistory">
+          <Route path="/" component={}>
+
+          </Route>
+      </Router>
     );
   }
 }
