@@ -33,7 +33,7 @@ export default class HorseRow extends Component {
                 <td>{gender}</td>
                 <td>
                     <Button outline color="info" onClick={() => this.onClickView(id)}>View</Button>
-                    <Button outline color="success" onClick={() => this.onClickEdit(id)}>Edit</Button>
+                    <Button outline color="primary" onClick={() => this.onClickEdit(id)}>Edit</Button>
                     <Button outline color="danger" onClick={() => this.onClickDelete(id)}>Delete</Button>
                 </td>
             </tr>
