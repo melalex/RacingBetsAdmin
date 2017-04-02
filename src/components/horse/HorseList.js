@@ -15,7 +15,7 @@ export default class HorseList extends Component {
             rows.length === 0
                 ? <div>No horses found.</div>
                 :
-                <Table striped>
+                <Table hover>
                     <thead>
                     <tr>
                         <td>Id</td>
