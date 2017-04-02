@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../styles/App.css';
+import ReactRouter from "react-router/es/Router";
 
 let Router = ReactRouter.Router;
 let Route = ReactRouter.Route;
