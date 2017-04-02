@@ -5,6 +5,7 @@
 import React, {PropTypes, Component} from 'react'
 import {Table} from 'reactstrap';
 import HorseRow from 'HorseRow';
+import {FormText} from 'reactstrap';
 
 export default class HorseList extends Component {
     render() {
@@ -13,7 +14,8 @@ export default class HorseList extends Component {
         }.bind(this));
         return (
             rows.length === 0
-                ? <div>No horses found.</div>
+                ?
+                <FormText color="muted">No horses found</FormText>
                 :
                 <Table hover>
                     <thead>
