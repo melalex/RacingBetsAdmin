@@ -19,7 +19,7 @@ class JockeyView extends React.Component {
                 <div>
                     <Breadcrumb>
                         <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem><Link to="/horse/list">Horses</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/jockey/list">Jockeys</Link></BreadcrumbItem>
                         <BreadcrumbItem active>View</BreadcrumbItem>
                     </Breadcrumb>
                     <Table>

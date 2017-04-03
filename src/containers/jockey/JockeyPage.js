@@ -27,11 +27,11 @@ export default class JockeyPage extends React.Component {
         let {content, page, count, limit, searchString, isFetching} = this.props;
         return (
             <div>
-                <h1>Horses</h1>
+                <h1>Jockeys</h1>
 
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>Horses</BreadcrumbItem>
+                    <BreadcrumbItem active>Jockeys</BreadcrumbItem>
                 </Breadcrumb>
 
                 <Container>
@@ -54,8 +54,8 @@ export default class JockeyPage extends React.Component {
                     <h3>Loading...</h3>
                 ) : (
                     <JockeyList entities={content} page={page} limit={limit} count={count}
-                               deleteEntity={this.props.deleteEntity}
-                               fetchEntities={this.fetchEntities}/>
+                                deleteEntity={this.props.deleteEntity}
+                                fetchEntities={this.fetchEntities}/>
                 )}
             </div>
         );
