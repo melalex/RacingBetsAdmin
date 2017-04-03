@@ -34,6 +34,34 @@ function action(parameters, method) {
     }
 }
 
+function actionWithoutPayload(parameters, method) {
+    let {id, path, requestType, failType, successType} = parameters;
+    return dispatch => {
+        dispatch({
+            type: requestType,
+            payload: id
+        });
+
+        ajax({
+            type: method,
+            url: API_DOMAIN + path + '/' + id,
+            dataType: 'json',
+            success: [
+                response => dispatch({
+                    type: failType,
+                    payload: response.result
+                })
+            ],
+            error: [
+                response => dispatch({
+                    type: successType,
+                    payload: response.result
+                })
+            ]
+        });
+    }
+}
+
 function create(parameters) {
     return action(parameters, 'POST')
 }
@@ -48,6 +76,10 @@ function get(parameters) {
         failType: failType,
         successType: successType
     }, 'GET')
+}
+
+function getOne(parameters) {
+    return actionWithoutPayload(parameters, 'GET')
 }
 
 function search(parameters) {
@@ -69,31 +101,7 @@ function update(parameters) {
 }
 
 function remove(parameters) {
-    let {id, path, requestType, failType, successType} = parameters;
-    return dispatch => {
-        dispatch({
-            type: requestType,
-            payload: id
-        });
-
-        ajax({
-            type: 'DELETE',
-            url: API_DOMAIN + path + '/' + id,
-            dataType: 'json',
-            success: [
-                response => dispatch({
-                    type: failType,
-                    payload: response.result
-                })
-            ],
-            error: [
-                response => dispatch({
-                    type: successType,
-                    payload: response.result
-                })
-            ]
-        });
-    }
+    return actionWithoutPayload(parameters, 'DELETE')
 }
 
-export {create, get, search, update, remove}
+export {create, get, getOne, search, update, remove}

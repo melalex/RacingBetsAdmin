@@ -2,13 +2,15 @@
  * Created by Alexander Melashchenko on 4/2/17.
  */
 
-import React, {PropTypes, Component} from 'react'
+import React from 'react'
 import {AvForm, AvField} from 'availity-reactstrap-validation';
 import {Col, Button, FormGroup, Label} from 'reactstrap';
+import {connect} from 'react-redux'
 
-export default class HorseEdit extends Component {
+export default class HorseEdit extends React.Component {
 
     onSave(event, values) {
+        event.preventDefault();
         this.props.onSave({
             name: values.name,
             trainer: values.trainer.id,
@@ -18,18 +20,13 @@ export default class HorseEdit extends Component {
         })
     }
 
-    allRecords() {
-        this.props.allRecords();
-    }
-
     render() {
+        let {entity, isFetching} = this.props;
         return (
-            <div>
-                <Col sm={{size: 2, offset: 10}}>
-                    <Button outline color="secondary" onClick={() => this.allRecords()}>All horses</Button>
-                </Col>
-
-                <AvForm onValidSubmit={this.onSave} model={this.props.entity}>
+            isFetching ? (
+                <h3>Loading...</h3>
+            ) : (
+                <AvForm onValidSubmit={this.onSave} model={entity}>
                     <AvFormGroup row>
                         <Label for="name" sm={2}>Name</Label>
                         <Col sm={10}>
@@ -73,30 +70,16 @@ export default class HorseEdit extends Component {
                         </Col>
                     </FormGroup>
                 </AvForm>
-            </div>
+            )
         );
     }
 };
 
-HorseEdit.propTypes = {
-    entity: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        trainer: PropTypes.shape({
-            id: PropTypes.number,
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.date,
-        }).isRequired,
-        owner: PropTypes.shape({
-            id: PropTypes.number,
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.date,
-        }).isRequired,
-        birthday: PropTypes.date.isRequired,
-        gender: PropTypes.string.isRequired
-    }),
-    onSave: PropTypes.func.isRequired,
-    allRecords: PropTypes.func.isRequired
-};
+function mapStateToProps(state) {
+    return {
+        entity: state.entity,
+        isFetching: state.isFetching
+    }
+}
+
+export default connect(mapStateToProps)(HorseEdit)

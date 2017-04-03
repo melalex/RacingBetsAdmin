@@ -5,20 +5,20 @@
 import React, {PropTypes, Component} from 'react'
 import fullName from '../../util/fullName'
 import {Button} from 'reactstrap';
-import {HORSE_MODE_VIEW, HORSE_MODE_EDIT, HORSE_MODE_DELETE} from '../../constants/Horse'
+import {Link} from 'react-router'
 
 export default class HorseRow extends Component {
 
     onClickView(id) {
-        this.props.changeMode(HORSE_MODE_VIEW, id);
+        this.props.readEntity(id);
     }
 
     onClickEdit(id) {
-        this.props.changeMode(HORSE_MODE_EDIT, id);
+        this.props.editEntity(id);
     }
 
     onClickDelete(id) {
-        this.props.changeMode(HORSE_MODE_DELETE, id);
+        this.props.deleteEntity(id);
     }
 
     render() {
@@ -32,7 +32,7 @@ export default class HorseRow extends Component {
                 <td>{birthday}</td>
                 <td>{gender}</td>
                 <td>
-                    <Button outline color="info" onClick={() => this.onClickView(id)}>View</Button>
+                    <Button outline color="info" href={} onClick={() => this.onClickView(id)}>View</Button>
                     <Button outline color="primary" onClick={() => this.onClickEdit(id)}>Edit</Button>
                     <Button outline color="danger" onClick={() => this.onClickDelete(id)}>Delete</Button>
                 </td>
@@ -41,8 +41,8 @@ export default class HorseRow extends Component {
     }
 }
 
-HorseRow.propTypes	=	{
-    entity:	PropTypes.shape({
+HorseRow.propTypes = {
+    entity: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         trainer: PropTypes.shape({
@@ -60,5 +60,7 @@ HorseRow.propTypes	=	{
         birthday: PropTypes.date.isRequired,
         gender: PropTypes.string.isRequired
     }).isRequired,
-    changeMode:	PropTypes.func.isRequired
+    deleteEntity: PropTypes.func.isRequired,
+    editEntity: PropTypes.func.isRequired,
+    readEntity: PropTypes.func.isRequired
 };

@@ -2,16 +2,21 @@
  * Created by Alexander Melashchenko on 4/2/17.
  */
 
-import React, {PropTypes, Component} from 'react'
+import React from 'react'
 import {Table} from 'reactstrap';
 import fullName from '../../util/fullName'
+import {connect} from 'react-redux'
 
-export default class HorseView extends Component {
+class HorseView extends React.Component {
     render() {
-        let {id, name, trainer, owner, birthday, gender} = this.props.entity;
+        let {entity, isFetching} = this.props;
+        let {id, name, trainer, owner, birthday, gender} = entity;
         return (
-            <Table>
-                <tbody>
+            isFetching ? (
+                <h3>Loading...</h3>
+            ) : (
+                <Table>
+                    <tbody>
                     <th>
                         <td>Id</td>
                         <td>{id}</td>
@@ -36,29 +41,18 @@ export default class HorseView extends Component {
                         <td>Gender</td>
                         <td>{gender}</td>
                     </th>
-                </tbody>
-            </Table>
+                    </tbody>
+                </Table>
+            )
         );
     }
-};
+}
 
-HorseView.propTypes	=	{
-    entity:	PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        trainer: PropTypes.shape({
-            id: PropTypes.number,
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.date,
-        }).isRequired,
-        owner: PropTypes.shape({
-            id: PropTypes.number,
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.date,
-        }).isRequired,
-        birthday: PropTypes.date.isRequired,
-        gender: PropTypes.string.isRequired
-    }).isRequired,
-};
+function mapStateToProps(state) {
+    return {
+        entity: state.entity,
+        isFetching: state.isFetching
+    }
+}
+
+export default connect(mapStateToProps)(HorseView)

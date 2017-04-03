@@ -9,9 +9,9 @@ import {FormText} from 'reactstrap';
 
 export default class HorseList extends Component {
     render() {
-        let rows = this.props.entities.map(function (entity, i) {
-            return <HorseRow key={i} entity={entity} changeMode={this.props.changeMode}/>
-        }.bind(this));
+        let rows = this.props.entities.map((entity, i) => <HorseRow key={i}
+                                                                    entity={entity}
+                                                                    changeMode={this.props.changeMode}/>);
         return (
             rows.length === 0
                 ?
@@ -39,5 +39,6 @@ export default class HorseList extends Component {
 
 HorseList.propTypes = {
     entities: PropTypes.array.isRequired,
-    changeMode: PropTypes.func.isRequired
+    fetchEntities: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired
 };
