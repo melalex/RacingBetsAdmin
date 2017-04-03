@@ -1,4 +1,4 @@
-/**
+ /**
  * Created by Alexander Melashchenko on 4/1/17.
  */
 
@@ -8,14 +8,6 @@ import {Button} from 'reactstrap';
 import {Link} from 'react-router'
 
 export default class HorseRow extends Component {
-
-    onClickView(id) {
-        this.props.readEntity(id);
-    }
-
-    onClickEdit(id) {
-        this.props.editEntity(id);
-    }
 
     onClickDelete(id) {
         this.props.deleteEntity(id);
@@ -32,8 +24,8 @@ export default class HorseRow extends Component {
                 <td>{birthday}</td>
                 <td>{gender}</td>
                 <td>
-                    <Button outline color="info" href={} onClick={() => this.onClickView(id)}>View</Button>
-                    <Button outline color="primary" onClick={() => this.onClickEdit(id)}>Edit</Button>
+                    <Link to={'/horse/view/' + id} className="btn-outline-info">View</Link>
+                    <Link to={'/horse/edit/' + id} className="btn-outline-primary">Edit</Link>
                     <Button outline color="danger" onClick={() => this.onClickDelete(id)}>Delete</Button>
                 </td>
             </tr>
@@ -61,6 +53,4 @@ HorseRow.propTypes = {
         gender: PropTypes.string.isRequired
     }).isRequired,
     deleteEntity: PropTypes.func.isRequired,
-    editEntity: PropTypes.func.isRequired,
-    readEntity: PropTypes.func.isRequired
 };

@@ -11,7 +11,7 @@ export default class HorseList extends Component {
     render() {
         let rows = this.props.entities.map((entity, i) => <HorseRow key={i}
                                                                     entity={entity}
-                                                                    changeMode={this.props.changeMode}/>);
+                                                                    deleteEntity={this.props.deleteEntity}/>);
         return (
             rows.length === 0
                 ?
@@ -40,5 +40,6 @@ export default class HorseList extends Component {
 HorseList.propTypes = {
     entities: PropTypes.array.isRequired,
     fetchEntities: PropTypes.func.isRequired,
-    isFetching: PropTypes.bool.isRequired
+    isFetching: PropTypes.bool.isRequired,
+    deleteEntity: PropTypes.func.isRequired
 };

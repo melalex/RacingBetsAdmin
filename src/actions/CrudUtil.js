@@ -4,6 +4,7 @@
 
 import {ajax} from "jquery";
 import API_DOMAIN from '../constants/Api'
+import * as crudAction from '../constants/Crud'
 
 function action(parameters, method) {
     let {entity, path, requestType, failType, successType} = parameters;
@@ -27,7 +28,7 @@ function action(parameters, method) {
             error: [
                 response => dispatch({
                     type: successType,
-                    payload: response.result
+                    payload: response.result[0]
                 })
             ]
         });
@@ -55,7 +56,7 @@ function actionWithoutPayload(parameters, method) {
             error: [
                 response => dispatch({
                     type: successType,
-                    payload: response.result
+                    payload: response.result[0]
                 })
             ]
         });
@@ -63,45 +64,65 @@ function actionWithoutPayload(parameters, method) {
 }
 
 function create(parameters) {
-    return action(parameters, 'POST')
+    return action({
+        ...parameters,
+        requestType: crudAction.CREATE_REQUEST,
+        failType: crudAction.CREATE_FAILED,
+        successType: crudAction.CREATE_SUCCESS
+    }, 'POST')
 }
 
 function get(parameters) {
-    let {page, path, requestType, failType, successType} = parameters;
+    let {page, path} = parameters;
 
     return action({
         entity: {page: page},
         path: path,
-        requestType: requestType,
-        failType: failType,
-        successType: successType
+        requestType: crudAction.GET_ONE_REQUEST,
+        failType: crudAction.GET_FAILED,
+        successType: crudAction.GET_SUCCESS
     }, 'GET')
 }
 
 function getOne(parameters) {
-    return actionWithoutPayload(parameters, 'GET')
+    return actionWithoutPayload({
+        ...parameters,
+        requestType: crudAction.GET_ONE_REQUEST,
+        failType: crudAction.GET_ONE_FAILED,
+        successType: crudAction.GET_ONE_SUCCESS
+    }, 'GET')
 }
 
 function search(parameters) {
-    let {req, page, action, requestType, failType, successType} = parameters;
+    let {req, page, path} = parameters;
     return action({
         entity: {
             page: page,
             req: req
         },
         path: path,
-        requestType: requestType,
-        failType: failType,
-        successType: successType
+        requestType: crudAction.SEARCH_REQUEST,
+        failType: crudAction.SEARCH_FAILED,
+        successType: crudAction.SEARCH_SUCCESS
     }, 'GET')
 }
 
 function update(parameters) {
-    return action(parameters, 'PUT')
+    return action({
+        ...parameters,
+        requestType: crudAction.UPDATE_REQUEST,
+        failType: crudAction.UPDATE_FAILED,
+        successType: crudAction.UPDATE_SUCCESS
+    }, 'PUT')
 }
 
 function remove(parameters) {
-    return actionWithoutPayload(parameters, 'DELETE')
+    return actionWithoutPayload({
+        ...parameters,
+        requestType: crudAction.DELETE_REQUEST,
+        failType: crudAction.DELETE_FAILED,
+        successType: crudAction.DELETE_SUCCESS
+    }, 'DELETE')
 }
 
 export {create, get, getOne, search, update, remove}

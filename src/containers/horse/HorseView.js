@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import {Table} from 'reactstrap';
+import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import fullName from '../../util/fullName'
 import {connect} from 'react-redux'
 
@@ -15,34 +15,41 @@ class HorseView extends React.Component {
             isFetching ? (
                 <h3>Loading...</h3>
             ) : (
-                <Table>
-                    <tbody>
-                    <th>
-                        <td>Id</td>
-                        <td>{id}</td>
-                    </th>
-                    <th>
-                        <td>Name</td>
-                        <td>{name}</td>
-                    </th>
-                    <th>
-                        <td>Trainer</td>
-                        <td>{fullName(trainer)}</td>
-                    </th>
-                    <th>
-                        <td>Owner</td>
-                        <td>{fullName(owner)}</td>
-                    </th>
-                    <th>
-                        <td>Birthday</td>
-                        <td>{birthday}</td>
-                    </th>
-                    <th>
-                        <td>Gender</td>
-                        <td>{gender}</td>
-                    </th>
-                    </tbody>
-                </Table>
+                <div>
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/horse/list">Horses</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>View</BreadcrumbItem>
+                    </Breadcrumb>
+                    <Table>
+                        <tbody>
+                        <th>
+                            <td>Id</td>
+                            <td>{id}</td>
+                        </th>
+                        <th>
+                            <td>Name</td>
+                            <td>{name}</td>
+                        </th>
+                        <th>
+                            <td>Trainer</td>
+                            <td>{fullName(trainer)}</td>
+                        </th>
+                        <th>
+                            <td>Owner</td>
+                            <td>{fullName(owner)}</td>
+                        </th>
+                        <th>
+                            <td>Birthday</td>
+                            <td>{birthday}</td>
+                        </th>
+                        <th>
+                            <td>Gender</td>
+                            <td>{gender}</td>
+                        </th>
+                        </tbody>
+                    </Table>
+                </div>
             )
         );
     }
