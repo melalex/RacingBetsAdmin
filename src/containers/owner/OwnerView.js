@@ -7,7 +7,7 @@ import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 
-class JockeyView extends React.Component {
+class OwnerView extends React.Component {
     render() {
         let {entity, isFetching} = this.props;
         let {id, firstName, lastName, birthday} = entity;
@@ -18,7 +18,7 @@ class JockeyView extends React.Component {
                 <div>
                     <Breadcrumb>
                         <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem><Link to="/jockey/list">Jockeys</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/owner/list">Owners</Link></BreadcrumbItem>
                         <BreadcrumbItem active>View</BreadcrumbItem>
                     </Breadcrumb>
                     <Table>
@@ -54,4 +54,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(JockeyView)
+export default connect(mapStateToProps)(OwnerView)

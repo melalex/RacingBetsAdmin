@@ -4,19 +4,19 @@
 
 import React, {PropTypes, Component} from 'react'
 import {Table} from 'reactstrap';
-import JockeyRow from 'JockeyRow';
+import OwnerRow from 'OwnerRow';
 import {FormText} from 'reactstrap';
 import Pager from '../shared/Pager'
 
-export default class JockeyList extends Component {
+export default class OwnerList extends Component {
 
     render() {
         let {entities, page, limit, count, deleteEntity} = this.props;
-        let rows = entities.map((entity, i) => <JockeyRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
+        let rows = entities.map((entity, i) => <OwnerRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
         return (
             rows.length === 0
                 ?
-                <FormText color="muted">No jockeys found</FormText>
+                <FormText color="muted">No owners found</FormText>
                 :
                 <div>
                     <Table hover>
@@ -38,7 +38,7 @@ export default class JockeyList extends Component {
     }
 }
 
-JockeyList.propTypes = {
+OwnerList.propTypes = {
     entities: PropTypes.array.isRequired,
     page: PropTypes.number.isRequired,
     limit: PropTypes.number.isRequired,
