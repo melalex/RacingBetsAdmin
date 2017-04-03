@@ -2,74 +2,32 @@
  * Created by Alexander Melashchenko on 4/1/17.
  */
 
-import {create, get, search, update, remove} from './CrudUtil'
-import {
-    CREATE_TRAINER_REQUEST,
-    CREATE_TRAINER_SUCCESS,
-    CREATE_TRAINER_FAILED,
-    GET_TRAINERS_REQUEST,
-    GET_TRAINERS_SUCCESS,
-    GET_TRAINERS_FAILED,
-    SEARCH_TRAINERS_REQUEST,
-    SEARCH_TRAINERS_SUCCESS,
-    SEARCH_TRAINERS_FAILED,
-    UPDATE_TRAINER_REQUEST,
-    UPDATE_TRAINER_SUCCESS,
-    UPDATE_TRAINER_FAILED,
-    DELETE_TRAINER_REQUEST,
-    DELETE_TRAINER_SUCCESS,
-    DELETE_TRAINER_FAILED
-} from '../constants/Trainer'
+import {create, get, getOne, search, update, remove} from './CrudUtil'
 
-let createTrainer = trainer => {
-    return create({
-        entity: trainer,
-        path: '/api/trainer',
-        requestType: CREATE_TRAINER_REQUEST,
-        failType: CREATE_TRAINER_FAILED,
-        successType: CREATE_TRAINER_SUCCESS
-    })
-};
+const path = '/api/trainer';
 
-let getTrainers = page => {
-    return get({
-        page: page,
-        path: '/api/trainer',
-        requestType: GET_TRAINERS_REQUEST,
-        failType: GET_TRAINERS_FAILED,
-        successType: GET_TRAINERS_SUCCESS
-    })
-};
+function createTrainer(horse) {
+    return create(horse, path);
+}
 
-let searchTrainer = (req, page) => {
-    return search({
-        req: req,
-        page: page,
-        path: '/api/trainer',
-        requestType: SEARCH_TRAINERS_REQUEST,
-        failType: SEARCH_TRAINERS_FAILED,
-        successType: SEARCH_TRAINERS_SUCCESS
-    })
-};
+function getTrainers(page) {
+    return get(page, path)
+}
 
-let updateTrainer = trainer => {
-    return update({
-        entity: trainer,
-        path: '/api/trainer',
-        requestType: UPDATE_TRAINER_REQUEST,
-        failType: UPDATE_TRAINER_FAILED,
-        successType: UPDATE_TRAINER_SUCCESS
-    })
-};
+function getOneTrainer(id) {
+    return getOne(id, path)
+}
 
-let deleteTrainer = id => {
-    return remove({
-        id: id,
-        path: '/api/trainer',
-        requestType: DELETE_TRAINER_REQUEST,
-        failType: DELETE_TRAINER_FAILED,
-        successType: DELETE_TRAINER_SUCCESS
-    })
-};
+function searchTrainer(req, page) {
+    return search(req, page, path)
+}
 
-export {createTrainer, getTrainers, searchTrainer, updateTrainer, deleteTrainer}
+function updateTrainer(horse) {
+    return update(horse, path)
+}
+
+function deleteTrainer(id) {
+    return remove(id, path)
+}
+
+export {createTrainer, getTrainers, getOneTrainer, searchTrainer, updateTrainer, deleteTrainer}

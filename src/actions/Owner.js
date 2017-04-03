@@ -2,74 +2,32 @@
  * Created by Alexander Melashchenko on 4/1/17.
  */
 
-import {create, get, search, update, remove} from './CrudUtil'
-import {
-    CREATE_OWNER_REQUEST,
-    CREATE_OWNER_SUCCESS,
-    CREATE_OWNER_FAILED,
-    GET_OWNERS_REQUEST,
-    GET_OWNERS_SUCCESS,
-    GET_OWNERS_FAILED,
-    SEARCH_OWNERS_REQUEST,
-    SEARCH_OWNERS_SUCCESS,
-    SEARCH_OWNERS_FAILED,
-    UPDATE_OWNER_REQUEST,
-    UPDATE_OWNER_SUCCESS,
-    UPDATE_OWNER_FAILED,
-    DELETE_OWNER_REQUEST,
-    DELETE_OWNER_SUCCESS,
-    DELETE_OWNER_FAILED
-} from '../constants/Owner'
+import {create, get, getOne, search, update, remove} from './CrudUtil'
 
-let createOwner = owner => {
-    return create({
-        entity: owner,
-        path: '/api/owner',
-        requestType: CREATE_OWNER_REQUEST,
-        failType: CREATE_OWNER_FAILED,
-        successType: CREATE_OWNER_SUCCESS
-    })
-};
+const path = '/api/owner';
 
-let getOwners = page => {
-    return get({
-        page: page,
-        path: '/api/owner',
-        requestType: GET_OWNERS_REQUEST,
-        failType: GET_OWNERS_FAILED,
-        successType: GET_OWNERS_SUCCESS
-    })
-};
+function createOwner(horse) {
+    return create(horse, path);
+}
 
-let searchOwner = (req, page) => {
-    return search({
-        req: req,
-        page: page,
-        path: '/api/owner',
-        requestType: SEARCH_OWNERS_REQUEST,
-        failType: SEARCH_OWNERS_FAILED,
-        successType: SEARCH_OWNERS_SUCCESS
-    })
-};
+function getOwners(page) {
+    return get(page, path)
+}
 
-let updateOwner = owner => {
-    return update({
-        entity: owner,
-        path: '/api/owner',
-        requestType: UPDATE_OWNER_REQUEST,
-        failType: UPDATE_OWNER_FAILED,
-        successType: UPDATE_OWNER_SUCCESS
-    })
-};
+function getOneOwner(id) {
+    return getOne(id, path)
+}
 
-let deleteOwner = id => {
-    return remove({
-        id: id,
-        path: '/api/owner',
-        requestType: DELETE_OWNER_REQUEST,
-        failType: DELETE_OWNER_FAILED,
-        successType: DELETE_OWNER_SUCCESS
-    })
-};
+function searchOwner(req, page) {
+    return search(req, page, path)
+}
 
-export {createOwner, getOwners, searchOwner, updateOwner, deleteOwner}
+function updateOwner(horse) {
+    return update(horse, path)
+}
+
+function deleteOwner(id) {
+    return remove(id, path)
+}
+
+export {createOwner, getOwners, getOneOwner, searchOwner, updateOwner, deleteOwner}

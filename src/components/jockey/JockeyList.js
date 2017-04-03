@@ -4,15 +4,15 @@
 
 import React, {PropTypes, Component} from 'react'
 import {Table} from 'reactstrap';
-import HorseRow from 'HorseRow';
+import JockeyRow from 'JockeyRow';
 import {FormText} from 'reactstrap';
 import Pager from '../shared/Pager'
 
-export default class HorseList extends Component {
+export default class JockeyList extends Component {
 
     render() {
         let {entities, page, limit, count, deleteEntity} = this.props;
-        let rows = entities.map((entity, i) => <HorseRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
+        let rows = entities.map((entity, i) => <JockeyRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
         return (
             rows.length === 0
                 ?
@@ -24,10 +24,7 @@ export default class HorseList extends Component {
                         <tr>
                             <td>Id</td>
                             <td>Name</td>
-                            <td>Trainer's name</td>
-                            <td>Owner's name</td>
                             <td>Birthday</td>
-                            <td>Gender</td>
                             <td>Action</td>
                         </tr>
                         </thead>
@@ -41,7 +38,7 @@ export default class HorseList extends Component {
     }
 }
 
-HorseList.propTypes = {
+JockeyList.propTypes = {
     entities: PropTypes.array.isRequired,
     page: PropTypes.number.isRequired,
     limit: PropTypes.number.isRequired,

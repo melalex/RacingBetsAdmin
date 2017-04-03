@@ -8,10 +8,10 @@ import fullName from '../../util/fullName'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 
-class HorseView extends React.Component {
+class JockeyView extends React.Component {
     render() {
         let {entity, isFetching} = this.props;
-        let {id, name, trainer, owner, birthday, gender} = entity;
+        let {id, firstName, lastName, birthday} = entity;
         return (
             isFetching ? (
                 <h3>Loading...</h3>
@@ -29,24 +29,16 @@ class HorseView extends React.Component {
                             <td>{id}</td>
                         </tr>
                         <tr>
-                            <td>Name</td>
-                            <td>{name}</td>
+                            <td>First name</td>
+                            <td>{firstName}</td>
                         </tr>
                         <tr>
-                            <td>Trainer</td>
-                            <td>{fullName(trainer)}</td>
-                        </tr>
-                        <tr>
-                            <td>Owner</td>
-                            <td>{fullName(owner)}</td>
+                            <td>Last name</td>
+                            <td>{lastName}</td>
                         </tr>
                         <tr>
                             <td>Birthday</td>
                             <td>{birthday}</td>
-                        </tr>
-                        <tr>
-                            <td>Gender</td>
-                            <td>{gender}</td>
                         </tr>
                         </tbody>
                     </Table>
@@ -63,4 +55,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(HorseView)
+export default connect(mapStateToProps)(JockeyView)
