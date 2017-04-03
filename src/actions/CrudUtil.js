@@ -7,7 +7,7 @@ import API_DOMAIN from '../constants/Api'
 import * as crudAction from '../constants/Crud'
 
 function action(parameters, method) {
-    let {entity, path, requestType, failType, successType} = parameters;
+    let {entity, page, path, requestType, failType, successType} = parameters;
     return dispatch => {
         dispatch({
             type: requestType,
@@ -21,14 +21,19 @@ function action(parameters, method) {
             data: entity,
             success: [
                 response => dispatch({
-                    type: failType,
-                    payload: response.result
+                    type: successType,
+                    payload: {
+                        count: response.count,
+                        limit: response.limit,
+                        page: page,
+                        content: response.result
+                    }
                 })
             ],
             error: [
                 response => dispatch({
-                    type: successType,
-                    payload: response.result[0]
+                    type: failType,
+                    payload: response.result
                 })
             ]
         });
@@ -49,14 +54,19 @@ function actionWithoutPayload(parameters, method) {
             dataType: 'json',
             success: [
                 response => dispatch({
-                    type: failType,
-                    payload: response.result
+                    type: successType,
+                    payload: {
+                        count: response.count,
+                        limit: response.limit,
+                        page: 1,
+                        content: response.result
+                    }
                 })
             ],
             error: [
                 response => dispatch({
-                    type: successType,
-                    payload: response.result[0]
+                    type: failType,
+                    payload: response.result
                 })
             ]
         });
@@ -66,6 +76,7 @@ function actionWithoutPayload(parameters, method) {
 function create(parameters) {
     return action({
         ...parameters,
+        page: 1,
         requestType: crudAction.CREATE_REQUEST,
         failType: crudAction.CREATE_FAILED,
         successType: crudAction.CREATE_SUCCESS
@@ -77,6 +88,7 @@ function get(parameters) {
 
     return action({
         entity: {page: page},
+        page: page,
         path: path,
         requestType: crudAction.GET_ONE_REQUEST,
         failType: crudAction.GET_FAILED,
@@ -100,6 +112,7 @@ function search(parameters) {
             page: page,
             req: req
         },
+        page: page,
         path: path,
         requestType: crudAction.SEARCH_REQUEST,
         failType: crudAction.SEARCH_FAILED,
@@ -110,6 +123,7 @@ function search(parameters) {
 function update(parameters) {
     return action({
         ...parameters,
+        page: 1,
         requestType: crudAction.UPDATE_REQUEST,
         failType: crudAction.UPDATE_FAILED,
         successType: crudAction.UPDATE_SUCCESS

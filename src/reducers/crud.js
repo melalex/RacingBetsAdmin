@@ -7,6 +7,9 @@ import * as actionConst from '../constants/Crud'
 const initialState = {
     content: [],
     errors: [],
+    page: 1,
+    count: 0,
+    limit: 20,
     info: '',
     fetching: false,
     entity: {}
@@ -29,7 +32,14 @@ export default function crud(state = initialState, action) {
         case actionConst.SEARCH_SUCCESS:
         case actionConst.UPDATE_SUCCESS:
         case actionConst.DELETE_SUCCESS:
-            return {...state, fetching: false, info: action.payload};
+            return {
+                ...state,
+                fetching: false,
+                info: action.payload.content[0],
+                count: action.payload.count,
+                limit: action.payload.limit,
+                page: action.payload.page,
+            };
 
         case actionConst.CREATE_FAILED:
         case actionConst.GET_ONE_FAILED:
@@ -37,7 +47,7 @@ export default function crud(state = initialState, action) {
         case actionConst.SEARCH_FAILED:
         case actionConst.UPDATE_FAILED:
         case actionConst.DELETE_FAILED:
-            return {...state, fetching: false, errors: action.payload};
+            return {...state, fetching: false, errors: action.payload.content[0] };
 
         default:
             return state;

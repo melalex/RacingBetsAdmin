@@ -4,8 +4,8 @@
 
 import React from 'react'
 import {bindActionCreators} from 'redux'
-import HorseForm from '../../components/horse/HorseForm'
 import {connect} from 'react-redux'
+import HorseForm from '../../components/horse/HorseForm'
 import {updateHorse} from '../../actions/Horse'
 
 class HorseEdit extends React.Component {
