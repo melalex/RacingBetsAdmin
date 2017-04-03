@@ -5,16 +5,16 @@
 import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {Breadcrumb, BreadcrumbItem, InputGroup, InputGroupButton, Input, Button} from 'reactstrap';
-import * as actions from '../../actions/Horse'
+import {Breadcrumb, BreadcrumbItem, InputGroup, InputGroupButton, Input, Button, Container, Row, Col} from 'reactstrap';
+import {getHorses, searchHorse, deleteHorse} from '../../actions/Horse'
 import HorseList from '../../components/horse/HorseList'
 
 export default class HorsePage extends React.Component {
     fetchEntities(page) {
         if (this.searchString) {
-            this.props.entityActions.searchHorse(this.searchString, page)
+            this.props.search(this.searchString, page)
         } else {
-            this.props.entityActions.getHorses(page)
+            this.props.getAll(page)
         }
     }
 
@@ -24,27 +24,37 @@ export default class HorsePage extends React.Component {
     }
 
     render() {
-        let {content, page, count, limit, isFetching} = this.props;
+        let {content, page, count, limit, searchString, isFetching} = this.props;
         return (
             <div>
+                <h1>Horses</h1>
+
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Horses</BreadcrumbItem>
                 </Breadcrumb>
 
-                <InputGroup>
-                    <Input type="text" ref={(input) => this.searchString = input} value={}/>
-                    <InputGroupButton>
-                        <Button color="primary" onClick={this.search}>Search</Button>
-                    </InputGroupButton>
-                </InputGroup>
-
+                <Container>
+                    <Row>
+                        <Col md={4}>
+                            <InputGroup>
+                                <Input type="text" ref={(input) => this.searchString = input} value={searchString}/>
+                                <InputGroupButton>
+                                    <Button color="primary" onClick={this.search}>Search</Button>
+                                </InputGroupButton>
+                            </InputGroup>
+                        </Col>
+                        <Col md={{size: 2, offset: 4}}>
+                            <Link to="/horse/create" className="btn-outline-primary">Create</Link>
+                        </Col>
+                    </Row>
+                </Container>
 
                 {isFetching ? (
                     <h3>Loading...</h3>
                 ) : (
                     <HorseList entities={content} page={page} limit={limit} count={count}
-                               deleteEntity={this.props.entityActions.deleteHorse}
+                               deleteEntity={this.props.deleteEntity}
                                fetchEntities={this.fetchEntities}/>
                 )}
             </div>
@@ -58,13 +68,16 @@ function mapStateToProps(state) {
         page: state.crud.page,
         count: state.crud.count,
         limit: state.crud.limit,
+        searchString: state.crud.searchString,
         isFetching: state.crud.isFetching
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        entityActions: bindActionCreators(actions, dispatch),
+        getAll: bindActionCreators(getHorses, dispatch),
+        search: bindActionCreators(searchHorse, dispatch),
+        deleteEntity: bindActionCreators(deleteHorse, dispatch),
     }
 }
 

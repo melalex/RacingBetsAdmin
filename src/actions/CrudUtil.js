@@ -53,7 +53,7 @@ function get(page, path) {
                         count: response.count,
                         limit: response.limit,
                         page: page,
-                        searchingString: '',
+                        searchString: '',
                         content: response.result
                     }
                 })
@@ -120,7 +120,7 @@ function search(req, page, path) {
                         count: response.count,
                         limit: response.limit,
                         page: page,
-                        searchingString: req,
+                        searchString: req,
                         content: response.result
                     }
                 })
