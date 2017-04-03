@@ -2,51 +2,32 @@
  * Created by Alexander Melashchenko on 4/1/17.
  */
 
-import {create, get, search, update, remove} from './CrudUtil'
+import {create, get, getOne, search, update, remove} from './CrudUtil'
 
 const path = '/api/horse';
 
-let createHorse = horse => {
-    return create({
-        entity: horse,
-        path: path,
-    })
-};
+function createHorse(horse) {
+    return create(horse, path);
+}
 
-let getHorses = page => {
-    return get({
-        page: page,
-        path: path,
-    })
-};
+function getHorses(page) {
+    return get(page, path)
+}
 
-let getOneHorse = id => {
-    return getOneHorse({
-        page: id,
-        path: path,
-    })
-};
+function getOneHorse(id) {
+    return getOne(id, path)
+}
 
-let searchHorse = (req, page) => {
-    return search({
-        req: req,
-        page: page,
-        path: path,
-    })
-};
+function searchHorse(req, page) {
+    return search(req, page, path)
+}
 
-let updateHorse = horse => {
-    return update({
-        entity: horse,
-        path: path,
-    })
-};
+function updateHorse(horse) {
+    return update(horse, path)
+}
 
-let deleteHorse = id => {
-    return remove({
-        id: id,
-        path: path,
-    })
-};
+function deleteHorse(id) {
+    return remove(id, path)
+}
 
 export {createHorse, getHorses, getOneHorse, searchHorse, updateHorse, deleteHorse}

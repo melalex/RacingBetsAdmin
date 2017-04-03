@@ -6,66 +6,88 @@ import {ajax} from "jquery";
 import API_DOMAIN from '../constants/Api'
 import * as crudAction from '../constants/Crud'
 
-function action(parameters, method) {
-    let {entity, page, path, requestType, failType, successType} = parameters;
+function create(entity, path) {
     return dispatch => {
         dispatch({
-            type: requestType,
+            type: crudAction.CREATE_REQUEST,
             payload: entity
         });
 
         ajax({
-            type: method,
+            type: 'POST',
             url: API_DOMAIN + path,
             dataType: 'json',
             data: entity,
             success: [
                 response => dispatch({
-                    type: successType,
+                    type: crudAction.CREATE_SUCCESS,
+                    payload: response.result[0]
+                })
+            ],
+            error: [
+                response => dispatch({
+                    type: crudAction.CREATE_FAILED,
+                    payload: response.result
+                })
+            ]
+        });
+    };
+}
+
+function get(page, path) {
+    return dispatch => {
+        dispatch({
+            type: crudAction.GET_REQUEST,
+            payload: page
+        });
+
+        ajax({
+            type: 'GET',
+            url: API_DOMAIN + path,
+            dataType: 'json',
+            data: {page: page},
+            success: [
+                response => dispatch({
+                    type: crudAction.GET_SUCCESS,
                     payload: {
                         count: response.count,
                         limit: response.limit,
                         page: page,
+                        searchingString: '',
                         content: response.result
                     }
                 })
             ],
             error: [
                 response => dispatch({
-                    type: failType,
+                    type: crudAction.GET_FAILED,
                     payload: response.result
                 })
             ]
         });
-    }
+    };
 }
 
-function actionWithoutPayload(parameters, method) {
-    let {id, path, requestType, failType, successType} = parameters;
+function getOne(id, path) {
     return dispatch => {
         dispatch({
-            type: requestType,
+            type: crudAction.GET_ONE_REQUEST,
             payload: id
         });
 
         ajax({
-            type: method,
+            type: 'GET',
             url: API_DOMAIN + path + '/' + id,
             dataType: 'json',
             success: [
                 response => dispatch({
-                    type: successType,
-                    payload: {
-                        count: response.count,
-                        limit: response.limit,
-                        page: 1,
-                        content: response.result
-                    }
+                    type: crudAction.GET_ONE_SUCCESS,
+                    payload: response.result[0]
                 })
             ],
             error: [
                 response => dispatch({
-                    type: failType,
+                    type: crudAction.GET_ONE_FAILED,
                     payload: response.result
                 })
             ]
@@ -73,70 +95,99 @@ function actionWithoutPayload(parameters, method) {
     }
 }
 
-function create(parameters) {
-    return action({
-        ...parameters,
-        page: 1,
-        requestType: crudAction.CREATE_REQUEST,
-        failType: crudAction.CREATE_FAILED,
-        successType: crudAction.CREATE_SUCCESS
-    }, 'POST')
+function search(req, page, path) {
+    return dispatch => {
+        dispatch({
+            type: crudAction.SEARCH_REQUEST,
+            payload: {
+                query: req,
+                page: page
+            }
+        });
+
+        ajax({
+            type: 'GET',
+            url: API_DOMAIN + path,
+            dataType: 'json',
+            data: {
+                query: req,
+                page: page
+            },
+            success: [
+                response => dispatch({
+                    type: crudAction.SEARCH_SUCCESS,
+                    payload: {
+                        count: response.count,
+                        limit: response.limit,
+                        page: page,
+                        searchingString: req,
+                        content: response.result
+                    }
+                })
+            ],
+            error: [
+                response => dispatch({
+                    type: crudAction.SEARCH_FAILED,
+                    payload: response.result
+                })
+            ]
+        });
+    };
 }
 
-function get(parameters) {
-    let {page, path} = parameters;
+function update(entity, path) {
+    return dispatch => {
+        dispatch({
+            type: crudAction.UPDATE_REQUEST,
+            payload: entity
+        });
 
-    return action({
-        entity: {page: page},
-        page: page,
-        path: path,
-        requestType: crudAction.GET_ONE_REQUEST,
-        failType: crudAction.GET_FAILED,
-        successType: crudAction.GET_SUCCESS
-    }, 'GET')
+        ajax({
+            type: 'PUT',
+            url: API_DOMAIN + path,
+            dataType: 'json',
+            data: entity,
+            success: [
+                response => dispatch({
+                    type: crudAction.UPDATE_SUCCESS,
+                    payload: response.result[0]
+                })
+            ],
+            error: [
+                response => dispatch({
+                    type: crudAction.UPDATE_FAILED,
+                    payload: response.result
+                })
+            ]
+        });
+    };
 }
 
-function getOne(parameters) {
-    return actionWithoutPayload({
-        ...parameters,
-        requestType: crudAction.GET_ONE_REQUEST,
-        failType: crudAction.GET_ONE_FAILED,
-        successType: crudAction.GET_ONE_SUCCESS
-    }, 'GET')
-}
+function remove(id, path) {
+    return dispatch => {
+        dispatch({
+            type: crudAction.DELETE_REQUEST,
+            payload: id
+        });
 
-function search(parameters) {
-    let {req, page, path} = parameters;
-    return action({
-        entity: {
-            page: page,
-            req: req
-        },
-        page: page,
-        path: path,
-        requestType: crudAction.SEARCH_REQUEST,
-        failType: crudAction.SEARCH_FAILED,
-        successType: crudAction.SEARCH_SUCCESS
-    }, 'GET')
-}
-
-function update(parameters) {
-    return action({
-        ...parameters,
-        page: 1,
-        requestType: crudAction.UPDATE_REQUEST,
-        failType: crudAction.UPDATE_FAILED,
-        successType: crudAction.UPDATE_SUCCESS
-    }, 'PUT')
-}
-
-function remove(parameters) {
-    return actionWithoutPayload({
-        ...parameters,
-        requestType: crudAction.DELETE_REQUEST,
-        failType: crudAction.DELETE_FAILED,
-        successType: crudAction.DELETE_SUCCESS
-    }, 'DELETE')
+        ajax({
+            type: 'DELETE',
+            url: API_DOMAIN + path + '/' + id,
+            dataType: 'json',
+            success: [
+                response => dispatch({
+                    type: crudAction.DELETE_SUCCESS,
+                    payload: response.result[0]
+                })
+            ],
+            error: [
+                response => dispatch({
+                    type: crudAction.DELETE_FAILED,
+                    payload: response.result
+                })
+            ]
+        });
+    }
 }
 
 export {create, get, getOne, search, update, remove}
