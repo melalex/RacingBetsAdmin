@@ -6,6 +6,7 @@ import React from 'react'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import fullName from '../../util/fullName'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
 
 class HorseView extends React.Component {
     render() {
@@ -57,8 +58,8 @@ class HorseView extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        entity: state.entity,
-        isFetching: state.isFetching
+        entity: state.crud.entity,
+        isFetching: state.crud.isFetching
     }
 }
 

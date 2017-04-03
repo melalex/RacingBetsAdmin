@@ -6,16 +6,12 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import HorseForm from '../../components/horse/HorseForm'
 import {connect} from 'react-redux'
-import {updateHorse} from '../../actions/Horse'
+import {createHorse} from '../../actions/Horse'
 
-class HorseEdit extends React.Component {
+class HorseCreate extends React.Component {
     render() {
         return (
-            this.props.isFetching ? (
-                <h3>Loading...</h3>
-            ) : (
-                <HorseForm onSave={this.props.onSave} entity={this.props.entity}/>
-            )
+            <HorseForm onSave={this.props.onSave}/>
         )
     }
 }
@@ -29,8 +25,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onSave: bindActionCreators(updateHorse, dispatch),
+        onSave: bindActionCreators(createHorse, dispatch),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HorseEdit)
+export default connect(mapStateToProps, mapDispatchToProps)(HorseCreate)

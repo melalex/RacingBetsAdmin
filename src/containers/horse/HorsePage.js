@@ -4,7 +4,7 @@
 
 import React from 'react'
 import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
-import HorseList from 'HorseList'
+import HorseList from '../../components/horse/HorseList'
 
 export default class HorsePage extends React.Component {
     render() {
