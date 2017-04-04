@@ -16,7 +16,7 @@ export default class TrainerList extends Component {
         return (
             rows.length === 0
                 ?
-                <FormText color="muted">No owners found</FormText>
+                <FormText color="muted">Nothing to show</FormText>
                 :
                 <div>
                     <Table hover>

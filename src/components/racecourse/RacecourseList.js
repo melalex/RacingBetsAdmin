@@ -4,15 +4,15 @@
 
 import React, {PropTypes, Component} from 'react'
 import {Table} from 'reactstrap';
-import OwnerRow from 'OwnerRow';
+import RacecourseRow from 'RacecourseRow';
 import {FormText} from 'reactstrap';
 import Pager from '../shared/Pager'
 
-export default class OwnerList extends Component {
+export default class RacecourseList extends Component {
 
     render() {
         let {entities, page, limit, count, deleteEntity} = this.props;
-        let rows = entities.map((entity, i) => <OwnerRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
+        let rows = entities.map((entity, i) => <RacecourseRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
         return (
             rows.length === 0
                 ?
@@ -24,7 +24,10 @@ export default class OwnerList extends Component {
                         <tr>
                             <td>Id</td>
                             <td>Name</td>
-                            <td>Birthday</td>
+                            <td>Latitude</td>
+                            <td>Longitude</td>
+                            <td>Contact</td>
+                            <td>Clerk</td>
                             <td>Action</td>
                         </tr>
                         </thead>
@@ -38,7 +41,7 @@ export default class OwnerList extends Component {
     }
 }
 
-OwnerList.propTypes = {
+RacecourseList.propTypes = {
     entities: PropTypes.array.isRequired,
     page: PropTypes.number.isRequired,
     limit: PropTypes.number.isRequired,

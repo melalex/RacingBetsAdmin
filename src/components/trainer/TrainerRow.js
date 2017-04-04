@@ -15,9 +15,10 @@ export default class TrainerRow extends Component {
     }
 
     render() {
+        let id = this.props.entity.id;
         return (
             <tr>
-                <td>{this.props.entity.id}</td>
+                <td>{id}</td>
                 <td>{fullName(this.props.entity)}</td>
                 <td>{this.props.entity.birthday}</td>
                 <td>
