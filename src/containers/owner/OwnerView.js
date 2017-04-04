@@ -4,21 +4,22 @@
 
 import React from 'react'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import Loading from 'react-loading-animation'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 
-class RacecourseView extends React.Component {
+class OwnerView extends React.Component {
     render() {
         let {entity, isFetching} = this.props;
-        let {id, name, latitude, longitude, contact, clerk} = entity;
+        let {id, firstName, lastName, birthday} = entity;
         return (
             isFetching ? (
-                <h3>Loading...</h3>
+                <Loading/>
             ) : (
                 <div>
                     <Breadcrumb>
                         <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem><Link to="/racecourse/list">Racecourses</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/owner/list">Owners</Link></BreadcrumbItem>
                         <BreadcrumbItem active>View</BreadcrumbItem>
                     </Breadcrumb>
                     <Table>
@@ -28,24 +29,16 @@ class RacecourseView extends React.Component {
                             <td>{id}</td>
                         </tr>
                         <tr>
-                            <td>Name</td>
-                            <td>{name}</td>
+                            <td>First name</td>
+                            <td>{firstName}</td>
                         </tr>
                         <tr>
-                            <td>Latitude</td>
-                            <td>{latitude}</td>
+                            <td>Last name</td>
+                            <td>{lastName}</td>
                         </tr>
                         <tr>
-                            <td>Longitude</td>
-                            <td>{longitude}</td>
-                        </tr>
-                        <tr>
-                            <td>Contact</td>
-                            <td>{contact}</td>
-                        </tr>
-                        <tr>
-                            <td>Clerk</td>
-                            <td>{clerk}</td>
+                            <td>Birthday</td>
+                            <td>{birthday}</td>
                         </tr>
                         </tbody>
                     </Table>
@@ -62,4 +55,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(RacecourseView)
+export default connect(mapStateToProps)(OwnerView)

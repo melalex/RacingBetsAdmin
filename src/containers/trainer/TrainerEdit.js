@@ -5,6 +5,7 @@
 import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import Loading from 'react-loading-animation'
 import TrainerForm from '../../components/trainer/TrainerForm'
 import {updateTrainer} from '../../actions/Trainer'
 
@@ -12,7 +13,7 @@ class TrainerCreate extends React.Component {
     render() {
         return (
             this.props.isFetching ? (
-                <h3>Loading...</h3>
+                <Loading/>
             ) : (
                 <TrainerForm onSave={this.props.onSave} entity={this.props.entity}/>
             )

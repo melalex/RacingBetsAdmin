@@ -4,6 +4,7 @@
 
 import React from 'react'
 import {bindActionCreators} from 'redux'
+import Loading from 'react-loading-animation'
 import {connect} from 'react-redux'
 import OwnerForm from '../../components/owner/OwnerForm'
 import {updateOwner} from '../../actions/Owner'
@@ -12,7 +13,7 @@ class OwnerCreate extends React.Component {
     render() {
         return (
             this.props.isFetching ? (
-                <h3>Loading...</h3>
+                <Loading/>
             ) : (
                 <OwnerForm onSave={this.props.onSave} entity={this.props.entity}/>
             )

@@ -5,7 +5,9 @@
 import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
 import {Breadcrumb, BreadcrumbItem, InputGroup, InputGroupButton, Input, Button, Container, Row, Col} from 'reactstrap';
+import Loading from 'react-loading-animation'
 import {getTrainers, searchTrainer, deleteTrainer} from '../../actions/Trainer'
 import TrainerList from '../../components/trainer/TrainerList'
 
@@ -51,7 +53,7 @@ export default class TrainerPage extends React.Component {
                 </Container>
 
                 {isFetching ? (
-                    <h3>Loading...</h3>
+                    <Loading/>
                 ) : (
                     <TrainerList entities={content} page={page} limit={limit} count={count}
                                 deleteEntity={this.props.deleteEntity}

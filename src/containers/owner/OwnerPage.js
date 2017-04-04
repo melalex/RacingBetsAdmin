@@ -4,8 +4,10 @@
 
 import React from 'react'
 import {bindActionCreators} from 'redux'
+import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {Breadcrumb, BreadcrumbItem, InputGroup, InputGroupButton, Input, Button, Container, Row, Col} from 'reactstrap';
+import Loading from 'react-loading-animation'
 import {getOwners, searchOwner, deleteOwner} from '../../actions/Owner'
 import OwnerList from '../../components/owner/OwnerList'
 
@@ -51,7 +53,7 @@ export default class OwnerPage extends React.Component {
                 </Container>
 
                 {isFetching ? (
-                    <h3>Loading...</h3>
+                    <Loading/>
                 ) : (
                     <OwnerList entities={content} page={page} limit={limit} count={count}
                                 deleteEntity={this.props.deleteEntity}

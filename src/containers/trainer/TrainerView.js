@@ -4,6 +4,7 @@
 
 import React from 'react'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import Loading from 'react-loading-animation'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 
@@ -13,7 +14,7 @@ class TrainerView extends React.Component {
         let {id, firstName, lastName, birthday} = entity;
         return (
             isFetching ? (
-                <h3>Loading...</h3>
+                <Loading/>
             ) : (
                 <div>
                     <Breadcrumb>

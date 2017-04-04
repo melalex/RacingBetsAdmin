@@ -4,6 +4,7 @@
 
 import React from 'react'
 import {bindActionCreators} from 'redux'
+import Loading from 'react-loading-animation'
 import {connect} from 'react-redux'
 import JockeyForm from '../../components/jockey/JockeyForm'
 import {updateJockey} from '../../actions/Jockey'
@@ -12,7 +13,7 @@ class JockeyCreate extends React.Component {
     render() {
         return (
             this.props.isFetching ? (
-                <h3>Loading...</h3>
+                <Loading/>
             ) : (
                 <JockeyForm onSave={this.props.onSave} entity={this.props.entity}/>
             )

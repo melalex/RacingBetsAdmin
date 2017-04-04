@@ -5,7 +5,9 @@
 import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
 import {Breadcrumb, BreadcrumbItem, InputGroup, InputGroupButton, Input, Button, Container, Row, Col} from 'reactstrap';
+import Loading from 'react-loading-animation'
 import {getJockeys, searchJockey, deleteJockey} from '../../actions/Jockey'
 import JockeyList from '../../components/jockey/JockeyList'
 
@@ -51,7 +53,7 @@ export default class JockeyPage extends React.Component {
                 </Container>
 
                 {isFetching ? (
-                    <h3>Loading...</h3>
+                    <Loading/>
                 ) : (
                     <JockeyList entities={content} page={page} limit={limit} count={count}
                                 deleteEntity={this.props.deleteEntity}

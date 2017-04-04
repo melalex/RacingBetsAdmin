@@ -4,6 +4,7 @@
 
 import React from 'react'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import Loading from 'react-loading-animation'
 import fullName from '../../util/fullName'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
@@ -14,7 +15,7 @@ class HorseView extends React.Component {
         let {id, name, trainer, owner, birthday, gender} = entity;
         return (
             isFetching ? (
-                <h3>Loading...</h3>
+                <Loading/>
             ) : (
                 <div>
                     <Breadcrumb>

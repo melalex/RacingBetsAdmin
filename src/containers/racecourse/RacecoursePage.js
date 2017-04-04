@@ -4,8 +4,10 @@
 
 import React from 'react'
 import {bindActionCreators} from 'redux'
+import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {Breadcrumb, BreadcrumbItem, InputGroup, InputGroupButton, Input, Button, Container, Row, Col} from 'reactstrap';
+import Loading from 'react-loading-animation'
 import {getRacecourses, searchRacecourse, deleteRacecourse} from '../../actions/Racecourse'
 import RacecourseList from '../../components/racecourse/RacecourseList'
 
@@ -51,7 +53,7 @@ export default class RacecoursePage extends React.Component {
                 </Container>
 
                 {isFetching ? (
-                    <h3>Loading...</h3>
+                    <Loading/>
                 ) : (
                     <RacecourseList entities={content} page={page} limit={limit} count={count}
                                 deleteEntity={this.props.deleteEntity}
