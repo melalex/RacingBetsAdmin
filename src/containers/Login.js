@@ -2,43 +2,45 @@
  * Created by Alexander Melashchenko on 4/4/17.
  */
 
-import React from 'react';
-import {bindActionCreators} from 'redux'
+import React from 'react'
 import {connect} from 'react-redux'
-import {ListGroup, ListGroupItem} from 'reactstrap'
+import {bindActionCreators} from 'redux'
+import {signIn} from '../actions/AppUser'
+import {Button, Row, Container, Col} from 'reactstrap';
+import {AvForm, AvField} from 'availity-reactstrap-validation';
 
 class Login extends React.Component {
+    signIn(e, value) {
+        e.preventDefault();
+        this.props.signIn(value.login, value.password)
+    }
+
     render() {
         return (
-            <div>
-                <h1>Menu</h1>
-                <ListGroup>
-                    <ListGroupItem href="/horse/list">Horses</ListGroupItem>
-                    <ListGroupItem href="/jockey/list">Jockeys</ListGroupItem>
-                    <ListGroupItem href="/owner/list">Owners</ListGroupItem>
-                    <ListGroupItem href="/race/list">Races</ListGroupItem>
-                    <ListGroupItem href="/racecourse/list">Racecourses</ListGroupItem>
-                    <ListGroupItem href="/trainer/list">Trainers</ListGroupItem>
-                    <ListGroupItem href="/user/list">Users</ListGroupItem>
-                </ListGroup>
-            </div>
+            <Container>
+                <Row>
+                    <Col sm={{size: 6, push: 2, pull: 2, offset: 1}}>
+                        <h3 className="text-center">Sign in</h3>
+                        <AvForm onValidSubmit={::this.signIn}>
+                            <AvField name="login" required minLength="1" maxLength="45"/>
+                            <AvField name="password" required minLength="1" maxLength="45"/>
+                            <Button color="primary" size="lg" block>Submit</Button>
+                        </AvForm>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }
 
-function mapStateToProps(state, ownProps) {
-    return {
-        entity: state.crud.entity,
-        isFetching: state.crud.isFetching,
-        id: ownProps.params.id
-    }
+function mapStateToProps() {
+    return {}
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onSave: bindActionCreators(updateTrainer, dispatch),
-        getOne: bindActionCreators(getOneTrainer, dispatch)
+        signIn: bindActionCreators(signIn, dispatch)
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TrainerView)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

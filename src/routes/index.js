@@ -40,10 +40,9 @@ import RacecourseView from "../containers/racecourse/RacecourseView"
 
 export default (
     <div>
+        <Route path='/login' component={Login}/>
         <Route path='/' component={requireAuthentication(App)}>
             <IndexRoute path='/home' component={Home}/>
-
-            <Route path='/login' component={Login}/>
 
             <Route path='/horse/list' component={HorsePage}/>
             <Route path='/horse/create' component={HorseCreate}/>

@@ -4,13 +4,14 @@
 
 import React from 'react';
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {signOut} from '../actions/AppUser'
 import {Navbar, NavbarBrand, Nav, NavItem, NavLink, Nav, UncontrolledAlert} from 'reactstrap';
-import alert from "bootstrap/js/src/alert";
 
 class App extends React.Component {
     logout(e) {
         e.preventDefault();
-        alert('logout')
+        this.props.signOut();
     }
 
     render() {
@@ -49,4 +50,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(App)
+function mapDispatchToProps(dispatch) {
+    return {
+        signOut: bindActionCreators(signOut, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

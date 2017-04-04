@@ -4,6 +4,7 @@
 
 import React from 'react'
 import {connect} from 'react-redux'
+import {push} from 'react-router-redux';
 
 export default function requireAuthentication(Component) {
     class AuthenticatedComponent extends React.Component {
@@ -17,24 +18,15 @@ export default function requireAuthentication(Component) {
 
         checkAuth(user) {
             if (!user.isAuthenticated) {
-                this.props.dispatch({
-                    type: ROUTING,
-                    payload: {
-                        method: 'replace',
-                        nextUrl: '/login'
-                    }
-                })
+                this.props.dispatch(push('/login'))
             }
         }
 
         render() {
             return (
-                <div>
-                    {this.props.appUser.isAuthenticated === true
-                        ? <Component {...this.props}/>
-                        : null
-                    }
-                </div>
+                this.props.appUser.isAuthenticated === true
+                    ? <Component {...this.props}/>
+                    : null
             )
         }
     }
