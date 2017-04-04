@@ -8,6 +8,10 @@ import App from "../containers/App";
 import NotFound from "../containers/NotFound";
 import Home from "../containers/Home";
 
+import requireAuthentication from "../containers/AuthenticatedComponent";
+
+import Login from "../containers/Login";
+
 import HorsePage from "../containers/horse/HorsePage";
 import HorseCreate from "../containers/horse/HorseCreate"
 import HorseEdit from "../containers/horse/HorseEdit"
@@ -36,8 +40,10 @@ import RacecourseView from "../containers/racecourse/RacecourseView"
 
 export default (
     <div>
-        <Route path='/' component={App}>
+        <Route path='/' component={requireAuthentication(App)}>
             <IndexRoute path='/home' component={Home}/>
+
+            <Route path='/login' component={Login}/>
 
             <Route path='/horse/list' component={HorsePage}/>
             <Route path='/horse/create' component={HorseCreate}/>
