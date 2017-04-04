@@ -11,7 +11,7 @@ import Loading from 'react-loading-animation'
 import {getTrainers, searchTrainer, deleteTrainer} from '../../actions/Trainer'
 import TrainerList from '../../components/trainer/TrainerList'
 
-export default class TrainerPage extends React.Component {
+class TrainerPage extends React.Component {
     fetchEntities(page) {
         if (this.searchString) {
             this.props.search(this.searchString, page)

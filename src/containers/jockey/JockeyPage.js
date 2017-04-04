@@ -11,7 +11,7 @@ import Loading from 'react-loading-animation'
 import {getJockeys, searchJockey, deleteJockey} from '../../actions/Jockey'
 import JockeyList from '../../components/jockey/JockeyList'
 
-export default class JockeyPage extends React.Component {
+class JockeyPage extends React.Component {
     fetchEntities(page) {
         if (this.searchString) {
             this.props.search(this.searchString, page)

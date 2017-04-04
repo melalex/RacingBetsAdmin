@@ -11,7 +11,7 @@ import Loading from 'react-loading-animation'
 import {getOwners, searchOwner, deleteOwner} from '../../actions/Owner'
 import OwnerList from '../../components/owner/OwnerList'
 
-export default class OwnerPage extends React.Component {
+class OwnerPage extends React.Component {
     fetchEntities(page) {
         if (this.searchString) {
             this.props.search(this.searchString, page)

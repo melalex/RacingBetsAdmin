@@ -11,7 +11,7 @@ import Loading from 'react-loading-animation'
 import {getRacecourses, searchRacecourse, deleteRacecourse} from '../../actions/Racecourse'
 import RacecourseList from '../../components/racecourse/RacecourseList'
 
-export default class RacecoursePage extends React.Component {
+class RacecoursePage extends React.Component {
     fetchEntities(page) {
         if (this.searchString) {
             this.props.search(this.searchString, page)

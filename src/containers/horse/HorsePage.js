@@ -11,7 +11,7 @@ import Loading from 'react-loading-animation'
 import {getHorses, searchHorse, deleteHorse} from '../../actions/Horse'
 import HorseList from '../../components/horse/HorseList'
 
-export default class HorsePage extends React.Component {
+class HorsePage extends React.Component {
     fetchEntities(page) {
         if (this.searchString) {
             this.props.search(this.searchString, page)
