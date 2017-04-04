@@ -3,7 +3,7 @@
  */
 
 import React, {PropTypes, Component} from 'react'
-import fullName from '../../util/fullName'
+import {fullName} from '../../util'
 import {Button} from 'reactstrap';
 import {Link} from 'react-router'
 

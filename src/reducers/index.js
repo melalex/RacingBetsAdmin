@@ -3,10 +3,12 @@
  */
 
 import {combineReducers} from 'redux'
+import {routerReducer} from 'react-router-redux'
 import crud from './crud'
 import appUser from './appUser'
 
 export default combineReducers({
     crud,
-    appUser
+    appUser,
+    routerReducer
 });

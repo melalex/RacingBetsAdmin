@@ -1,9 +1,9 @@
- /**
+/**
  * Created by Alexander Melashchenko on 4/1/17.
  */
 
 import React, {PropTypes, Component} from 'react'
-import fullName from '../../util/fullName'
+import {fullName} from '../../util'
 import {Button} from 'reactstrap';
 import {Link} from 'react-router'
 
@@ -31,7 +31,7 @@ export default class TrainerRow extends Component {
     }
 }
 
- TrainerRow.propTypes = {
+TrainerRow.propTypes = {
     entity: PropTypes.shape({
         id: PropTypes.number.isRequired,
         firstName: PropTypes.string.isRequired,

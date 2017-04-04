@@ -6,7 +6,7 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import Loading from 'react-loading-animation'
-import fullName from '../../util/fullName'
+import {fullName} from '../../util'
 import {connect} from 'react-redux'
 import {getOneHorse} from '../../actions/Horse'
 import {Link} from 'react-router'

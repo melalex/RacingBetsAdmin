@@ -1,11 +1,11 @@
- /**
+/**
  * Created by Alexander Melashchenko on 4/1/17.
  */
 
-import React, {PropTypes, Component} from 'react'
-import fullName from '../../util/fullName'
+import React, {PropTypes, Component} from 'react';
+import {fullName} from '../../util';
 import {Button} from 'reactstrap';
-import {Link} from 'react-router'
+import {Link} from 'react-router';
 
 export default class OwnerRow extends Component {
 
@@ -31,7 +31,7 @@ export default class OwnerRow extends Component {
     }
 }
 
- OwnerRow.propTypes = {
+OwnerRow.propTypes = {
     entity: PropTypes.shape({
         id: PropTypes.number.isRequired,
         firstName: PropTypes.string.isRequired,
