@@ -6,8 +6,8 @@ import {create, get, getOne, search, update, remove} from './CrudUtil'
 
 const path = '/api/racecourse';
 
-function createRacecourse(horse) {
-    return create(horse, path);
+function createRacecourse(racecourse) {
+    return create(racecourse, path);
 }
 
 function getRacecourses(page) {
@@ -22,8 +22,8 @@ function searchRacecourse(req, page) {
     return search(req, page, path)
 }
 
-function updateRacecourse(horse) {
-    return update(horse, path)
+function updateRacecourse(racecourse) {
+    return update(racecourse, path)
 }
 
 function deleteRacecourse(id) {

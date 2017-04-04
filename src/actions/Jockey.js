@@ -6,8 +6,8 @@ import {create, get, getOne, search, update, remove} from './CrudUtil'
 
 const path = '/api/jockey';
 
-function createJockey(horse) {
-    return create(horse, path);
+function createJockey(jockey) {
+    return create(jockey, path);
 }
 
 function getJockeys(page) {
@@ -22,8 +22,8 @@ function searchJockey(req, page) {
     return search(req, page, path)
 }
 
-function updateJockey(horse) {
-    return update(horse, path)
+function updateJockey(jockey) {
+    return update(jockey, path)
 }
 
 function deleteJockey(id) {

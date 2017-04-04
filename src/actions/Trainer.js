@@ -6,8 +6,8 @@ import {create, get, getOne, search, update, remove} from './CrudUtil'
 
 const path = '/api/trainer';
 
-function createTrainer(horse) {
-    return create(horse, path);
+function createTrainer(trainer) {
+    return create(trainer, path);
 }
 
 function getTrainers(page) {
@@ -22,8 +22,8 @@ function searchTrainer(req, page) {
     return search(req, page, path)
 }
 
-function updateTrainer(horse) {
-    return update(horse, path)
+function updateTrainer(trainer) {
+    return update(trainer, path)
 }
 
 function deleteTrainer(id) {

@@ -6,8 +6,8 @@ import {create, get, getOne, search, update, remove} from './CrudUtil'
 
 const path = '/api/owner';
 
-function createOwner(horse) {
-    return create(horse, path);
+function createOwner(owner) {
+    return create(owner, path);
 }
 
 function getOwners(page) {
@@ -22,8 +22,8 @@ function searchOwner(req, page) {
     return search(req, page, path)
 }
 
-function updateOwner(horse) {
-    return update(horse, path)
+function updateOwner(owner) {
+    return update(owner, path)
 }
 
 function deleteOwner(id) {
