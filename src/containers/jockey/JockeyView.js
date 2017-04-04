@@ -3,12 +3,24 @@
  */
 
 import React from 'react'
+import {bindActionCreators} from 'redux'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import Loading from 'react-loading-animation'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
+import {getOneJockey} from '../../actions/Jockey'
 
 class JockeyView extends React.Component {
+    componentDidMount() {
+        this.props.getOne(this.props.id)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.id !== this.props.id) {
+            this.props.getOne(nextProps.id)
+        }
+    }
+
     render() {
         let {entity, isFetching} = this.props;
         let {id, firstName, lastName, birthday} = entity;
@@ -48,11 +60,18 @@ class JockeyView extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
         entity: state.crud.entity,
-        isFetching: state.crud.isFetching
+        isFetching: state.crud.isFetching,
+        id: ownProps.params.id
     }
 }
 
-export default connect(mapStateToProps)(JockeyView)
+function mapDispatchToProps(dispatch) {
+    return {
+        getOne: bindActionCreators(getOneJockey, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(JockeyView)

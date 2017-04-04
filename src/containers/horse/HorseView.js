@@ -3,13 +3,25 @@
  */
 
 import React from 'react'
+import {bindActionCreators} from 'redux'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import Loading from 'react-loading-animation'
 import fullName from '../../util/fullName'
 import {connect} from 'react-redux'
+import {getOneHorse} from '../../actions/Horse'
 import {Link} from 'react-router'
 
 class HorseView extends React.Component {
+    componentDidMount() {
+        this.props.getOne(this.props.id)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.id !== this.props.id) {
+            this.props.getOne(nextProps.id)
+        }
+    }
+
     render() {
         let {entity, isFetching} = this.props;
         let {id, name, trainer, owner, birthday, gender} = entity;
@@ -57,11 +69,18 @@ class HorseView extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
         entity: state.crud.entity,
-        isFetching: state.crud.isFetching
+        isFetching: state.crud.isFetching,
+        id: ownProps.params.id
     }
 }
 
-export default connect(mapStateToProps)(HorseView)
+function mapDispatchToProps(dispatch) {
+    return {
+        getOne: bindActionCreators(getOneHorse, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HorseView)

@@ -3,13 +3,23 @@
  */
 
 import React from 'react'
-import {bindActionCreators} from 'redux'
 import Loading from 'react-loading-animation'
 import {connect} from 'react-redux'
 import OwnerForm from '../../components/owner/OwnerForm'
-import {updateOwner} from '../../actions/Owner'
+import {bindActionCreators} from 'redux'
+import {updateOwner, getOneOwner} from '../../actions/Owner'
 
-class OwnerCreate extends React.Component {
+class OwnerEdit extends React.Component {
+    componentDidMount() {
+        this.props.getOne(this.props.id)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.id !== this.props.id) {
+            this.props.getOne(nextProps.id)
+        }
+    }
+
     render() {
         return (
             this.props.isFetching ? (
@@ -21,17 +31,19 @@ class OwnerCreate extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
         entity: state.crud.entity,
-        isFetching: state.crud.isFetching
+        isFetching: state.crud.isFetching,
+        id: ownProps.params.id
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         onSave: bindActionCreators(updateOwner, dispatch),
+        getOne: bindActionCreators(getOneOwner, dispatch)
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OwnerCreate)
+export default connect(mapStateToProps, mapDispatchToProps)(OwnerEdit)

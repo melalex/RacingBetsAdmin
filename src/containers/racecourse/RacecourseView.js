@@ -7,8 +7,20 @@ import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import Loading from 'react-loading-animation'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
+import {bindActionCreators} from 'redux'
+import {updateRacecourse, getOneRacecourse} from '../../actions/Racecourse'
 
 class RacecourseView extends React.Component {
+    componentDidMount() {
+        this.props.getOne(this.props.id)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.id !== this.props.id) {
+            this.props.getOne(nextProps.id)
+        }
+    }
+
     render() {
         let {entity, isFetching} = this.props;
         let {id, name, latitude, longitude, contact, clerk} = entity;
@@ -56,11 +68,19 @@ class RacecourseView extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
         entity: state.crud.entity,
-        isFetching: state.crud.isFetching
+        isFetching: state.crud.isFetching,
+        id: ownProps.params.id
     }
 }
 
-export default connect(mapStateToProps)(RacecourseView)
+function mapDispatchToProps(dispatch) {
+    return {
+        onSave: bindActionCreators(updateRacecourse, dispatch),
+        getOne: bindActionCreators(getOneRacecourse, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RacecourseView)
