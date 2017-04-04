@@ -6,14 +6,16 @@ import rootReducer from '../reducers'
 import {createStore, applyMiddleware} from 'redux'
 import {routerReducer} from 'react-router-redux'
 import combineReducers from "redux/es/combineReducers";
+import createLogger from 'redux-logger'
+import thunk from 'redux-thunk'
 
 export default function configureStore(initialState) {
-    const store = createStore(
+    return createStore(
         combineReducers({
             ...rootReducer,
-            routing: routerReducer
+            routing: routerReducer,
         }),
-        initialState
+        initialState,
+        applyMiddleware(thunk, createLogger())
     );
-    return store;
 };
