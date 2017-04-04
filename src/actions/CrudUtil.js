@@ -2,12 +2,14 @@
  * Created by Alexander Melashchenko on 4/1/17.
  */
 
-import {ajax} from "jquery";
+import {ajax} from "jquery"
 import API_DOMAIN from '../constants/Api'
+import {refresh} from 'AppUser'
+import {bearerAuthHeader} from '../util'
 import * as crudAction from '../constants/Crud'
 
 function create(entity, path) {
-    return dispatch => {
+    return refresh((dispatch, getStore)=> {
         dispatch({
             type: crudAction.CREATE_REQUEST,
             payload: entity
@@ -18,6 +20,11 @@ function create(entity, path) {
             url: API_DOMAIN + path,
             dataType: 'json',
             data: entity,
+            beforeSend: [
+                request => {
+                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
+                }
+            ],
             success: [
                 response => dispatch({
                     type: crudAction.CREATE_SUCCESS,
@@ -31,11 +38,11 @@ function create(entity, path) {
                 })
             ]
         });
-    };
+    });
 }
 
 function get(page, path) {
-    return dispatch => {
+    return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.GET_REQUEST,
             payload: page
@@ -46,6 +53,11 @@ function get(page, path) {
             url: API_DOMAIN + path,
             dataType: 'json',
             data: {page: page},
+            beforeSend: [
+                request => {
+                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
+                }
+            ],
             success: [
                 response => dispatch({
                     type: crudAction.GET_SUCCESS,
@@ -65,11 +77,11 @@ function get(page, path) {
                 })
             ]
         });
-    };
+    });
 }
 
 function getOne(id, path) {
-    return dispatch => {
+    return refresh((dispatch, getStore)=> {
         dispatch({
             type: crudAction.GET_ONE_REQUEST,
             payload: id
@@ -79,6 +91,11 @@ function getOne(id, path) {
             type: 'GET',
             url: API_DOMAIN + path + '/' + id,
             dataType: 'json',
+            beforeSend: [
+                request => {
+                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
+                }
+            ],
             success: [
                 response => dispatch({
                     type: crudAction.GET_ONE_SUCCESS,
@@ -92,11 +109,11 @@ function getOne(id, path) {
                 })
             ]
         });
-    }
+    })
 }
 
 function search(req, page, path) {
-    return dispatch => {
+    return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.SEARCH_REQUEST,
             payload: {
@@ -113,6 +130,11 @@ function search(req, page, path) {
                 query: req,
                 page: page
             },
+            beforeSend: [
+                request => {
+                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
+                }
+            ],
             success: [
                 response => dispatch({
                     type: crudAction.SEARCH_SUCCESS,
@@ -132,11 +154,11 @@ function search(req, page, path) {
                 })
             ]
         });
-    };
+    });
 }
 
 function update(entity, path) {
-    return dispatch => {
+    return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.UPDATE_REQUEST,
             payload: entity
@@ -147,6 +169,11 @@ function update(entity, path) {
             url: API_DOMAIN + path,
             dataType: 'json',
             data: entity,
+            beforeSend: [
+                request => {
+                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
+                }
+            ],
             success: [
                 response => dispatch({
                     type: crudAction.UPDATE_SUCCESS,
@@ -160,11 +187,11 @@ function update(entity, path) {
                 })
             ]
         });
-    };
+    });
 }
 
 function remove(id, path) {
-    return dispatch => {
+    return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.DELETE_REQUEST,
             payload: id
@@ -174,6 +201,11 @@ function remove(id, path) {
             type: 'DELETE',
             url: API_DOMAIN + path + '/' + id,
             dataType: 'json',
+            beforeSend: [
+                request => {
+                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
+                }
+            ],
             success: [
                 response => dispatch({
                     type: crudAction.DELETE_SUCCESS,
@@ -187,7 +219,7 @@ function remove(id, path) {
                 })
             ]
         });
-    }
+    })
 }
 
 export {create, get, getOne, search, update, remove}

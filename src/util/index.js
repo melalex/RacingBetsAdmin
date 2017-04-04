@@ -14,4 +14,8 @@ function bearerAuthHeader(getState) {
     return 'Bearer ' + getState().appUser.accessToken;
 }
 
-export {fullName, basicAuthHeader, bearerAuthHeader}
+function nowSeconds() {
+    return new Date().getSeconds();
+}
+
+export {fullName, basicAuthHeader, bearerAuthHeader, nowSeconds}
