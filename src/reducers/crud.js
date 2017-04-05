@@ -18,7 +18,6 @@ const initialState = {
 
 export default function crud(state = initialState, action) {
 
-
     switch (action.type) {
         case actionConst.CREATE_REQUEST:
         case actionConst.UPDATE_REQUEST:

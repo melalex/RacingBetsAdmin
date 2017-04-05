@@ -10,5 +10,5 @@ import appUser from './appUser'
 export default combineReducers({
     crud,
     appUser,
-    routerReducer
+    routing: routerReducer
 });

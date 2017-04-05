@@ -36,7 +36,7 @@ TrainerRow.propTypes = {
         id: PropTypes.number.isRequired,
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
-        birthday: PropTypes.date.isRequired,
+        birthday: PropTypes.instanceOf(Date).isRequired,
     }).isRequired,
     deleteEntity: PropTypes.func.isRequired,
 };

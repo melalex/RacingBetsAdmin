@@ -37,8 +37,8 @@ export default class RacecourseRow extends Component {
      entity: PropTypes.shape({
          id: PropTypes.number,
          name: PropTypes.string.isRequired,
-         latitude: PropTypes.float.isRequired,
-         longitude: PropTypes.float.isRequired,
+         latitude: PropTypes.number.isRequired,
+         longitude: PropTypes.number.isRequired,
          contact: PropTypes.string.isRequired,
          clerk: PropTypes.string.isRequired,
      }),

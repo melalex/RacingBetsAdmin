@@ -41,15 +41,15 @@ HorseRow.propTypes = {
             id: PropTypes.number,
             firstName: PropTypes.string.isRequired,
             lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.date,
+            birthday: PropTypes.instanceOf(Date),
         }).isRequired,
         owner: PropTypes.shape({
             id: PropTypes.number,
             firstName: PropTypes.string.isRequired,
             lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.date,
+            birthday: PropTypes.instanceOf(Date),
         }).isRequired,
-        birthday: PropTypes.date.isRequired,
+        birthday: PropTypes.instanceOf(Date).isRequired,
         gender: PropTypes.string.isRequired
     }).isRequired,
     deleteEntity: PropTypes.func.isRequired,
