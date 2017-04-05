@@ -6,7 +6,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {signOut} from '../actions/AppUser'
-import {Navbar, NavbarBrand, Nav, NavItem, NavLink, Nav, UncontrolledAlert} from 'reactstrap';
+import {Navbar, NavbarBrand, NavItem, NavLink, Nav, UncontrolledAlert} from 'reactstrap';
 
 class App extends React.Component {
     logout(e) {

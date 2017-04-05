@@ -3,7 +3,7 @@
  */
 
 import React, {PropTypes, Component} from 'react'
-import {AvForm, AvField} from 'availity-reactstrap-validation';
+import {AvForm, AvField, AvGroup} from 'availity-reactstrap-validation';
 import {Col, Button, FormGroup, Label, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {Link} from 'react-router'
 
@@ -30,7 +30,7 @@ export default class RacecourseForm extends Component {
                 </Breadcrumb>
 
                 <AvForm onValidSubmit={this.onSave} model={this.props.entity}>
-                    <AvFormGroup row>
+                    <AvGroup row>
                         <Label for="name" sm={2}>Name</Label>
                         <Col sm={10}>
                             <AvField type="text" name="name" id="name" placeholder="Racecourse's name"
@@ -38,24 +38,24 @@ export default class RacecourseForm extends Component {
                                      maxLength="45"
                                      required/>
                         </Col>
-                    </AvFormGroup>
+                    </AvGroup>
 
-                    <AvFormGroup row>
+                    <AvGroup row>
                         <Label for="latitude" sm={2}>Name</Label>
                         <Col sm={10}>
                             <AvField type="number" name="latitude" id="latitude" placeholder="Racecourse's latitude"
                                      required/>
                         </Col>
-                    </AvFormGroup>
-                    <AvFormGroup row>
+                    </AvGroup>
+                    <AvGroup row>
                         <Label for="longitude" sm={2}>Name</Label>
                         <Col sm={10}>
                             <AvField type="number" name="longitude" id="longitude" placeholder="Racecourse's longitude"
                                      required/>
                         </Col>
-                    </AvFormGroup>
+                    </AvGroup>
 
-                    <AvFormGroup row>
+                    <AvGroup row>
                         <Label for="contact" sm={2}>Name</Label>
                         <Col sm={10}>
                             <AvField type="text" name="contact" id="contact" placeholder="Racecourse's contact"
@@ -63,8 +63,8 @@ export default class RacecourseForm extends Component {
                                      maxLength="45"
                                      required/>
                         </Col>
-                    </AvFormGroup>
-                    <AvFormGroup row>
+                    </AvGroup>
+                    <AvGroup row>
                         <Label for="clerk" sm={2}>Name</Label>
                         <Col sm={10}>
                             <AvField type="text" name="clerk" id="clerk" placeholder="Racecourse's clerk"
@@ -72,7 +72,7 @@ export default class RacecourseForm extends Component {
                                      maxLength="45"
                                      required/>
                         </Col>
-                    </AvFormGroup>
+                    </AvGroup>
 
                     <FormGroup check row>
                         <Col sm={{size: 10, offset: 2}}>

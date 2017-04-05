@@ -4,7 +4,7 @@
 
 import {ajax} from "jquery"
 import API_DOMAIN from '../constants/Api'
-import {refresh} from 'AppUser'
+import {refresh} from '../actions/AppUser'
 import {bearerAuthHeader} from '../util'
 import * as crudAction from '../constants/Crud'
 

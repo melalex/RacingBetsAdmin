@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import {Provider} from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css';
 import configureStore from './store/index'
@@ -10,7 +10,7 @@ import {syncHistoryWithStore} from 'react-router-redux'
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
-ReactDOM.render(
+render(
     <Provider store={store}>
         <Router history={history} router={routes}/>
     </Provider>,

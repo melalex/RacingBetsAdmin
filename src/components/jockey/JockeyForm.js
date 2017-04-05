@@ -3,7 +3,7 @@
  */
 
 import React, {PropTypes, Component} from 'react'
-import {AvForm, AvField} from 'availity-reactstrap-validation';
+import {AvForm, AvField, AvGroup} from 'availity-reactstrap-validation';
 import {Col, Button, FormGroup, Label, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {Link} from 'react-router'
 
@@ -28,7 +28,7 @@ export default class JockeyForm extends Component {
                 </Breadcrumb>
 
                 <AvForm onValidSubmit={this.onSave} model={this.props.entity}>
-                    <AvFormGroup row>
+                    <AvGroup row>
                         <Label for="firstName" sm={2}>First name</Label>
                         <Col sm={10}>
                             <AvField type="text" name="firstName" id="firstName" placeholder="Jockey's first name"
@@ -36,8 +36,8 @@ export default class JockeyForm extends Component {
                                      maxLength="45"
                                      required/>
                         </Col>
-                    </AvFormGroup>
-                    <AvFormGroup row>
+                    </AvGroup>
+                    <AvGroup row>
                         <Label for="lastName" sm={2}>Name</Label>
                         <Col sm={10}>
                             <AvField type="text" name="lastName" id="lastName" placeholder="Jockey's last Name"
@@ -45,13 +45,13 @@ export default class JockeyForm extends Component {
                                      maxLength="45"
                                      required/>
                         </Col>
-                    </AvFormGroup>
-                    <AvFormGroup row>
+                    </AvGroup>
+                    <AvGroup row>
                         <Label for="birthday" sm={2}>Birthday</Label>
                         <Col sm={10}>
                             <AvField type="date" name="birthday" id="birthday" required/>
                         </Col>
-                    </AvFormGroup>
+                    </AvGroup>
                     <FormGroup check row>
                         <Col sm={{size: 10, offset: 2}}>
                             <Button outline color="primary">Save</Button>

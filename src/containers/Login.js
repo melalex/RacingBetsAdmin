@@ -21,7 +21,7 @@ class Login extends React.Component {
                 <Row>
                     <Col sm={{size: 6, push: 2, pull: 2, offset: 1}}>
                         <h3 className="text-center">Sign in</h3>
-                        <AvForm onValidSubmit={::this.signIn}>
+                        <AvForm onValidSubmit={this.signIn}>
                             <AvField name="login" required minLength="1" maxLength="45"/>
                             <AvField name="password" required minLength="1" maxLength="45"/>
                             <Button color="primary" size="lg" block>Submit</Button>

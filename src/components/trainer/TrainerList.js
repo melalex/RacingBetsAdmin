@@ -4,7 +4,7 @@
 
 import React, {PropTypes, Component} from 'react'
 import {Table} from 'reactstrap';
-import TrainerRow from 'TrainerRow';
+import TrainerRow from '../trainer/TrainerRow';
 import {FormText} from 'reactstrap';
 import Pager from '../shared/Pager'
 

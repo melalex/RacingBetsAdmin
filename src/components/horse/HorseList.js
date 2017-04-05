@@ -4,7 +4,7 @@
 
 import React, {PropTypes, Component} from 'react'
 import {Table} from 'reactstrap';
-import HorseRow from 'HorseRow';
+import HorseRow from '../horse/HorseRow';
 import {FormText} from 'reactstrap';
 import Pager from '../shared/Pager'
 

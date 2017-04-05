@@ -4,7 +4,7 @@
 
 import React, {PropTypes, Component} from 'react'
 import {Table} from 'reactstrap';
-import JockeyRow from 'JockeyRow';
+import JockeyRow from '../jockey/JockeyRow';
 import {FormText} from 'reactstrap';
 import Pager from '../shared/Pager'
 
