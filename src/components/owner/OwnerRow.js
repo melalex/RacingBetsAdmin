@@ -5,7 +5,6 @@
 import React, {PropTypes, Component} from 'react';
 import {fullName} from '../../util';
 import {Button} from 'reactstrap';
-import {Link} from 'react-router';
 
 export default class OwnerRow extends Component {
 
@@ -21,9 +20,15 @@ export default class OwnerRow extends Component {
                 <td>{fullName(this.props.entity)}</td>
                 <td>{this.props.entity.birthday.bind(this)}</td>
                 <td>
-                    <Link to={'/owner/view/' + id} className="btn-outline-info">View</Link>
-                    <Link to={'/owner/edit/' + id} className="btn-outline-primary">Edit</Link>
-                    <Button outline color="danger" onClick={e => this.onClickDelete.bind(this)(e, id)}>Delete</Button>
+                    <Button outline color="info" href="/owner/view/">
+                        View
+                    </Button>
+                    <Button outline color="primary" href="/owner/edit/">
+                        Edit
+                    </Button>
+                    <Button outline color="danger" onClick={() => this.onClickDelete.bind(this)(id)}>
+                        Delete
+                    </Button>
                 </td>
             </tr>
         );

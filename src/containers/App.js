@@ -39,7 +39,7 @@ class App extends React.Component {
                 {
                     info ? (<UncontrolledAlert color="success"><strong>{info}</strong></UncontrolledAlert>) : null
                 }
-                <div className="container">
+                <div className="container big-margin-top">
                     {this.props.children}
                 </div>
             </div>

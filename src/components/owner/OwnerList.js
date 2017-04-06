@@ -5,7 +5,6 @@
 import React, {PropTypes, Component} from 'react'
 import {Table} from 'reactstrap';
 import OwnerRow from '../owner/OwnerRow';
-import {FormText} from 'reactstrap';
 import Pager from '../shared/Pager'
 
 export default class OwnerList extends Component {
@@ -16,7 +15,7 @@ export default class OwnerList extends Component {
         return (
             rows.length === 0
                 ?
-                <FormText color="muted">Nothing to show</FormText>
+                <h1 className="text-center no-result-text">Nothing to show</h1>
                 :
                 <div>
                     <Table hover>

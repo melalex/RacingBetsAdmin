@@ -5,7 +5,6 @@
 import React, {PropTypes, Component} from 'react'
 import {fullName} from '../../util'
 import {Button} from 'reactstrap';
-import {Link} from 'react-router'
 
 export default class TrainerRow extends Component {
 
@@ -22,9 +21,15 @@ export default class TrainerRow extends Component {
                 <td>{fullName(this.props.entity)}</td>
                 <td>{this.props.entity.birthday}</td>
                 <td>
-                    <Link to={'/trainer/view/' + id} className="btn-outline-info">View</Link>
-                    <Link to={'/trainer/edit/' + id} className="btn-outline-primary">Edit</Link>
-                    <Button outline color="danger" onClick={e => this.onClickDelete.bind(this)(e, id)}>Delete</Button>
+                    <Button outline color="info" href="/trainer/view/">
+                        View
+                    </Button>
+                    <Button outline color="primary" href="/trainer/edit/">
+                        Edit
+                    </Button>
+                    <Button outline color="danger" onClick={() => this.onClickDelete.bind(this)(id)}>
+                        Delete
+                    </Button>
                 </td>
             </tr>
         );

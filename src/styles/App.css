@@ -1,3 +1,12 @@
 .small-margin-top {
     margin-top: 10px;
 }
+
+.big-margin-top {
+    margin-top: 3%;
+}
+
+.no-result-text {
+    color: lightgrey;
+    margin-top: 10%;
+}

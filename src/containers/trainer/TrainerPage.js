@@ -46,14 +46,17 @@ class TrainerPage extends React.Component {
                     <Row>
                         <Col md={4}>
                             <InputGroup>
-                                <Input type="text" ref={(input) => this.searchString = input} value={searchString}/>
+                                <Input type="text" ref={(input) => this.searchString = input} value={searchString}
+                                       placeholder="Type a name..."/>
                                 <InputGroupButton>
-                                    <Button color="primary" onClick={this.search}>Search</Button>
+                                    <Button color="primary" onClick={this.search.bind(this)}>
+                                        Search
+                                    </Button>
                                 </InputGroupButton>
                             </InputGroup>
                         </Col>
-                        <Col md={{size: 2, offset: 4}}>
-                            <Link to="/trainer/create" className="btn-outline-primary">Create</Link>
+                        <Col md={{size: 2}}>
+                            <Button href="/trainer/create" outline color="primary">Create</Button>
                         </Col>
                     </Row>
                 </Container>

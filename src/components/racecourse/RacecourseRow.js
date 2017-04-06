@@ -4,7 +4,6 @@
 
 import React, {PropTypes, Component} from 'react'
 import {Button} from 'reactstrap';
-import {Link} from 'react-router'
 
 export default class RacecourseRow extends Component {
 
@@ -24,9 +23,15 @@ export default class RacecourseRow extends Component {
                 <td>{contact}</td>
                 <td>{clerk}</td>
                 <td>
-                    <Link to={'/racecourse/view/' + id} className="btn-outline-info">View</Link>
-                    <Link to={'/racecourse/edit/' + id} className="btn-outline-primary">Edit</Link>
-                    <Button outline color="danger" onClick={e => this.onClickDelete.bind(this)(e, id)}>Delete</Button>
+                    <Button outline color="info" href="/racecourse/view/">
+                        View
+                    </Button>
+                    <Button outline color="primary" href="/racecourse/edit/">
+                        Edit
+                    </Button>
+                    <Button outline color="danger" onClick={() => this.onClickDelete.bind(this)(id)}>
+                        Delete
+                    </Button>
                 </td>
             </tr>
         );
