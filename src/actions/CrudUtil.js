@@ -3,13 +3,12 @@
  */
 
 import {ajax} from "jquery"
-import API_DOMAIN from '../constants/Api'
 import {refresh} from '../actions/AppUser'
 import {bearerAuthHeader} from '../util'
 import * as crudAction from '../constants/Crud'
 
 function create(entity, path) {
-    return refresh((dispatch, getStore)=> {
+    return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.CREATE_REQUEST,
             payload: entity
@@ -17,14 +16,10 @@ function create(entity, path) {
 
         ajax({
             type: 'POST',
-            url: API_DOMAIN + path,
+            url: path,
             dataType: 'json',
-            data: entity,
-            beforeSend: [
-                request => {
-                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
-                }
-            ],
+            data: JSON.stringify(entity),
+            headers: {'Authorization': bearerAuthHeader(getStore)},
             success: [
                 response => dispatch({
                     type: crudAction.CREATE_SUCCESS,
@@ -50,14 +45,10 @@ function get(page, path) {
 
         ajax({
             type: 'GET',
-            url: API_DOMAIN + path,
+            url: path,
             dataType: 'json',
             data: {page: page},
-            beforeSend: [
-                request => {
-                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
-                }
-            ],
+            headers: {'Authorization': bearerAuthHeader(getStore)},
             success: [
                 response => dispatch({
                     type: crudAction.GET_SUCCESS,
@@ -81,7 +72,7 @@ function get(page, path) {
 }
 
 function getOne(id, path) {
-    return refresh((dispatch, getStore)=> {
+    return dispatch => {
         dispatch({
             type: crudAction.GET_ONE_REQUEST,
             payload: id
@@ -89,13 +80,8 @@ function getOne(id, path) {
 
         ajax({
             type: 'GET',
-            url: API_DOMAIN + path + '/' + id,
+            url: path + '/' + id,
             dataType: 'json',
-            beforeSend: [
-                request => {
-                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
-                }
-            ],
             success: [
                 response => dispatch({
                     type: crudAction.GET_ONE_SUCCESS,
@@ -109,11 +95,11 @@ function getOne(id, path) {
                 })
             ]
         });
-    })
+    }
 }
 
 function search(req, page, path) {
-    return refresh((dispatch, getStore) => {
+    return dispatch => {
         dispatch({
             type: crudAction.SEARCH_REQUEST,
             payload: {
@@ -124,17 +110,12 @@ function search(req, page, path) {
 
         ajax({
             type: 'GET',
-            url: API_DOMAIN + path,
+            url: path,
             dataType: 'json',
             data: {
                 query: req,
                 page: page
             },
-            beforeSend: [
-                request => {
-                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
-                }
-            ],
             success: [
                 response => dispatch({
                     type: crudAction.SEARCH_SUCCESS,
@@ -154,7 +135,7 @@ function search(req, page, path) {
                 })
             ]
         });
-    });
+    }
 }
 
 function update(entity, path) {
@@ -166,14 +147,10 @@ function update(entity, path) {
 
         ajax({
             type: 'PUT',
-            url: API_DOMAIN + path,
+            url: path,
             dataType: 'json',
-            data: entity,
-            beforeSend: [
-                request => {
-                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
-                }
-            ],
+            data: JSON.stringify(entity),
+            headers: {'Authorization': bearerAuthHeader(getStore)},
             success: [
                 response => dispatch({
                     type: crudAction.UPDATE_SUCCESS,
@@ -199,13 +176,9 @@ function remove(id, path) {
 
         ajax({
             type: 'DELETE',
-            url: API_DOMAIN + path + '/' + id,
+            url: path + '/' + id,
             dataType: 'json',
-            beforeSend: [
-                request => {
-                    request.setRequestHeader("Authorization", bearerAuthHeader(getStore));
-                }
-            ],
+            headers: {'Authorization': bearerAuthHeader(getStore)},
             success: [
                 response => dispatch({
                     type: crudAction.DELETE_SUCCESS,

@@ -12,6 +12,12 @@ import {getJockeys, searchJockey, deleteJockey} from '../../actions/Jockey'
 import JockeyList from '../../components/jockey/JockeyList'
 
 class JockeyPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.fetchEntities = this.fetchEntities.bind(this);
+        this.search = this.fetchEntities.bind(this);
+    }
+
     fetchEntities(page) {
         if (this.searchString) {
             this.props.search(this.searchString, page)
@@ -32,7 +38,7 @@ class JockeyPage extends React.Component {
                 <h1>Jockeys</h1>
 
                 <Breadcrumb>
-                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Jockeys</BreadcrumbItem>
                 </Breadcrumb>
 

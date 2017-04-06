@@ -12,6 +12,12 @@ import {getHorses, searchHorse, deleteHorse} from '../../actions/Horse'
 import HorseList from '../../components/horse/HorseList'
 
 class HorsePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.fetchEntities = this.fetchEntities.bind(this);
+        this.search = this.fetchEntities.bind(this);
+    }
+
     fetchEntities(page) {
         if (this.searchString) {
             this.props.search(this.searchString, page)
@@ -32,7 +38,7 @@ class HorsePage extends React.Component {
                 <h1>Horses</h1>
 
                 <Breadcrumb>
-                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Horses</BreadcrumbItem>
                 </Breadcrumb>
 
@@ -47,7 +53,7 @@ class HorsePage extends React.Component {
                             </InputGroup>
                         </Col>
                         <Col md={{size: 2, offset: 4}}>
-                            <Link to="/horse/create" className="btn-outline-primary">Create</Link>
+                            <Button href="/horse/create" outline color="primary">Create</Button>
                         </Col>
                     </Row>
                 </Container>

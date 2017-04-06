@@ -22,12 +22,12 @@ export default class OwnerForm extends Component {
         return (
             <div>
                 <Breadcrumb>
-                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem><Link to="/owner/list">Owners</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Edit</BreadcrumbItem>
                 </Breadcrumb>
 
-                <AvForm onValidSubmit={this.onSave} model={this.props.entity}>
+                <AvForm onValidSubmit={this.onSave.bind(this)} model={this.props.entity}>
                     <AvGroup row>
                         <Label for="firstName" sm={2}>First name</Label>
                         <Col sm={10}>

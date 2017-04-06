@@ -6,6 +6,13 @@ import React, {PropTypes, Component} from 'react'
 import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 
 export default class Pager extends Component {
+    constructor(props) {
+        super(props);
+        this.goToPage = this.goToPage.bind(this);
+        this.getPagesLinks = this.getPagesLinks.bind(this);
+        this.getPagesWhileCurrentInCenter = this.getPagesWhileCurrentInCenter.bind(this);
+    }
+
     goToPage(e, page) {
         e.preventDefault();
         this.props.changePage(page)

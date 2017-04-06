@@ -10,7 +10,6 @@ import {Link} from 'react-router';
 export default class OwnerRow extends Component {
 
     onClickDelete(e, id) {
-        e.preventDefault();
         this.props.deleteEntity(id);
     }
 
@@ -20,11 +19,11 @@ export default class OwnerRow extends Component {
             <tr>
                 <td>{id}</td>
                 <td>{fullName(this.props.entity)}</td>
-                <td>{this.props.entity.birthday}</td>
+                <td>{this.props.entity.birthday.bind(this)}</td>
                 <td>
                     <Link to={'/owner/view/' + id} className="btn-outline-info">View</Link>
                     <Link to={'/owner/edit/' + id} className="btn-outline-primary">Edit</Link>
-                    <Button outline color="danger" onClick={e => this.onClickDelete(e, id)}>Delete</Button>
+                    <Button outline color="danger" onClick={e => this.onClickDelete.bind(this)(e, id)}>Delete</Button>
                 </td>
             </tr>
         );

@@ -18,4 +18,8 @@ function nowSeconds() {
     return new Date().getSeconds();
 }
 
-export {fullName, basicAuthHeader, bearerAuthHeader, nowSeconds}
+function isExpired(appUser) {
+    return appUser.expiresIn !== 0 && (appUser.expiresIn + 60) > nowSeconds();
+}
+
+export {fullName, basicAuthHeader, bearerAuthHeader, nowSeconds, isExpired}

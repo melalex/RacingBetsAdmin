@@ -30,7 +30,7 @@ class TrainerView extends React.Component {
             ) : (
                 <div>
                     <Breadcrumb>
-                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                         <BreadcrumbItem><Link to="/trainer/list">Trainers</Link></BreadcrumbItem>
                         <BreadcrumbItem active>View</BreadcrumbItem>
                     </Breadcrumb>

@@ -12,6 +12,12 @@ import {getOwners, searchOwner, deleteOwner} from '../../actions/Owner'
 import OwnerList from '../../components/owner/OwnerList'
 
 class OwnerPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.fetchEntities = this.fetchEntities.bind(this);
+        this.search = this.fetchEntities.bind(this);
+    }
+
     fetchEntities(page) {
         if (this.searchString) {
             this.props.search(this.searchString, page)
@@ -32,7 +38,7 @@ class OwnerPage extends React.Component {
                 <h1>Owners</h1>
 
                 <Breadcrumb>
-                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Owners</BreadcrumbItem>
                 </Breadcrumb>
 

@@ -30,7 +30,7 @@ class RacecourseView extends React.Component {
             ) : (
                 <div>
                     <Breadcrumb>
-                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                         <BreadcrumbItem><Link to="/racecourse/list">Racecourses</Link></BreadcrumbItem>
                         <BreadcrumbItem active>View</BreadcrumbItem>
                     </Breadcrumb>

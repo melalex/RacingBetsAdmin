@@ -6,7 +6,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {signOut} from '../actions/AppUser'
-import {Navbar, NavbarBrand, NavItem, NavLink, Nav, UncontrolledAlert} from 'reactstrap';
+import {Navbar, NavbarBrand, NavItem, NavLink, Nav, UncontrolledAlert, Collapse} from 'reactstrap';
 
 class App extends React.Component {
     logout(e) {
@@ -15,19 +15,21 @@ class App extends React.Component {
     }
 
     render() {
-        let {errors, info} = this.props;
+        let {errors, info, login} = this.props;
         return (
             <div>
-                <Navbar color="faded" light>
+                <Navbar color="faded" light toggleable>
                     <NavbarBrand href="/">Racing Bets Admin</NavbarBrand>
-                    <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            User Name
-                        </NavItem>
-                        <NavItem>
-                            <NavLink onClick={this.logout}>Logout</NavLink>
-                        </NavItem>
-                    </Nav>
+                    <Collapse isOpen={false} navbar>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <NavLink disabled>{login}</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink onClick={this.logout.bind(this)}>Logout</NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Collapse>
                 </Navbar>
                 {
                     errors.length > 0
@@ -37,7 +39,9 @@ class App extends React.Component {
                 {
                     info ? (<UncontrolledAlert color="success"><strong>{info}</strong></UncontrolledAlert>) : null
                 }
-                {this.props.children}
+                <div className="container">
+                    {this.props.children}
+                </div>
             </div>
         )
     }
@@ -47,6 +51,7 @@ function mapStateToProps(state) {
     return {
         errors: state.crud.errors,
         info: state.crud.info,
+        login: state.appUser.login
     }
 }
 

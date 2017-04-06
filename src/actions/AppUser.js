@@ -5,8 +5,7 @@
 import * as actionConst from '../constants/AppUser'
 import {ajax} from "jquery";
 import {push} from 'react-router-redux';
-import API_DOMAIN from '../constants/Api'
-import {basicAuthHeader, nowSeconds} from "../util";
+import {basicAuthHeader, isExpired} from "../util";
 
 function signIn(login, password) {
     window.localStorage.removeItem(actionConst.APP_USER_KEY);
@@ -21,13 +20,10 @@ function signIn(login, password) {
 
         ajax({
             type: 'GET',
-            url: API_DOMAIN + '/account/admin/login',
+            url: 'http://localhost:8080/api/account/admin/login',
+            crossDomain: true,
             dataType: 'json',
-            beforeSend: [
-                request => {
-                    request.setRequestHeader("Authorization", basicAuthHeader(login, password));
-                }
-            ],
+            headers: {'Authorization': basicAuthHeader(login, password)},
             success: [
                 response => {
                     let token = response.result[0];
@@ -39,14 +35,17 @@ function signIn(login, password) {
                             expiresIn: token.expiresIn,
                             refreshToken: token.refreshToken,
                         }
-                    })
+                    });
+                    dispatch(push('/'));
                 }
             ],
             error: [
-                response => dispatch({
-                    type: actionConst.LOGIN_FAILED,
-                    payload: response.result
-                })
+                response => {
+                    dispatch({
+                        type: actionConst.LOGIN_FAILED,
+                        payload: response.result
+                    })
+                }
             ]
         });
     }
@@ -70,13 +69,13 @@ function refresh(next) {
             type: actionConst.REFRESH_REQUEST,
         });
 
-        let expiresIn = getState().appUser.expiresIn;
-        if (expiresIn < (nowSeconds() + 60)) {
-            let refreshToken = getState().appUser.refreshToken;
+        let appUser = getState().appUser;
+        if (isExpired(appUser)) {
+            let refreshToken = appUser.refreshToken;
 
             ajax({
                 type: 'GET',
-                url: API_DOMAIN + '/account/admin/refresh/' + refreshToken,
+                url: '/api/account/admin/refresh/' + refreshToken,
                 dataType: 'json',
                 success: [
                     response => {

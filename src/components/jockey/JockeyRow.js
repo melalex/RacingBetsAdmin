@@ -24,7 +24,7 @@ export default class JockeyRow extends Component {
                 <td>
                     <Link to={'/jockey/view/' + id} className="btn-outline-info">View</Link>
                     <Link to={'/jockey/edit/' + id} className="btn-outline-primary">Edit</Link>
-                    <Button outline color="danger" onClick={e => this.onClickDelete(e, id)}>Delete</Button>
+                    <Button outline color="danger" onClick={e => this.onClickDelete.bind(this)(e, id)}>Delete</Button>
                 </td>
             </tr>
         );

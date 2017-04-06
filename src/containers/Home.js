@@ -11,13 +11,13 @@ export default class Home extends React.Component {
             <div>
                 <h1>Menu</h1>
                 <ListGroup>
-                    <ListGroupItem href="/horse/list">Horses</ListGroupItem>
-                    <ListGroupItem href="/jockey/list">Jockeys</ListGroupItem>
-                    <ListGroupItem href="/owner/list">Owners</ListGroupItem>
-                    <ListGroupItem href="/race/list">Races</ListGroupItem>
-                    <ListGroupItem href="/racecourse/list">Racecourses</ListGroupItem>
-                    <ListGroupItem href="/trainer/list">Trainers</ListGroupItem>
-                    <ListGroupItem href="/user/list">Users</ListGroupItem>
+                    <ListGroupItem tag="a" href="/horse/list">Horses</ListGroupItem>
+                    <ListGroupItem tag="a" href="/jockey/list">Jockeys</ListGroupItem>
+                    <ListGroupItem tag="a" href="/owner/list">Owners</ListGroupItem>
+                    <ListGroupItem tag="a" href="/race/list">Races</ListGroupItem>
+                    <ListGroupItem tag="a" href="/racecourse/list">Racecourses</ListGroupItem>
+                    <ListGroupItem tag="a" href="/trainer/list">Trainers</ListGroupItem>
+                    <ListGroupItem tag="a" href="/user/list">Users</ListGroupItem>
                 </ListGroup>
             </div>
         )

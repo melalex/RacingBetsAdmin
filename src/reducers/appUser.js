@@ -15,7 +15,7 @@ const nonAuth = {
     errors: []
 };
 
-const initialState = window.localStorage.getItem(actionConst.APP_USER_KEY) || nonAuth;
+const initialState = JSON.parse(window.localStorage.getItem(actionConst.APP_USER_KEY)) || nonAuth;
 
 export default function appUser(state = initialState, action) {
     switch (action.type) {
@@ -37,7 +37,7 @@ export default function appUser(state = initialState, action) {
                 expiresIn: action.payload.expiresIn,
                 refreshToken: action.payload.refreshToken,
             };
-            window.localStorage.setItem(actionConst.APP_USER_KEY, nextState);
+            window.localStorage.setItem(actionConst.APP_USER_KEY, JSON.stringify(nextState));
             return nextState;
 
         case actionConst.REFRESH_FAILED:

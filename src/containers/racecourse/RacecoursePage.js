@@ -12,6 +12,12 @@ import {getRacecourses, searchRacecourse, deleteRacecourse} from '../../actions/
 import RacecourseList from '../../components/racecourse/RacecourseList'
 
 class RacecoursePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.fetchEntities = this.fetchEntities.bind(this);
+        this.search = this.fetchEntities.bind(this);
+    }
+
     fetchEntities(page) {
         if (this.searchString) {
             this.props.search(this.searchString, page)
@@ -32,7 +38,7 @@ class RacecoursePage extends React.Component {
                 <h1>Racecourses</h1>
 
                 <Breadcrumb>
-                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Racecourses</BreadcrumbItem>
                 </Breadcrumb>
 
