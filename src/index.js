@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import {Provider} from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css'
+import '../src/styles/App.css'
+import '../public/favicon.ico'
 import configureStore from './store'
 import {Router, browserHistory} from 'react-router'
 import routes from "./routes"

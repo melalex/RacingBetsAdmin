@@ -6,8 +6,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {signIn} from '../actions/AppUser'
-import {Button, Row, Container, Col} from 'reactstrap';
-import {AvForm, AvField} from 'availity-reactstrap-validation';
+import {Button, Row, Container, Col, Jumbotron, Label} from 'reactstrap';
+import {AvForm, AvField, AvGroup} from 'availity-reactstrap-validation';
+import horseHead from '../img/horse-head-design.png'
 
 class Login extends React.Component {
     signIn(e, value) {
@@ -16,20 +17,27 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="card">
-                <Container>
-                    <Row>
-                        <Col sm={{size: 6, push: 2, pull: 2, offset: 1}}>
-                            <h3 className="text-center">Sign in</h3>
+            <Container>
+                <Row>
+                    <Col sm={{size: 6, push: 2, pull: 2, offset: 1}}>
+                        <Jumbotron>
+                            <img src={horseHead} alt="boohoo" className="img-fluid"/>
+                            <h3 className="text-center small-margin-top">Racing bets admin page</h3>
                             <AvForm onValidSubmit={this.signIn.bind(this)}>
-                                <AvField name="login" required minLength="1" maxLength="45"/>
-                                <AvField type="password" name="password" required minLength="1" maxLength="45"/>
+                                <AvGroup>
+                                    <Label for="login">Login</Label>
+                                    <AvField name="login" required minLength="1" maxLength="45"/>
+                                </AvGroup>
+                                <AvGroup>
+                                    <Label for="password">Password</Label>
+                                    <AvField type="password" name="password" required minLength="1" maxLength="45"/>
+                                </AvGroup>
                                 <Button color="primary" size="lg" block>Submit</Button>
                             </AvForm>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+                        </Jumbotron>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }
