@@ -9,6 +9,10 @@ import Pager from '../shared/Pager'
 
 export default class HorseList extends Component {
 
+    componentDidMount() {
+        this.props.fetchEntities(1)
+    }
+
     render() {
         let {entities, page, limit, count, deleteEntity} = this.props;
         let rows = entities.map((entity, i) => <HorseRow key={i} entity={entity} deleteEntity={deleteEntity}/>);

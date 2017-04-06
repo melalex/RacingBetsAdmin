@@ -6,6 +6,7 @@ import {ajax} from "jquery"
 import {refresh} from '../actions/AppUser'
 import {bearerAuthHeader} from '../util'
 import * as crudAction from '../constants/Crud'
+import {API_ROOT} from  '../constants/Api'
 
 function create(entity, path) {
     return refresh((dispatch, getStore) => {
@@ -16,7 +17,7 @@ function create(entity, path) {
 
         ajax({
             type: 'POST',
-            url: path,
+            url: API_ROOT + path,
             dataType: 'json',
             data: JSON.stringify(entity),
             headers: {'Authorization': bearerAuthHeader(getStore)},
@@ -45,7 +46,7 @@ function get(page, path) {
 
         ajax({
             type: 'GET',
-            url: path,
+            url: API_ROOT + path,
             dataType: 'json',
             data: {page: page},
             headers: {'Authorization': bearerAuthHeader(getStore)},
@@ -80,7 +81,7 @@ function getOne(id, path) {
 
         ajax({
             type: 'GET',
-            url: path + '/' + id,
+            url: API_ROOT + path + '/' + id,
             dataType: 'json',
             success: [
                 response => dispatch({
@@ -110,7 +111,7 @@ function search(req, page, path) {
 
         ajax({
             type: 'GET',
-            url: path,
+            url: API_ROOT + path,
             dataType: 'json',
             data: {
                 query: req,
@@ -147,7 +148,7 @@ function update(entity, path) {
 
         ajax({
             type: 'PUT',
-            url: path,
+            url: API_ROOT + path,
             dataType: 'json',
             data: JSON.stringify(entity),
             headers: {'Authorization': bearerAuthHeader(getStore)},
@@ -176,7 +177,7 @@ function remove(id, path) {
 
         ajax({
             type: 'DELETE',
-            url: path + '/' + id,
+            url: API_ROOT + path + '/' + id,
             dataType: 'json',
             headers: {'Authorization': bearerAuthHeader(getStore)},
             success: [

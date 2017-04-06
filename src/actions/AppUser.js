@@ -3,6 +3,7 @@
  */
 
 import * as actionConst from '../constants/AppUser'
+import {API_ROOT} from  '../constants/Api'
 import {ajax} from "jquery";
 import {push} from 'react-router-redux';
 import {basicAuthHeader, isExpired} from "../util";
@@ -20,7 +21,7 @@ function signIn(login, password) {
 
         ajax({
             type: 'GET',
-            url: 'http://localhost:8080/api/account/admin/login',
+            url: API_ROOT + '/api/account/admin/login',
             crossDomain: true,
             dataType: 'json',
             headers: {'Authorization': basicAuthHeader(login, password)},
@@ -75,7 +76,7 @@ function refresh(next) {
 
             ajax({
                 type: 'GET',
-                url: '/api/account/admin/refresh/' + refreshToken,
+                url: API_ROOT + '/api/account/admin/refresh/' + refreshToken,
                 dataType: 'json',
                 success: [
                     response => {

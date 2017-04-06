@@ -15,11 +15,11 @@ function bearerAuthHeader(getState) {
 }
 
 function nowSeconds() {
-    return new Date().getSeconds();
+    return new Date().getTime();
 }
 
 function isExpired(appUser) {
-    return appUser.expiresIn !== 0 && (appUser.expiresIn + 60) > nowSeconds();
+    return appUser.expiresIn !== 0 && (appUser.expiresIn + 60) < nowSeconds();
 }
 
 export {fullName, basicAuthHeader, bearerAuthHeader, nowSeconds, isExpired}

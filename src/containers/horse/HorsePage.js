@@ -19,8 +19,8 @@ class HorsePage extends React.Component {
     }
 
     fetchEntities(page) {
-        if (this.searchString) {
-            this.props.search(this.searchString, page)
+        if (this.searchString.value) {
+            this.props.search(this.searchString.value, page)
         } else {
             this.props.getAll(page)
         }
@@ -33,6 +33,8 @@ class HorsePage extends React.Component {
 
     render() {
         let {content, page, count, limit, searchString, isFetching} = this.props;
+        console.log('render: ');
+        console.log(searchString);
         return (
             <div>
                 <h1>Horses</h1>
