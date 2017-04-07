@@ -7,6 +7,8 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import HorseForm from '../../components/horse/HorseForm'
 import {updateHorse, getOneHorse} from '../../actions/Horse'
+import {Breadcrumb, BreadcrumbItem} from "reactstrap";
+import {Link} from "react-router";
 
 class HorseEdit extends React.Component {
 
@@ -40,7 +42,15 @@ class HorseEdit extends React.Component {
             this.props.fetching ? (
                 <h1 className="text-center no-result-text">Nothing to show</h1>
             ) : (
-                <HorseForm onSave={this.props.onSave} entity={this.props.entity}/>
+                <div>
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/horse/list">Horses</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Edit</BreadcrumbItem>
+                    </Breadcrumb>
+
+                    <HorseForm onSave={this.props.onSave} entity={this.props.entity}/>
+                </div>
             )
         )
     }

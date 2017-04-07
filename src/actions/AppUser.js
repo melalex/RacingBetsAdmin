@@ -6,7 +6,7 @@ import * as actionConst from '../constants/AppUser'
 import {API_ROOT} from  '../constants/Api'
 import {ajax} from "jquery";
 import {push} from 'react-router-redux';
-import {basicAuthHeader, isExpired} from "../util";
+import {basicAuthHeader, isExpired, getErrorsFromResponse} from "../util";
 
 function signIn(login, password) {
     window.localStorage.removeItem(actionConst.APP_USER_KEY);
@@ -42,7 +42,7 @@ function signIn(login, password) {
             ],
             error: [
                 response => {
-                    let errors = JSON.parse(response.responseText).result;
+                    let errors = getErrorsFromResponse(response);
                     dispatch({
                         type: actionConst.LOGIN_FAILED,
                         payload: errors
@@ -80,6 +80,7 @@ function refresh(next) {
                 type: 'GET',
                 url: API_ROOT + '/api/account/admin/refresh/' + refreshToken,
                 dataType: 'json',
+                crossDomain: true,
                 success: [
                     response => {
                         let token = response.result[0];
@@ -98,9 +99,10 @@ function refresh(next) {
                 error: [
                     response => {
                         dispatch(push('/login'));
+                        let errors = getErrorsFromResponse(response);
                         dispatch({
                             type: actionConst.REFRESH_FAILED,
-                            payload: response.result
+                            payload: errors
                         });
                     }
                 ]

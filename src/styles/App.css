@@ -1,3 +1,31 @@
+html {
+    position: relative !important;
+    min-height: 100% !important;
+}
+
+body {
+    height: 100% !important;
+    margin-bottom: 60px;
+}
+
+.wrapper {
+    height: 100% !important;
+    width: 100%;
+}
+
+.content {
+    height: 100% !important;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+
 .small-margin-top {
     margin-top: 10px;
 }
@@ -8,20 +36,11 @@
 
 .table-margin {
     margin-top: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 3%;
 }
 
 .loader-60devs .loader-60devs-progress {
     background: #428bca;
-}
-
-.footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    background-color: #f5f5f5;
 }
 
 .no-result-text {
@@ -46,6 +65,7 @@
     font-size: 12px;
     color: #647788;
 }
-.nb-error .input-group{
+
+.nb-error .input-group {
     margin: 30px 0;
 }

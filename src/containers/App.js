@@ -25,7 +25,7 @@ class App extends React.Component {
             })
         );
         return (
-            <div>
+            <div className="wrapper">
                 <Navbar color="inverse" inverse toggleable>
                     <NavbarBrand href="/">Racing Bets Admin</NavbarBrand>
                     <Collapse isOpen={false} navbar>
@@ -41,7 +41,7 @@ class App extends React.Component {
                 </Navbar>
                 <Progress.Component/>
 
-                <div className="container big-margin-top">
+                <div className="container big-margin-top content">
                     {
                         errors.length > 0
                             ? errors.map((e, i) => <UncontrolledAlert key={i}

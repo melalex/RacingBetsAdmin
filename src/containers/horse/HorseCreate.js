@@ -6,7 +6,9 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import HorseForm from '../../components/horse/HorseForm'
-import {updateHorse} from '../../actions/Horse'
+import {createHorse} from '../../actions/Horse'
+import {Breadcrumb, BreadcrumbItem} from "reactstrap";
+import {Link} from "react-router";
 
 class HorseEdit extends React.Component {
 
@@ -27,7 +29,14 @@ class HorseEdit extends React.Component {
     render() {
         this.progress();
         return (
-            <HorseForm onSave={this.props.onSave} entity={{}}/>
+            <div>
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/horse/list">Horses</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Create</BreadcrumbItem>
+                </Breadcrumb>
+                <HorseForm onSave={this.props.onSave} entity={{}}/>
+            </div>
         )
     }
 }
@@ -40,7 +49,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onSave: bindActionCreators(updateHorse, dispatch),
+        onSave: bindActionCreators(createHorse, dispatch),
     }
 }
 

@@ -18,6 +18,7 @@ function create(entity, path) {
         ajax({
             type: 'POST',
             url: API_ROOT + path,
+            crossDomain: true,
             dataType: 'json',
             data: JSON.stringify(entity),
             headers: {'Authorization': bearerAuthHeader(getStore)},
@@ -50,6 +51,7 @@ function get(page, path) {
         ajax({
             type: 'GET',
             url: API_ROOT + path,
+            crossDomain: true,
             dataType: 'json',
             data: {page: page},
             success: [
@@ -69,7 +71,7 @@ function get(page, path) {
             ],
             error: [
                 response => {
-                    let errors = JSON.parse(response.responseText).result;
+                    let errors = getErrorsFromResponse(response);
                     dispatch({
                         type: crudAction.GET_FAILED,
                         payload: errors
@@ -90,6 +92,7 @@ function getOne(id, path) {
         ajax({
             type: 'GET',
             url: API_ROOT + path + '/' + id,
+            crossDomain: true,
             dataType: 'json',
             success: [
                 response => dispatch({
@@ -98,10 +101,13 @@ function getOne(id, path) {
                 })
             ],
             error: [
-                response => dispatch({
-                    type: crudAction.GET_ONE_FAILED,
-                    payload: response.result
-                })
+                response => {
+                    let errors = getErrorsFromResponse(response);
+                    dispatch({
+                        type: crudAction.GET_ONE_FAILED,
+                        payload: errors
+                    })
+                }
             ]
         });
     }
@@ -120,6 +126,7 @@ function search(req, page, path) {
         ajax({
             type: 'GET',
             url: API_ROOT + path,
+            crossDomain: true,
             dataType: 'json',
             data: {
                 query: req,
@@ -138,10 +145,13 @@ function search(req, page, path) {
                 })
             ],
             error: [
-                response => dispatch({
-                    type: crudAction.SEARCH_FAILED,
-                    payload: response.result
-                })
+                response => {
+                    let errors = getErrorsFromResponse(response);
+                    dispatch({
+                        type: crudAction.SEARCH_FAILED,
+                        payload: errors
+                    })
+                }
             ]
         });
     }
@@ -157,6 +167,7 @@ function update(entity, path) {
         ajax({
             type: 'PUT',
             url: API_ROOT + path,
+            crossDomain: true,
             dataType: 'json',
             data: JSON.stringify(entity),
             headers: {'Authorization': bearerAuthHeader(getStore)},
@@ -189,6 +200,7 @@ function remove(id, path) {
         ajax({
             type: 'DELETE',
             url: API_ROOT + path + '/' + id,
+            crossDomain: true,
             dataType: 'json',
             headers: {'Authorization': bearerAuthHeader(getStore)},
             success: [
@@ -198,10 +210,13 @@ function remove(id, path) {
                 })
             ],
             error: [
-                response => dispatch({
-                    type: crudAction.DELETE_FAILED,
-                    payload: response.result
-                })
+                response => {
+                    let errors = getErrorsFromResponse(response);
+                    dispatch({
+                        type: crudAction.DELETE_FAILED,
+                        payload: errors
+                    })
+                }
             ]
         });
     })

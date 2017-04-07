@@ -22,8 +22,6 @@ export default function crud(state = initialState, action) {
         case actionConst.CREATE_REQUEST:
         case actionConst.UPDATE_REQUEST:
         case actionConst.DELETE_REQUEST:
-            return {...state, errors: [], info: ''};
-
         case actionConst.GET_ONE_REQUEST:
         case actionConst.GET_REQUEST:
         case actionConst.SEARCH_REQUEST:
@@ -47,7 +45,7 @@ export default function crud(state = initialState, action) {
         case actionConst.CREATE_SUCCESS:
         case actionConst.UPDATE_SUCCESS:
         case actionConst.DELETE_SUCCESS:
-            return {...state, info: action.payload};
+            return {...state, fetching: false, info: action.payload};
 
         case actionConst.CREATE_FAILED:
         case actionConst.GET_ONE_FAILED:
