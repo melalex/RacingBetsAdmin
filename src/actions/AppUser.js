@@ -42,9 +42,11 @@ function signIn(login, password) {
             ],
             error: [
                 response => {
+                    console.log(response);
+                    let errors = JSON.parse(response.responseText).result;
                     dispatch({
                         type: actionConst.LOGIN_FAILED,
-                        payload: response.result
+                        payload: errors
                     })
                 }
             ]
@@ -64,14 +66,15 @@ function signOut() {
 }
 
 function refresh(next) {
-    window.localStorage.removeItem(actionConst.APP_USER_KEY);
     return (dispatch, getState) => {
-        dispatch({
-            type: actionConst.REFRESH_REQUEST,
-        });
-
         let appUser = getState().appUser;
         if (isExpired(appUser)) {
+            window.localStorage.removeItem(actionConst.APP_USER_KEY);
+
+            dispatch({
+                type: actionConst.REFRESH_REQUEST,
+            });
+
             let refreshToken = appUser.refreshToken;
 
             ajax({

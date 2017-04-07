@@ -49,24 +49,29 @@ function get(page, path) {
             url: API_ROOT + path,
             dataType: 'json',
             data: {page: page},
-            headers: {'Authorization': bearerAuthHeader(getStore)},
             success: [
-                response => dispatch({
-                    type: crudAction.GET_SUCCESS,
-                    payload: {
-                        count: response.count,
-                        limit: response.limit,
-                        page: page,
-                        searchString: '',
-                        content: response.result
-                    }
-                })
+                response => {
+                    console.log(response);
+                    dispatch({
+                        type: crudAction.GET_SUCCESS,
+                        payload: {
+                            count: response.count,
+                            limit: response.limit,
+                            page: page,
+                            searchString: '',
+                            content: response.result
+                        }
+                    })
+                }
             ],
             error: [
-                response => dispatch({
-                    type: crudAction.GET_FAILED,
-                    payload: response.result
-                })
+                response => {
+                    let errors = JSON.parse(response.responseText).result;
+                    dispatch({
+                        type: crudAction.GET_FAILED,
+                        payload: errors
+                    })
+                }
             ]
         });
     });

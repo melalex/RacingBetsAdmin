@@ -9,10 +9,6 @@ import Pager from '../shared/Pager'
 
 export default class HorseList extends Component {
 
-    componentDidMount() {
-        this.props.fetchEntities(1)
-    }
-
     render() {
         let {entities, page, limit, count, deleteEntity} = this.props;
         let rows = entities.map((entity, i) => <HorseRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
@@ -21,7 +17,7 @@ export default class HorseList extends Component {
                 ?
                 <h1 className="text-center no-result-text">Nothing to show</h1>
                 :
-                <div>
+                <div className="table-margin">
                     <Table hover>
                         <thead>
                         <tr>

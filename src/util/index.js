@@ -2,6 +2,8 @@
  * Created by Alexander Melashchenko on 4/2/17.
  */
 
+import dateformat from 'dateformat'
+
 function fullName(person) {
     return person.firstName + ' ' + person.lastName;
 }
@@ -22,4 +24,8 @@ function isExpired(appUser) {
     return appUser.expiresIn !== 0 && (appUser.expiresIn + 60) < nowSeconds();
 }
 
-export {fullName, basicAuthHeader, bearerAuthHeader, nowSeconds, isExpired}
+function dateFromTimestamp(timestamp) {
+    return dateformat(new Date(timestamp), "mmmm dS, yyyy");
+}
+
+export {fullName, basicAuthHeader, bearerAuthHeader, nowSeconds, isExpired, dateFromTimestamp}

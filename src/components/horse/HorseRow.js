@@ -1,10 +1,10 @@
- /**
+/**
  * Created by Alexander Melashchenko on 4/1/17.
  */
 
 import React, {PropTypes, Component} from 'react'
-import {fullName} from '../../util'
-import {Button} from 'reactstrap';
+import {fullName, dateFromTimestamp} from '../../util'
+import {Button, Row, Col} from 'reactstrap';
 
 export default class HorseRow extends Component {
 
@@ -20,18 +20,26 @@ export default class HorseRow extends Component {
                 <td>{name}</td>
                 <td>{fullName(trainer)}</td>
                 <td>{fullName(owner)}</td>
-                <td>{birthday}</td>
+                <td>{dateFromTimestamp(birthday)}</td>
                 <td>{gender}</td>
                 <td>
-                    <Button outline color="info" href="/horse/view/">
-                        View
-                    </Button>
-                    <Button outline color="primary" href="/horse/edit/">
-                        Edit
-                    </Button>
-                    <Button outline color="danger" onClick={() => this.onClickDelete.bind(this)(id)}>
-                        Delete
-                    </Button>
+                    <Row>
+                        <Col md={{size: 2, offset: 1}}>
+                            <Button outline color="info" href={"/horse/view/" + id}>
+                                View
+                            </Button>
+                        </Col>
+                        <Col md={{size: 2, offset: 1}}>
+                            <Button outline color="primary" href={"/horse/edit/" + id}>
+                                Edit
+                            </Button>
+                        </Col>
+                        <Col md={{size: 2, offset: 1}}>
+                            <Button outline color="danger" onClick={() => this.onClickDelete.bind(this)(id)}>
+                                Delete
+                            </Button>
+                        </Col>
+                    </Row>
                 </td>
             </tr>
         );
@@ -46,15 +54,15 @@ HorseRow.propTypes = {
             id: PropTypes.number,
             firstName: PropTypes.string.isRequired,
             lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.instanceOf(Date),
+            birthday: PropTypes.number,
         }).isRequired,
         owner: PropTypes.shape({
             id: PropTypes.number,
             firstName: PropTypes.string.isRequired,
             lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.instanceOf(Date),
+            birthday: PropTypes.number,
         }).isRequired,
-        birthday: PropTypes.instanceOf(Date).isRequired,
+        birthday: PropTypes.number.isRequired,
         gender: PropTypes.string.isRequired
     }).isRequired,
     deleteEntity: PropTypes.func.isRequired,

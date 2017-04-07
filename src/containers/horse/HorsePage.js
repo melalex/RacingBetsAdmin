@@ -15,7 +15,11 @@ class HorsePage extends React.Component {
     constructor(props) {
         super(props);
         this.fetchEntities = this.fetchEntities.bind(this);
-        this.search = this.fetchEntities.bind(this);
+        this.search = this.search.bind(this);
+    }
+
+    componentDidMount() {
+        this.fetchEntities(1)
     }
 
     fetchEntities(page) {
@@ -32,9 +36,8 @@ class HorsePage extends React.Component {
     }
 
     render() {
-        let {content, page, count, limit, searchString, isFetching} = this.props;
-        console.log('render: ');
-        console.log(searchString);
+        let {content, page, count, limit, searchString, fetching} = this.props;
+        console.log(this.props);
         return (
             <div>
                 <h1>Horses</h1>
@@ -51,7 +54,7 @@ class HorsePage extends React.Component {
                                 <Input type="text" ref={(input) => this.searchString = input} value={searchString}
                                        placeholder="Type a name..."/>
                                 <InputGroupButton>
-                                    <Button color="primary" onClick={this.search.bind(this)}>
+                                    <Button color="primary" onClick={this.search}>
                                         Search
                                     </Button>
                                 </InputGroupButton>
@@ -65,7 +68,7 @@ class HorsePage extends React.Component {
                     </Row>
                 </Container>
 
-                {isFetching ? (
+                {fetching ? (
                     <Loading/>
                 ) : (
                     <HorseList entities={content} page={page} limit={limit} count={count}
@@ -84,7 +87,7 @@ function mapStateToProps(state) {
         count: state.crud.count,
         limit: state.crud.limit,
         searchString: state.crud.searchString,
-        isFetching: state.crud.isFetching
+        fetching: state.crud.fetching
     }
 }
 
