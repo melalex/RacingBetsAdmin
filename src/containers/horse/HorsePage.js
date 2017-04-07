@@ -6,7 +6,18 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
-import {Breadcrumb, BreadcrumbItem, InputGroup, InputGroupButton, Input, Button, Container, Row, Col} from 'reactstrap';
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    InputGroup,
+    InputGroupButton,
+    Input,
+    Button,
+    Container,
+    Row,
+    Col,
+    Form
+} from 'reactstrap';
 import {getHorses, searchHorse, deleteHorse} from '../../actions/Horse'
 import HorseList from '../../components/horse/HorseList'
 
@@ -52,8 +63,6 @@ class HorsePage extends React.Component {
     render() {
         let {content, page, count, limit, searchString} = this.props;
 
-        console.log(this.props);
-
         this.progress();
 
         return (
@@ -68,15 +77,15 @@ class HorsePage extends React.Component {
                 <Container>
                     <Row>
                         <Col md={4}>
-                            <InputGroup>
-                                <Input type="text" ref={(input) => this.searchString = input} value={searchString}
-                                       placeholder="Type a name..."/>
-                                <InputGroupButton>
-                                    <Button color="primary" onClick={this.search}>
-                                        Search
-                                    </Button>
-                                </InputGroupButton>
-                            </InputGroup>
+                            <form onSubmit={this.search}>
+                                <div className="input-group">
+                                    <input type="text" defaultValue={searchString} className="form-control"
+                                           placeholder="Search for..." ref={input => this.searchString = input}/>
+                                    <span className="input-group-btn">
+                                    <button className="btn btn-primary" type="submit">Search</button>
+                                    </span>
+                                </div>
+                            </form>
                         </Col>
                         <Col md={{size: 2}}>
                             <Button href="/horse/create" outline color="primary">
