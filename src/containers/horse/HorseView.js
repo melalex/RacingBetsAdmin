@@ -5,7 +5,6 @@
 import React from 'react'
 import {bindActionCreators} from 'redux'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
-import Loading from 'react-loading-animation'
 import {fullName, dateFromTimestamp} from '../../util'
 import {connect} from 'react-redux'
 import {getOneHorse} from '../../actions/Horse'
@@ -15,6 +14,7 @@ class HorseView extends React.Component {
     componentWillMount() {
         this.props.getOne(this.props.id);
         this.firstFetch = true;
+        this.isProgressShown = false;
     }
 
     componentDidMount() {
@@ -27,12 +27,25 @@ class HorseView extends React.Component {
         }
     }
 
+    progress() {
+        if (this.props.fetching) {
+            this.props.showProgress();
+            this.isProgressShown = true
+        } else if (this.isProgressShown) {
+            this.props.hideProgress();
+            this.isProgressShown = false
+        }
+    }
+
     render() {
-        let {entity, fetching} = this.props;
+        let {entity} = this.props;
         let {id, name, trainer, owner, birthday, gender} = entity;
+
+        this.progress();
+
         return (
-            fetching || this.firstFetch ? (
-                <Loading/>
+            this.props.fetching || this.firstFetch ? (
+                <h1 className="text-center no-result-text">Nothing to show</h1>
             ) : (
                 <div>
                     <Breadcrumb>

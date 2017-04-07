@@ -7,7 +7,6 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import {Breadcrumb, BreadcrumbItem, InputGroup, InputGroupButton, Input, Button, Container, Row, Col} from 'reactstrap';
-import Loading from 'react-loading-animation'
 import {getHorses, searchHorse, deleteHorse} from '../../actions/Horse'
 import HorseList from '../../components/horse/HorseList'
 
@@ -16,6 +15,7 @@ class HorsePage extends React.Component {
         super(props);
         this.fetchEntities = this.fetchEntities.bind(this);
         this.search = this.search.bind(this);
+        this.progress = this.progress.bind(this);
     }
 
     componentWillMount() {
@@ -39,18 +39,22 @@ class HorsePage extends React.Component {
         this.fetchEntities(1)
     }
 
-    render() {
-        let {content, page, count, limit, searchString, fetching} = this.props;
-
-        console.log(this.props);
-
-        if (fetching) {
+    progress() {
+        if (this.props.fetching) {
             this.props.showProgress();
             this.isProgressShown = true
         } else if (this.isProgressShown) {
             this.props.hideProgress();
             this.isProgressShown = false
         }
+    }
+
+    render() {
+        let {content, page, count, limit, searchString} = this.props;
+
+        console.log(this.props);
+
+        this.progress();
 
         return (
             <div>
@@ -82,13 +86,9 @@ class HorsePage extends React.Component {
                     </Row>
                 </Container>
 
-                {fetching ? (
-                    <Loading/>
-                ) : (
-                    <HorseList entities={content} page={page} limit={limit} count={count}
-                               deleteEntity={this.props.deleteEntity}
-                               fetchEntities={this.fetchEntities}/>
-                )}
+                <HorseList entities={content} page={page} limit={limit} count={count}
+                           deleteEntity={this.props.deleteEntity}
+                           fetchEntities={this.fetchEntities}/>
             </div>
         );
     }
