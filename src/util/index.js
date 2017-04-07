@@ -28,4 +28,25 @@ function dateFromTimestamp(timestamp) {
     return dateformat(new Date(timestamp), "mmmm dS, yyyy");
 }
 
-export {fullName, basicAuthHeader, bearerAuthHeader, nowSeconds, isExpired, dateFromTimestamp}
+function dateFromTimestampForm(timestamp) {
+    return dateformat(new Date(timestamp ? timestamp : 0), "mm/dd/yyyy");
+}
+
+function getErrorsFromResponse(response) {
+    if (response.responseText) {
+        return JSON.parse(response.responseText).result;
+    } else {
+        return [{message: response.statusText}]
+    }
+}
+
+export {
+    fullName,
+    basicAuthHeader,
+    bearerAuthHeader,
+    nowSeconds,
+    isExpired,
+    dateFromTimestamp,
+    dateFromTimestampForm,
+    getErrorsFromResponse
+}

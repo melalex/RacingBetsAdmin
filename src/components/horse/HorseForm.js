@@ -6,6 +6,7 @@ import React, {PropTypes, Component} from 'react'
 import {AvForm, AvField, AvGroup} from 'availity-reactstrap-validation';
 import {Col, Button, FormGroup, Label, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {Link} from 'react-router'
+import {dateFromTimestampForm} from '../../util'
 
 export default class HorseForm extends Component {
 
@@ -15,7 +16,7 @@ export default class HorseForm extends Component {
             name: values.name,
             trainer: values.trainer.id,
             owner: values.owner.id,
-            birthday: values.birthday,
+            birthday: new Date(values.birthday).getTime(),
             gender: values.gender
         })
     }
@@ -55,7 +56,8 @@ export default class HorseForm extends Component {
                     <AvGroup row>
                         <Label for="birthday" sm={2}>Birthday</Label>
                         <Col sm={10}>
-                            <AvField type="date" name="birthday" id="birthday" required/>
+                            <AvField type="date" name="birthday" id="birthday" required
+                                     value={dateFromTimestampForm(this.props.entity.birthday)}/>
                         </Col>
                     </AvGroup>
                     <AvGroup row>

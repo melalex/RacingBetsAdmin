@@ -4,7 +4,7 @@
 
 import {ajax} from "jquery"
 import {refresh} from '../actions/AppUser'
-import {bearerAuthHeader} from '../util'
+import {bearerAuthHeader, getErrorsFromResponse} from '../util'
 import * as crudAction from '../constants/Crud'
 import {API_ROOT} from  '../constants/Api'
 
@@ -38,7 +38,7 @@ function create(entity, path) {
 }
 
 function get(page, path) {
-    return refresh((dispatch, getStore) => {
+    return refresh(dispatch => {
         dispatch({
             type: crudAction.GET_REQUEST,
             payload: page
@@ -164,10 +164,15 @@ function update(entity, path) {
                 })
             ],
             error: [
-                response => dispatch({
-                    type: crudAction.UPDATE_FAILED,
-                    payload: response.result
-                })
+                response => {
+                    console.log(response);
+                    let errors = getErrorsFromResponse(response);
+                    console.log(errors);
+                    dispatch({
+                        type: crudAction.UPDATE_FAILED,
+                        payload: errors
+                    })
+                }
             ]
         });
     });

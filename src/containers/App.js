@@ -40,15 +40,17 @@ class App extends React.Component {
                     </Collapse>
                 </Navbar>
                 <Progress.Component/>
-                {
-                    errors.length > 0
-                        ? errors.map(e => <UncontrolledAlert color="danger"><strong>{e}</strong></UncontrolledAlert>)
-                        : null
-                }
-                {
-                    info ? (<UncontrolledAlert color="success"><strong>{info}</strong></UncontrolledAlert>) : null
-                }
+
                 <div className="container big-margin-top">
+                    {
+                        errors.length > 0
+                            ? errors.map((e, i) => <UncontrolledAlert key={i}
+                                                                      color="danger"><strong>{e.message}</strong></UncontrolledAlert>)
+                            : null
+                    }
+                    {
+                        info ? (<UncontrolledAlert color="success"><strong>{info}</strong></UncontrolledAlert>) : null
+                    }
                     {children}
                 </div>
             </div>

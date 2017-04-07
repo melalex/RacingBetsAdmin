@@ -55,7 +55,7 @@ export default function crud(state = initialState, action) {
         case actionConst.SEARCH_FAILED:
         case actionConst.UPDATE_FAILED:
         case actionConst.DELETE_FAILED:
-            return {...state, fetching: false, errors: action.payload.content};
+            return {...state, fetching: false, errors: action.payload};
 
         default:
             return state;

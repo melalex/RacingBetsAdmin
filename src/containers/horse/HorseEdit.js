@@ -7,9 +7,13 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import HorseForm from '../../components/horse/HorseForm'
 import {updateHorse, getOneHorse} from '../../actions/Horse'
-import Loading from 'react-loading-animation'
 
 class HorseEdit extends React.Component {
+
+    componentWillMount() {
+        this.isProgressShown = false;
+    }
+
     componentDidMount() {
         this.props.getOne(this.props.id)
     }
@@ -20,10 +24,21 @@ class HorseEdit extends React.Component {
         }
     }
 
+    progress() {
+        if (this.props.fetching) {
+            this.props.showProgress();
+            this.isProgressShown = true
+        } else if (this.isProgressShown) {
+            this.props.hideProgress();
+            this.isProgressShown = false
+        }
+    }
+
     render() {
+        this.progress();
         return (
-            this.props.isFetching ? (
-                <Loading/>
+            this.props.fetching ? (
+                <h1 className="text-center no-result-text">Nothing to show</h1>
             ) : (
                 <HorseForm onSave={this.props.onSave} entity={this.props.entity}/>
             )
@@ -34,7 +49,7 @@ class HorseEdit extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         entity: state.crud.entity,
-        isFetching: state.crud.isFetching,
+        fetching: state.crud.fetching,
         id: ownProps.params.id
     }
 }
