@@ -4,13 +4,10 @@
 
 import React, {PropTypes, Component} from 'react'
 import {fullName, dateFromTimestamp} from '../../util'
-import {Button, Row, Col} from 'reactstrap';
+import {Button, Row, Col} from 'reactstrap'
+import Delete from '../shared/DeleteModal'
 
 export default class HorseRow extends Component {
-
-    onClickDelete(id) {
-        this.props.deleteEntity(id);
-    }
 
     render() {
         let {id, name, trainer, owner, birthday, gender} = this.props.entity;
@@ -35,9 +32,7 @@ export default class HorseRow extends Component {
                             </Button>
                         </Col>
                         <Col md={{size: 2, offset: 1}}>
-                            <Button outline color="danger" onClick={() => this.onClickDelete.bind(this)(id)}>
-                                Delete
-                            </Button>
+                            <Delete onDelete={() => this.props.deleteEntity(id)}/>
                         </Col>
                     </Row>
                 </td>

@@ -56,7 +56,6 @@ function get(page, path) {
             data: {page: page},
             success: [
                 response => {
-                    console.log(response);
                     dispatch({
                         type: crudAction.GET_SUCCESS,
                         payload: {
@@ -197,6 +196,8 @@ function remove(id, path) {
             payload: id
         });
 
+        let {searchString, page} = getStore().crud;
+
         ajax({
             type: 'DELETE',
             url: API_ROOT + path + '/' + id,
@@ -204,10 +205,18 @@ function remove(id, path) {
             dataType: 'json',
             headers: {'Authorization': bearerAuthHeader(getStore)},
             success: [
-                response => dispatch({
-                    type: crudAction.DELETE_SUCCESS,
-                    payload: response.result[0]
-                })
+                response => {
+                    dispatch({
+                        type: crudAction.DELETE_SUCCESS,
+                        payload: response.result[0]
+                    });
+
+                    if (searchString) {
+                        dispatch(search(searchString, page, path));
+                    } else {
+                        dispatch(get(page, path));
+                    }
+                }
             ],
             error: [
                 response => {
