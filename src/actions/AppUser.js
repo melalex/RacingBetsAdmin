@@ -42,7 +42,6 @@ function signIn(login, password) {
             ],
             error: [
                 response => {
-                    console.log(response);
                     let errors = JSON.parse(response.responseText).result;
                     dispatch({
                         type: actionConst.LOGIN_FAILED,

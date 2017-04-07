@@ -10,7 +10,7 @@ const nonAuth = {
     expiresIn: 0,
     refreshToken: '',
     isAuthenticated: false,
-    isFetching: false,
+    fetching: false,
     login: '',
     errors: []
 };

@@ -6,24 +6,53 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {signIn} from '../actions/AppUser'
-import {Button, Row, Container, Col, Jumbotron, Label} from 'reactstrap';
+import {Button, Row, Container, Col, Jumbotron, Label, UncontrolledAlert} from 'reactstrap';
 import {AvForm, AvField, AvGroup} from 'availity-reactstrap-validation';
 import horseHead from '../img/horse-head-design.png'
+import Progress from "react-progress-2";
+
 
 class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.progress = this.progress.bind(this);
+        this.signIn = this.signIn.bind(this);
+        this.isProgressShown = false;
+    }
+
     signIn(e, value) {
         this.props.signIn(value.login, value.password)
     }
 
+    progress() {
+        if (this.props.fetching) {
+            Progress.show();
+            this.isProgressShown = true;
+        } else if (this.isProgressShown) {
+            Progress.hide();
+            this.isProgressShown = false;
+        }
+    }
+
+
     render() {
+        let {errors} = this.props;
+        this.progress();
         return (
             <Container>
+                <Progress.Component/>
                 <Row>
                     <Col sm={{size: 6, push: 2, pull: 2, offset: 1}}>
                         <Jumbotron>
                             <img src={horseHead} alt="boohoo" className="img-fluid"/>
                             <h3 className="text-center small-margin-top">Racing bets admin page</h3>
-                            <AvForm onValidSubmit={this.signIn.bind(this)}>
+                            {
+                                errors.length > 0
+                                    ? errors.map((e, i) => <UncontrolledAlert key={i}
+                                    color="danger"><strong>{e.message}</strong></UncontrolledAlert>)
+                                    : null
+                            }
+                            <AvForm onValidSubmit={this.signIn}>
                                 <AvGroup>
                                     <Label for="login">Login</Label>
                                     <AvField name="login" required minLength="1" maxLength="45"/>
@@ -42,8 +71,11 @@ class Login extends React.Component {
     }
 }
 
-function mapStateToProps() {
-    return {}
+function mapStateToProps(state) {
+    return {
+        fetching: state.appUser.fetching,
+        errors: state.appUser.errors
+    }
 }
 
 function mapDispatchToProps(dispatch) {
