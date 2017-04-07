@@ -35,6 +35,7 @@ class HorseEdit extends React.Component {
                     <BreadcrumbItem><Link to="/horse/list">Horses</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Create</BreadcrumbItem>
                 </Breadcrumb>
+
                 <HorseForm onSave={this.props.onSave} entity={{}}/>
             </div>
         )

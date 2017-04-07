@@ -6,18 +6,7 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    InputGroup,
-    InputGroupButton,
-    Input,
-    Button,
-    Container,
-    Row,
-    Col,
-    Form
-} from 'reactstrap';
+import {Breadcrumb, BreadcrumbItem, Button, Container, Row, Col} from 'reactstrap';
 import {getHorses, searchHorse, deleteHorse} from '../../actions/Horse'
 import HorseList from '../../components/horse/HorseList'
 

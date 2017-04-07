@@ -38,13 +38,13 @@ class HorseView extends React.Component {
     }
 
     render() {
-        let {entity} = this.props;
+        let {entity, fetching} = this.props;
         let {id, name, trainer, owner, birthday, gender} = entity;
 
         this.progress();
 
         return (
-            this.props.fetching || this.firstFetch ? (
+            fetching || this.firstFetch ? (
                 <h1 className="text-center no-result-text">Nothing to show</h1>
             ) : (
                 <div>
