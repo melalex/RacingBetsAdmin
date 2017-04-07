@@ -8,7 +8,7 @@ import {Breadcrumb, BreadcrumbItem, ListGroup, ListGroupItem} from 'reactstrap'
 export default class Home extends React.Component {
     render() {
         return (
-            <div>
+            <div className="table-margin">
                 <h1>Menu</h1>
 
                 <Breadcrumb>
