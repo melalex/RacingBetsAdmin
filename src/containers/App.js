@@ -26,7 +26,7 @@ class App extends React.Component {
         );
         return (
             <div>
-                <Navbar color="faded" light toggleable>
+                <Navbar color="inverse" inverse toggleable>
                     <NavbarBrand href="/">Racing Bets Admin</NavbarBrand>
                     <Collapse isOpen={false} navbar>
                         <Nav className="ml-auto" navbar>
@@ -53,6 +53,12 @@ class App extends React.Component {
                     }
                     {children}
                 </div>
+
+                <footer className="footer">
+                    <div className="container">
+                        <span className="text-muted">&copy; Melashchenko, 2017</span>
+                    </div>
+                </footer>
             </div>
         )
     }

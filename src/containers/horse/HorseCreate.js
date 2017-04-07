@@ -4,29 +4,44 @@
 
 import React from 'react'
 import {bindActionCreators} from 'redux'
-import HorseForm from '../../components/horse/HorseForm'
 import {connect} from 'react-redux'
-import {createHorse} from '../../actions/Horse'
+import HorseForm from '../../components/horse/HorseForm'
+import {updateHorse} from '../../actions/Horse'
 
-class HorseCreate extends React.Component {
+class HorseEdit extends React.Component {
+
+    componentWillMount() {
+        this.isProgressShown = false;
+    }
+
+    progress() {
+        if (this.props.fetching) {
+            this.props.showProgress();
+            this.isProgressShown = true
+        } else if (this.isProgressShown) {
+            this.props.hideProgress();
+            this.isProgressShown = false
+        }
+    }
+
     render() {
+        this.progress();
         return (
-            <HorseForm onSave={this.props.onSave}/>
+            <HorseForm onSave={this.props.onSave} entity={{}}/>
         )
     }
 }
 
 function mapStateToProps(state) {
     return {
-        entity: state.crud.entity,
-        isFetching: state.crud.isFetching
+        fetching: state.crud.fetching,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onSave: bindActionCreators(createHorse, dispatch),
+        onSave: bindActionCreators(updateHorse, dispatch),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HorseCreate)
+export default connect(mapStateToProps, mapDispatchToProps)(HorseEdit)

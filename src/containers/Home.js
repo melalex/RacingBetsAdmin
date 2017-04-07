@@ -3,13 +3,18 @@
  */
 
 import React from 'react';
-import {ListGroup, ListGroupItem} from 'reactstrap'
+import {Breadcrumb, BreadcrumbItem, ListGroup, ListGroupItem} from 'reactstrap'
 
 export default class Home extends React.Component {
     render() {
         return (
             <div>
                 <h1>Menu</h1>
+
+                <Breadcrumb>
+                    <BreadcrumbItem active>Home</BreadcrumbItem>
+                </Breadcrumb>
+
                 <ListGroup>
                     <ListGroupItem tag="a" href="/horse/list">Horses</ListGroupItem>
                     <ListGroupItem tag="a" href="/jockey/list">Jockeys</ListGroupItem>

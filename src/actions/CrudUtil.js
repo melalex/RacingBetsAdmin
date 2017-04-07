@@ -28,10 +28,13 @@ function create(entity, path) {
                 })
             ],
             error: [
-                response => dispatch({
-                    type: crudAction.CREATE_FAILED,
-                    payload: response.result
-                })
+                response => {
+                    let errors = getErrorsFromResponse(response);
+                    dispatch({
+                        type: crudAction.CREATE_FAILED,
+                        payload: errors
+                    })
+                }
             ]
         });
     });
@@ -165,9 +168,7 @@ function update(entity, path) {
             ],
             error: [
                 response => {
-                    console.log(response);
                     let errors = getErrorsFromResponse(response);
-                    console.log(errors);
                     dispatch({
                         type: crudAction.UPDATE_FAILED,
                         payload: errors

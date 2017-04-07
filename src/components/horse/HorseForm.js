@@ -82,22 +82,22 @@ export default class HorseForm extends Component {
 
 HorseForm.propTypes = {
     entity: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
+        id: PropTypes.number,
+        name: PropTypes.string,
         trainer: PropTypes.shape({
             id: PropTypes.number,
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.instanceOf(Date),
-        }).isRequired,
+            firstName: PropTypes.string,
+            lastName: PropTypes.string,
+            birthday: PropTypes.number,
+        }),
         owner: PropTypes.shape({
             id: PropTypes.number,
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired,
-            birthday: PropTypes.instanceOf(Date),
-        }).isRequired,
-        birthday: PropTypes.instanceOf(Date).isRequired,
-        gender: PropTypes.string.isRequired
+            firstName: PropTypes.string,
+            lastName: PropTypes.string,
+            birthday: PropTypes.number,
+        }),
+        birthday: PropTypes.number,
+        gender: PropTypes.string
     }),
     onSave: PropTypes.func.isRequired,
 };
