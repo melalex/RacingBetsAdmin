@@ -3,13 +3,19 @@
  */
 
 import React from 'react'
-import Loading from 'react-loading-animation'
+import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import OwnerForm from '../../components/owner/OwnerForm'
-import {bindActionCreators} from 'redux'
 import {updateOwner, getOneOwner} from '../../actions/Owner'
+import {Breadcrumb, BreadcrumbItem} from "reactstrap";
+import {Link} from "react-router";
 
 class OwnerEdit extends React.Component {
+
+    componentWillMount() {
+        this.isProgressShown = false;
+    }
+
     componentDidMount() {
         this.props.getOne(this.props.id)
     }
@@ -20,12 +26,31 @@ class OwnerEdit extends React.Component {
         }
     }
 
+    progress() {
+        if (this.props.fetching) {
+            this.props.showProgress();
+            this.isProgressShown = true
+        } else if (this.isProgressShown) {
+            this.props.hideProgress();
+            this.isProgressShown = false
+        }
+    }
+
     render() {
+        this.progress();
         return (
-            this.props.isFetching ? (
-                <Loading/>
+            this.props.fetching ? (
+                <h1 className="text-center no-result-text">Nothing to show</h1>
             ) : (
-                <OwnerForm onSave={this.props.onSave} entity={this.props.entity}/>
+                <div>
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/owner/list">Owner</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Edit</BreadcrumbItem>
+                    </Breadcrumb>
+
+                    <OwnerForm onSave={this.props.onSave} entity={this.props.entity}/>
+                </div>
             )
         )
     }

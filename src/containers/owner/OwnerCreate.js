@@ -7,18 +7,43 @@ import {bindActionCreators} from 'redux'
 import OwnerForm from '../../components/owner/OwnerForm'
 import {connect} from 'react-redux'
 import {createOwner} from '../../actions/Owner'
+import {Breadcrumb, BreadcrumbItem} from "reactstrap";
+import {Link} from "react-router";
 
 class OwnerCreate extends React.Component {
+
+    componentWillMount() {
+        this.isProgressShown = false;
+    }
+
+    progress() {
+        if (this.props.fetching) {
+            this.props.showProgress();
+            this.isProgressShown = true
+        } else if (this.isProgressShown) {
+            this.props.hideProgress();
+            this.isProgressShown = false
+        }
+    }
+
     render() {
+        this.progress();
         return (
-            <OwnerForm onSave={this.props.onSave}/>
+            <div>
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/owner/list">Horses</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Create</BreadcrumbItem>
+                </Breadcrumb>
+
+                <OwnerForm onSave={this.props.onSave}/>
+            </div>
         )
     }
 }
 
 function mapStateToProps(state) {
     return {
-        entity: state.crud.entity,
         isFetching: state.crud.isFetching
     }
 }

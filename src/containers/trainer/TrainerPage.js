@@ -6,8 +6,7 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
-import {Breadcrumb, BreadcrumbItem, InputGroup, InputGroupButton, Input, Button, Container, Row, Col} from 'reactstrap';
-import Loading from 'react-loading-animation'
+import {Breadcrumb, BreadcrumbItem, Button, Container, Row, Col} from 'reactstrap';
 import {getTrainers, searchTrainer, deleteTrainer} from '../../actions/Trainer'
 import TrainerList from '../../components/trainer/TrainerList'
 
@@ -15,12 +14,21 @@ class TrainerPage extends React.Component {
     constructor(props) {
         super(props);
         this.fetchEntities = this.fetchEntities.bind(this);
-        this.search = this.fetchEntities.bind(this);
+        this.search = this.search.bind(this);
+        this.progress = this.progress.bind(this);
+    }
+
+    componentWillMount() {
+        this.isProgressShown = false;
+    }
+
+    componentDidMount() {
+        this.fetchEntities(1)
     }
 
     fetchEntities(page) {
-        if (this.searchString) {
-            this.props.search(this.searchString, page)
+        if (this.searchString.value) {
+            this.props.search(this.searchString.value, page)
         } else {
             this.props.getAll(page)
         }
@@ -31,8 +39,21 @@ class TrainerPage extends React.Component {
         this.fetchEntities(1)
     }
 
+    progress() {
+        if (this.props.fetching) {
+            this.props.showProgress();
+            this.isProgressShown = true
+        } else if (this.isProgressShown) {
+            this.props.hideProgress();
+            this.isProgressShown = false
+        }
+    }
+
     render() {
-        let {content, page, count, limit, searchString, isFetching} = this.props;
+        let {content, page, count, limit, searchString} = this.props;
+
+        this.progress();
+
         return (
             <div>
                 <h1>Trainers</h1>
@@ -45,29 +66,27 @@ class TrainerPage extends React.Component {
                 <Container>
                     <Row>
                         <Col md={4}>
-                            <InputGroup>
-                                <Input type="text" ref={(input) => this.searchString = input} value={searchString}
-                                       placeholder="Type a name..."/>
-                                <InputGroupButton>
-                                    <Button color="primary" onClick={this.search.bind(this)}>
-                                        Search
-                                    </Button>
-                                </InputGroupButton>
-                            </InputGroup>
+                            <form onSubmit={this.search}>
+                                <div className="input-group">
+                                    <input type="text" defaultValue={searchString} className="form-control"
+                                           placeholder="Search for..." ref={input => this.searchString = input}/>
+                                    <span className="input-group-btn">
+                                    <button className="btn btn-primary" type="submit">Search</button>
+                                    </span>
+                                </div>
+                            </form>
                         </Col>
                         <Col md={{size: 2}}>
-                            <Button href="/trainer/create" outline color="primary">Create</Button>
+                            <Button href="/trainer/create" outline color="primary">
+                                Create
+                            </Button>
                         </Col>
                     </Row>
                 </Container>
 
-                {isFetching ? (
-                    <Loading/>
-                ) : (
-                    <TrainerList entities={content} page={page} limit={limit} count={count}
-                                deleteEntity={this.props.deleteEntity}
-                                fetchEntities={this.fetchEntities}/>
-                )}
+                <TrainerList entities={content} page={page} limit={limit} count={count}
+                             deleteEntity={this.props.deleteEntity}
+                             fetchEntities={this.fetchEntities}/>
             </div>
         );
     }
@@ -80,7 +99,7 @@ function mapStateToProps(state) {
         count: state.crud.count,
         limit: state.crud.limit,
         searchString: state.crud.searchString,
-        isFetching: state.crud.isFetching
+        fetching: state.crud.fetching
     }
 }
 

@@ -4,7 +4,9 @@
 
 import React, {PropTypes, Component} from 'react'
 import {fullName} from '../../util'
-import {Button} from 'reactstrap';
+import {Button, Col, Row} from 'reactstrap'
+import Delete from '../shared/DeleteModal'
+import {dateFromTimestamp} from "../../util";
 
 export default class TrainerRow extends Component {
 
@@ -19,17 +21,23 @@ export default class TrainerRow extends Component {
             <tr>
                 <td>{id}</td>
                 <td>{fullName(this.props.entity)}</td>
-                <td>{this.props.entity.birthday}</td>
+                <td>{dateFromTimestamp(this.props.entity.birthday)}</td>
                 <td>
-                    <Button outline color="info" href="/trainer/view/">
-                        View
-                    </Button>
-                    <Button outline color="primary" href="/trainer/edit/">
-                        Edit
-                    </Button>
-                    <Button outline color="danger" onClick={() => this.onClickDelete.bind(this)(id)}>
-                        Delete
-                    </Button>
+                    <Row>
+                        <Col md={{size: 2, offset: 1}}>
+                            <Button outline color="info" href={"/trainer/view/" + id}>
+                                View
+                            </Button>
+                        </Col>
+                        <Col md={{size: 2, offset: 1}}>
+                            <Button outline color="primary" href={"/trainer/edit/" + id}>
+                                Edit
+                            </Button>
+                        </Col>
+                        <Col md={{size: 2, offset: 1}}>
+                            <Delete onDelete={() => this.props.deleteEntity(id)}/>
+                        </Col>
+                    </Row>
                 </td>
             </tr>
         );
