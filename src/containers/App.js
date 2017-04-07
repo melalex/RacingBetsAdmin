@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {signOut} from '../actions/AppUser'
 import {Navbar, NavbarBrand, NavItem, NavLink, Nav, UncontrolledAlert, Collapse} from 'reactstrap';
+import Progress from "react-progress-2";
 
 class App extends React.Component {
     logout(e) {
@@ -16,6 +17,13 @@ class App extends React.Component {
 
     render() {
         let {errors, info, login} = this.props;
+
+        let children = React.Children.map(this.props.children,
+            child => React.cloneElement(child, {
+                showProgress: Progress.show,
+                hideProgress: Progress.hide,
+            })
+        );
         return (
             <div>
                 <Navbar color="faded" light toggleable>
@@ -31,6 +39,7 @@ class App extends React.Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
+                <Progress.Component/>
                 {
                     errors.length > 0
                         ? errors.map(e => <UncontrolledAlert color="danger"><strong>{e}</strong></UncontrolledAlert>)
@@ -40,7 +49,7 @@ class App extends React.Component {
                     info ? (<UncontrolledAlert color="success"><strong>{info}</strong></UncontrolledAlert>) : null
                 }
                 <div className="container big-margin-top">
-                    {this.props.children}
+                    {children}
                 </div>
             </div>
         )

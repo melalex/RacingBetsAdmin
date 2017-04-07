@@ -18,6 +18,10 @@ class HorsePage extends React.Component {
         this.search = this.search.bind(this);
     }
 
+    componentWillMount() {
+        this.isProgressShown = false;
+    }
+
     componentDidMount() {
         this.fetchEntities(1)
     }
@@ -37,7 +41,17 @@ class HorsePage extends React.Component {
 
     render() {
         let {content, page, count, limit, searchString, fetching} = this.props;
+
         console.log(this.props);
+
+        if (fetching) {
+            this.props.showProgress();
+            this.isProgressShown = true
+        } else if (this.isProgressShown) {
+            this.props.hideProgress();
+            this.isProgressShown = false
+        }
+
         return (
             <div>
                 <h1>Horses</h1>

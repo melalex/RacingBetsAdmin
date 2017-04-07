@@ -6,14 +6,19 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import Loading from 'react-loading-animation'
-import {fullName} from '../../util'
+import {fullName, dateFromTimestamp} from '../../util'
 import {connect} from 'react-redux'
 import {getOneHorse} from '../../actions/Horse'
 import {Link} from 'react-router'
 
 class HorseView extends React.Component {
+    componentWillMount() {
+        this.props.getOne(this.props.id);
+        this.firstFetch = true;
+    }
+
     componentDidMount() {
-        this.props.getOne(this.props.id)
+        this.firstFetch = false;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -23,10 +28,10 @@ class HorseView extends React.Component {
     }
 
     render() {
-        let {entity, isFetching} = this.props;
+        let {entity, fetching} = this.props;
         let {id, name, trainer, owner, birthday, gender} = entity;
         return (
-            isFetching ? (
+            fetching || this.firstFetch ? (
                 <Loading/>
             ) : (
                 <div>
@@ -55,7 +60,7 @@ class HorseView extends React.Component {
                         </tr>
                         <tr>
                             <td>Birthday</td>
-                            <td>{birthday}</td>
+                            <td>{dateFromTimestamp(birthday)}</td>
                         </tr>
                         <tr>
                             <td>Gender</td>
@@ -72,7 +77,7 @@ class HorseView extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         entity: state.crud.entity,
-        isFetching: state.crud.isFetching,
+        fetching: state.crud.fetching,
         id: ownProps.params.id
     }
 }
