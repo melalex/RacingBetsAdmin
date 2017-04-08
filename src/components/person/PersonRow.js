@@ -8,7 +8,7 @@ import {Button, Col, Row} from 'reactstrap'
 import Delete from '../shared/DeleteModal'
 import {dateFromTimestamp} from "../../util";
 
-export default class OwnerRow extends Component {
+export default class PersonRow extends Component {
 
     onClickDelete(e, id) {
         e.preventDefault();
@@ -25,12 +25,12 @@ export default class OwnerRow extends Component {
                 <td>
                     <Row>
                         <Col md={{size: 2, offset: 1}}>
-                            <Button outline color="info" href={"/owner/view/" + id}>
+                            <Button outline color="info" href={"/jockey/view/" + id}>
                                 View
                             </Button>
                         </Col>
                         <Col md={{size: 2, offset: 1}}>
-                            <Button outline color="primary" href={"/owner/edit/" + id}>
+                            <Button outline color="primary" href={"/jockey/edit/" + id}>
                                 Edit
                             </Button>
                         </Col>
@@ -44,7 +44,7 @@ export default class OwnerRow extends Component {
     }
 }
 
-OwnerRow.propTypes = {
+PersonRow.propTypes = {
     entity: PropTypes.shape({
         id: PropTypes.number.isRequired,
         firstName: PropTypes.string.isRequired,

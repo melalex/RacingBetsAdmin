@@ -24,7 +24,7 @@ function signIn(login, password) {
             url: API_ROOT + '/api/account/admin/login',
             crossDomain: true,
             dataType: 'json',
-            headers: {'Authorization': basicAuthHeader(login, password)},
+            headers: basicAuthHeader(login, password),
             success: [
                 response => {
                     let token = response.result[0];

@@ -7,7 +7,7 @@ import {AvForm, AvField, AvGroup} from 'availity-reactstrap-validation';
 import {Col, Button, FormGroup, Label} from 'reactstrap';
 import {dateFromTimestampForm} from '../../util'
 
-export default class JockeyForm extends Component {
+export default class PersonForm extends Component {
 
     onSave(event, values) {
         event.preventDefault();
@@ -27,7 +27,7 @@ export default class JockeyForm extends Component {
                 <AvGroup row>
                     <Label for="firstName" sm={2}>First name</Label>
                     <Col sm={10}>
-                        <AvField name="firstName" id="firstName" placeholder="Jockey's first name"
+                        <AvField name="firstName" id="firstName" placeholder="First name"
                                  value={firstName}
                                  minLength="4"
                                  maxLength="45"
@@ -37,7 +37,7 @@ export default class JockeyForm extends Component {
                 <AvGroup row>
                     <Label for="lastName" sm={2}>Name</Label>
                     <Col sm={10}>
-                        <AvField name="lastName" id="lastName" placeholder="Jockey's last Name"
+                        <AvField name="lastName" id="lastName" placeholder="Last Name"
                                  value={lastName}
                                  minLength="4"
                                  maxLength="45"
@@ -61,7 +61,7 @@ export default class JockeyForm extends Component {
     }
 };
 
-JockeyForm.propTypes = {
+PersonForm.propTypes = {
     entity: PropTypes.shape({
         id: PropTypes.number,
         firstName: PropTypes.string,

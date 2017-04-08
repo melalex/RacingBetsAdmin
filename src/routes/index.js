@@ -8,34 +8,46 @@ import App from "../containers/App";
 import NotFound from "../containers/NotFound";
 import Home from "../containers/Home";
 
+import page from "../containers/entity/Page"
+import view from "../containers/entity/View"
+import create from "../containers/entity/Create"
+import edit from "../containers/entity/Edit"
+
 import requireAuthentication from "../containers/AuthenticatedComponent"
+
+import {createHorse, getHorses, searchHorse, getOneHorse, updateHorse, deleteHorse} from '../actions/Horse'
+import {createJockey, getJockeys, searchJockey, getOneJockey, updateJockey, deleteJockey} from '../actions/Jockey'
+import {createOwner, getOwners, searchOwner, getOneOwner, updateOwner, deleteOwner} from '../actions/Owner'
+import {
+    createTrainer,
+    getTrainers,
+    searchTrainer,
+    getOneTrainer,
+    updateTrainer,
+    deleteTrainer
+} from '../actions/Trainer'
+import {
+    createRacecourse,
+    getRacecourses,
+    searchRacecourse,
+    getOneRacecourse,
+    updateRacecourse,
+    deleteRacecourse
+} from '../actions/Racecourse'
 
 import Login from "../containers/Login";
 
-import HorsePage from "../containers/horse/HorsePage"
-import HorseCreate from "../containers/horse/HorseCreate"
-import HorseEdit from "../containers/horse/HorseEdit"
-import HorseView from "../containers/horse/HorseView"
+import HorseForm from "../components/horse/HorseForm"
+import HorseList from "../components/horse/HorseList"
+import HorseView from "../components/horse/HorseView"
 
-import JockeyPage from "../containers/jockey/JockeyPage"
-import JockeyCreate from "../containers/jockey/JockeyCreate"
-import JockeyEdit from "../containers/jockey/JockeyEdit"
-import JockeyView from "../containers/jockey/JockeyView"
+import PersonForm from "../components/person/PersonForm"
+import PersonList from "../components/person/PersonList"
+import PersonView from "../components/person/PersonView"
 
-import OwnerPage from "../containers/owner/OwnerPage"
-import OwnerCreate from "../containers/owner/OwnerCreate"
-import OwnerEdit from "../containers/owner/OwnerEdit"
-import OwnerView from "../containers/owner/OwnerView"
-
-import TrainerPage from "../containers/trainer/TrainerPage"
-import TrainerCreate from "../containers/trainer/TrainerCreate"
-import TrainerEdit from "../containers/trainer/TrainerEdit"
-import TrainerView from "../containers/trainer/TrainerView"
-
-import RacecoursePage from "../containers/racecourse/RacecoursePage"
-import RacecourseCreate from "../containers/racecourse/RacecourseCreate"
-import RacecourseEdit from "../containers/racecourse/RacecourseEdit"
-import RacecourseView from "../containers/racecourse/RacecourseView"
+import RacecourseForm from "../components/racecourse/RacecourseForm"
+import RacecourseList from "../components/racecourse/RacecourseList"
+import RacecourseView from "../components/racecourse/RacecourseView"
 
 import UserPage from '../containers/user/UserPage'
 
@@ -45,30 +57,33 @@ export default (
         <Route path='/' component={requireAuthentication(App)}>
             <IndexRoute component={Home}/>
 
-            <Route path='/horse/list' component={HorsePage}/>
-            <Route path='/horse/create' component={HorseCreate}/>
-            <Route path='/horse/edit/:id' component={HorseEdit}/>
-            <Route path='/horse/view/:id' component={HorseView}/>
+            <Route path='/horse/list' component={page('Horse', HorseList, getHorses, searchHorse, deleteHorse)}/>
+            <Route path='/horse/create' component={create('Horse', HorseForm, createHorse)}/>
+            <Route path='/horse/edit/:id' component={edit('Horse', HorseForm, updateHorse)}/>
+            <Route path='/horse/view/:id' component={view('Horse', HorseView, getOneHorse)}/>
 
-            <Route path='/jockey/list' component={JockeyPage}/>
-            <Route path='/jockey/create' component={JockeyCreate}/>
-            <Route path='/jockey/edit/:id' component={JockeyEdit}/>
-            <Route path='/jockey/view/:id' component={JockeyView}/>
+            <Route path='/jockey/list' component={page('Jockey', PersonList, getJockeys, searchJockey, deleteJockey)}/>
+            <Route path='/jockey/create' component={create('Jockey', PersonForm, createJockey)}/>
+            <Route path='/jockey/edit/:id' component={edit('Jockey', PersonForm, updateJockey, getOneJockey)}/>
+            <Route path='/jockey/view/:id' component={view('Jockey', PersonView, getOneJockey)}/>
 
-            <Route path='/owner/list' component={OwnerPage}/>
-            <Route path='/owner/create' component={OwnerCreate}/>
-            <Route path='/owner/edit/:id' component={OwnerEdit}/>
-            <Route path='/owner/view/:id' component={OwnerView}/>
+            <Route path='/owner/list' component={page('Owner', PersonList, getOwners, searchOwner, deleteOwner)}/>
+            <Route path='/owner/create' component={create('Owner', PersonForm, createOwner)}/>
+            <Route path='/owner/edit/:id' component={edit('Owner', PersonForm, updateOwner, getOneOwner)}/>
+            <Route path='/owner/view/:id' component={view('Owner', PersonView, getOneOwner)}/>
 
-            <Route path='/trainer/list' component={TrainerPage}/>
-            <Route path='/trainer/create' component={TrainerCreate}/>
-            <Route path='/trainer/edit/:id' component={TrainerEdit}/>
-            <Route path='/trainer/view/:id' component={TrainerView}/>
+            <Route path='/trainer/list'
+                   component={page('Trainer', PersonList, getTrainers, searchTrainer, deleteTrainer)}/>
+            <Route path='/trainer/create' component={create('Trainer', PersonForm, createTrainer)}/>
+            <Route path='/trainer/edit/:id' component={edit('Trainer', PersonForm, updateTrainer, getOneTrainer)}/>
+            <Route path='/trainer/view/:id' component={view('Trainer', PersonView, getOneTrainer)}/>
 
-            <Route path='/racecourse/list' component={RacecoursePage}/>
-            <Route path='/racecourse/create' component={RacecourseCreate}/>
-            <Route path='/racecourse/edit/:id' component={RacecourseEdit}/>
-            <Route path='/racecourse/view/:id' component={RacecourseView}/>
+            <Route path='/racecourse/list'
+                   component={page('Racecourse', RacecourseList, getRacecourses, searchRacecourse, deleteRacecourse)}/>
+            <Route path='/racecourse/create' component={create('Racecourse', RacecourseForm, createRacecourse)}/>
+            <Route path='/racecourse/edit/:id'
+                   component={edit('Racecourse', RacecourseForm, updateRacecourse, getOneRacecourse)}/>
+            <Route path='/racecourse/view/:id' component={view('Racecourse', RacecourseView, getOneRacecourse)}/>
 
             <Route path='/user/list' component={UserPage}/>
         </Route>

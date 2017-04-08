@@ -21,7 +21,7 @@ function create(entity, path) {
             crossDomain: true,
             dataType: 'json',
             data: JSON.stringify(entity),
-            headers: {'Authorization': bearerAuthHeader(getStore)},
+            headers: bearerAuthHeader(getStore),
             success: [
                 response => dispatch({
                     type: crudAction.CREATE_SUCCESS,
@@ -53,7 +53,7 @@ function get(page, path) {
             url: API_ROOT + path,
             crossDomain: true,
             dataType: 'json',
-            headers: {'Authorization': bearerAuthHeader(getStore)},
+            headers: bearerAuthHeader(getStore),
             data: {page: page},
             success: [
                 response => {
@@ -94,7 +94,7 @@ function getOne(id, path) {
             url: API_ROOT + path + '/' + id,
             crossDomain: true,
             dataType: 'json',
-            headers: {'Authorization': bearerAuthHeader(getStore)},
+            headers: bearerAuthHeader(getStore),
             success: [
                 response => dispatch({
                     type: crudAction.GET_ONE_SUCCESS,
@@ -129,7 +129,7 @@ function search(req, page, path) {
             url: API_ROOT + path,
             crossDomain: true,
             dataType: 'json',
-            headers: {'Authorization': bearerAuthHeader(getStore)},
+            headers: bearerAuthHeader(getStore),
             data: {
                 query: req,
                 page: page
@@ -172,7 +172,7 @@ function update(entity, path) {
             crossDomain: true,
             dataType: 'json',
             data: JSON.stringify(entity),
-            headers: {'Authorization': bearerAuthHeader(getStore)},
+            headers: bearerAuthHeader(getStore),
             success: [
                 response => dispatch({
                     type: crudAction.UPDATE_SUCCESS,
@@ -206,7 +206,7 @@ function remove(id, path) {
             url: API_ROOT + path + '/' + id,
             crossDomain: true,
             dataType: 'json',
-            headers: {'Authorization': bearerAuthHeader(getStore)},
+            headers: bearerAuthHeader(getStore),
             success: [
                 response => {
                     dispatch({

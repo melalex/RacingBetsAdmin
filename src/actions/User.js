@@ -32,7 +32,7 @@ function putMoney(id, amount) {
             url: API_ROOT + '/api/account/balance/' + id,
             crossDomain: true,
             data: '' + amount,
-            headers: {'Authorization': bearerAuthHeader(getStore)},
+            headers: bearerAuthHeader(getStore),
             success: [
                 response => {
                     dispatch({

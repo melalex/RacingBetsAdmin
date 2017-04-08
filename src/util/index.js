@@ -9,11 +9,11 @@ function fullName(person) {
 }
 
 function basicAuthHeader(login, password) {
-    return 'Basic ' + window.btoa(login + ':' + password);
+    return {'Authorization': 'Basic ' + window.btoa(login + ':' + password)};
 }
 
 function bearerAuthHeader(getState) {
-    return 'Bearer ' + getState().appUser.accessToken;
+    return {'Authorization': 'Bearer ' + getState().appUser.accessToken};
 }
 
 function nowSeconds() {
@@ -40,6 +40,10 @@ function getErrorsFromResponse(response) {
     }
 }
 
+function route(entity, action) {
+    return '/' + entity.toLowerCase() + '/' + action;
+}
+
 export {
     fullName,
     basicAuthHeader,
@@ -48,5 +52,6 @@ export {
     isExpired,
     dateFromTimestamp,
     dateFromTimestampForm,
-    getErrorsFromResponse
+    getErrorsFromResponse,
+    route
 }

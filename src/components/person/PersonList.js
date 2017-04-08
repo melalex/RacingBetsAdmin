@@ -4,14 +4,14 @@
 
 import React, {PropTypes, Component} from 'react'
 import {Table} from 'reactstrap';
-import TrainerRow from '../trainer/TrainerRow';
+import PersonRow from './PersonRow';
 import Pager from '../shared/Pager'
 
-export default class TrainerList extends Component {
+export default class PersonList extends Component {
 
     render() {
         let {entities, page, limit, count, deleteEntity} = this.props;
-        let rows = entities.map((entity, i) => <TrainerRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
+        let rows = entities.map((entity, i) => <PersonRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
         return (
             rows.length === 0
                 ?
@@ -37,7 +37,7 @@ export default class TrainerList extends Component {
     }
 }
 
-TrainerList.propTypes = {
+PersonList.propTypes = {
     entities: PropTypes.array.isRequired,
     page: PropTypes.number.isRequired,
     limit: PropTypes.number.isRequired,

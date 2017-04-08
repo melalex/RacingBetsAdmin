@@ -19,8 +19,10 @@ const initialState = {
 export default function crud(state = initialState, action) {
 
     switch (action.type) {
-        case actionConst.CREATE_REQUEST:
         case actionConst.UPDATE_REQUEST:
+            return {...state, entity: action.payload, fetching: true, errors: [], info: ''};
+
+        case actionConst.CREATE_REQUEST:
         case actionConst.DELETE_REQUEST:
         case actionConst.GET_ONE_REQUEST:
         case actionConst.GET_REQUEST:
