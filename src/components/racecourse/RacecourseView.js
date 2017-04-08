@@ -42,7 +42,7 @@ export default class RacecourseView extends Component {
                     </Col>
                 </FormGroup>
                 <FormGroup row>
-                    <Label for="clerk" sm={2}>Birthday</Label>
+                    <Label for="clerk" sm={2}>Clerk</Label>
                     <Col sm={10}>
                         <p name="clerk" id="longitude" className="form-control-static">{clerk}</p>
                     </Col>

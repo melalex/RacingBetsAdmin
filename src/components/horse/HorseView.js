@@ -10,7 +10,6 @@ export default class HorseView extends Component {
 
     render() {
         let {id, name, owner, trainer, birthday, gender} = this.props.entity;
-
         return (
             <Form>
                 <FormGroup row>

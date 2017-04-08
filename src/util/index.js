@@ -5,7 +5,7 @@
 import dateformat from 'dateformat'
 
 function fullName(person) {
-    return person.firstName + ' ' + person.lastName;
+    return (person === undefined) ? null : person.firstName + ' ' + person.lastName;
 }
 
 function basicAuthHeader(login, password) {

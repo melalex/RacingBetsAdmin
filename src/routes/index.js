@@ -59,7 +59,7 @@ export default (
 
             <Route path='/horse/list' component={page('Horse', HorseList, getHorses, searchHorse, deleteHorse)}/>
             <Route path='/horse/create' component={create('Horse', HorseForm, createHorse)}/>
-            <Route path='/horse/edit/:id' component={edit('Horse', HorseForm, updateHorse)}/>
+            <Route path='/horse/edit/:id' component={edit('Horse', HorseForm, updateHorse, getOneHorse)}/>
             <Route path='/horse/view/:id' component={view('Horse', HorseView, getOneHorse)}/>
 
             <Route path='/jockey/list' component={page('Jockey', PersonList, getJockeys, searchJockey, deleteJockey)}/>
