@@ -11,7 +11,7 @@ export default class TrainerForm extends Component {
 
     onSave(event, values) {
         event.preventDefault();
-        let id = (this.props.entity.id === undefined) ? 0 : this.props.entity.id;
+        let id = (this.props.entity === undefined) ? 0 : this.props.entity.id;
         this.props.onSave({
             id: id,
             firstName: values.firstName,
@@ -21,7 +21,7 @@ export default class TrainerForm extends Component {
     }
 
     render() {
-        let {firstName, lastName, birthday} = this.props.entity;
+        let {firstName, lastName, birthday} = this.props.entity === undefined ? {} : this.props.entity;
         return (
             <AvForm onValidSubmit={this.onSave.bind(this)} model={this.props.entity}>
                 <AvGroup row>

@@ -4,15 +4,21 @@
 
 import React from 'react'
 import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
-import Loading from 'react-loading-animation'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import {bindActionCreators} from 'redux'
 import {updateRacecourse, getOneRacecourse} from '../../actions/Racecourse'
 
 class RacecourseView extends React.Component {
+
+    componentWillMount() {
+        this.props.getOne(this.props.id);
+        this.firstFetch = true;
+        this.isProgressShown = false;
+    }
+
     componentDidMount() {
-        this.props.getOne(this.props.id)
+        this.firstFetch = false;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -21,12 +27,23 @@ class RacecourseView extends React.Component {
         }
     }
 
+    progress() {
+        if (this.props.fetching) {
+            this.props.showProgress();
+            this.isProgressShown = true
+        } else if (this.isProgressShown) {
+            this.props.hideProgress();
+            this.isProgressShown = false
+        }
+    }
+
+
     render() {
-        let {entity, isFetching} = this.props;
+        let {entity, fetching} = this.props;
         let {id, name, latitude, longitude, contact, clerk} = entity;
         return (
-            isFetching ? (
-                <Loading/>
+            fetching || this.firstFetch ? (
+                <h1 className="text-center no-result-text">Nothing to show</h1>
             ) : (
                 <div>
                     <Breadcrumb>
@@ -71,7 +88,7 @@ class RacecourseView extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         entity: state.crud.entity,
-        isFetching: state.crud.isFetching,
+        fetching: state.crud.fetching,
         id: ownProps.params.id
     }
 }

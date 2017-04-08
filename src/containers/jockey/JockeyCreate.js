@@ -32,7 +32,7 @@ class JockeyCreate extends React.Component {
             <div>
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem><Link to="/jockey/list">Horses</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/jockey/list">Jockeys</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Create</BreadcrumbItem>
                 </Breadcrumb>
 

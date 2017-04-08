@@ -1,9 +1,10 @@
- /**
- * Created by Alexander Melashchenko on 4/1/17.
- */
+/**
+* Created by Alexander Melashchenko on 4/1/17.
+*/
 
 import React, {PropTypes, Component} from 'react'
-import {Button} from 'reactstrap';
+import {Button, Col, Row} from 'reactstrap';
+import Delete from '../shared/DeleteModal'
 
 export default class RacecourseRow extends Component {
 
@@ -23,15 +24,21 @@ export default class RacecourseRow extends Component {
                 <td>{contact}</td>
                 <td>{clerk}</td>
                 <td>
-                    <Button outline color="info" href="/racecourse/view/">
-                        View
-                    </Button>
-                    <Button outline color="primary" href="/racecourse/edit/">
-                        Edit
-                    </Button>
-                    <Button outline color="danger" onClick={() => this.onClickDelete.bind(this)(id)}>
-                        Delete
-                    </Button>
+                    <Row>
+                        <Col md={{size: 2, offset: 1}}>
+                            <Button outline color="info" href={"/racecourse/view/" + id}>
+                                View
+                            </Button>
+                        </Col>
+                        <Col md={{size: 2, offset: 1}}>
+                            <Button outline color="primary" href={"/racecourse/edit/" + id}>
+                                Edit
+                            </Button>
+                        </Col>
+                        <Col md={{size: 2, offset: 1}}>
+                            <Delete onDelete={() => this.props.deleteEntity(id)}/>
+                        </Col>
+                    </Row>
                 </td>
             </tr>
         );
@@ -46,6 +53,6 @@ export default class RacecourseRow extends Component {
          longitude: PropTypes.number.isRequired,
          contact: PropTypes.string.isRequired,
          clerk: PropTypes.string.isRequired,
-     }),
+     }).isRequired,
     deleteEntity: PropTypes.func.isRequired,
 };

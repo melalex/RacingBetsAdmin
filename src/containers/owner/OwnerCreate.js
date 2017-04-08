@@ -32,7 +32,7 @@ class OwnerCreate extends React.Component {
             <div>
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem><Link to="/owner/list">Horses</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/owner/list">Owners</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Create</BreadcrumbItem>
                 </Breadcrumb>
 

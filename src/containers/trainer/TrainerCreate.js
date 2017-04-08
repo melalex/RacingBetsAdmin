@@ -32,7 +32,7 @@ class TrainerCreate extends React.Component {
             <div>
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem><Link to="/trainer/list">Horses</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to="/trainer/list">Trainers</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Create</BreadcrumbItem>
                 </Breadcrumb>
 
