@@ -32,6 +32,10 @@ function dateFromTimestampForm(timestamp) {
     return dateformat(new Date(timestamp ? timestamp : 0), "mm/dd/yyyy");
 }
 
+function dateTimeFromTimestamp(timestamp) {
+    return dateformat(new Date(timestamp), "mm/dd/yyyy H:mm");
+}
+
 function getErrorsFromResponse(response) {
     if (response.responseText) {
         return JSON.parse(response.responseText).result;
@@ -52,6 +56,7 @@ export {
     isExpired,
     dateFromTimestamp,
     dateFromTimestampForm,
+    dateTimeFromTimestamp,
     getErrorsFromResponse,
     route
 }

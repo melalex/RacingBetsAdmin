@@ -3,7 +3,7 @@
  */
 
 import React, {PropTypes, Component} from 'react'
-import {Col, Form, Label, FormGroup, Input} from 'reactstrap';
+import {Col, Form, Label, FormGroup} from 'reactstrap';
 import {dateFromTimestampForm} from '../../util'
 
 export default class PersonView extends Component {

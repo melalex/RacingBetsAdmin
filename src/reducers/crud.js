@@ -2,7 +2,8 @@
  * Created by Alexander Melashchenko on 4/3/17.
  */
 
-import * as actionConst from '../constants/Crud'
+import * as crudConst from '../constants/Crud'
+import * as userConst from '../constants/User'
 
 const initialState = {
     content: [],
@@ -19,21 +20,22 @@ const initialState = {
 export default function crud(state = initialState, action) {
 
     switch (action.type) {
-        case actionConst.UPDATE_REQUEST:
+        case crudConst.UPDATE_REQUEST:
             return {...state, entity: action.payload, fetching: true, errors: [], info: ''};
 
-        case actionConst.CREATE_REQUEST:
-        case actionConst.DELETE_REQUEST:
-        case actionConst.GET_ONE_REQUEST:
-        case actionConst.GET_REQUEST:
-        case actionConst.SEARCH_REQUEST:
+        case userConst.ADD_MONEY_REQUEST:
+        case crudConst.CREATE_REQUEST:
+        case crudConst.DELETE_REQUEST:
+        case crudConst.GET_ONE_REQUEST:
+        case crudConst.GET_REQUEST:
+        case crudConst.SEARCH_REQUEST:
             return {...state, fetching: true, errors: [], info: ''};
 
-        case actionConst.GET_ONE_SUCCESS:
+        case crudConst.GET_ONE_SUCCESS:
             return {...state, fetching: false, entity: action.payload};
 
-        case actionConst.GET_SUCCESS:
-        case actionConst.SEARCH_SUCCESS:
+        case crudConst.GET_SUCCESS:
+        case crudConst.SEARCH_SUCCESS:
             return {
                 ...state,
                 fetching: false,
@@ -44,17 +46,19 @@ export default function crud(state = initialState, action) {
                 searchString: action.payload.searchString,
             };
 
-        case actionConst.CREATE_SUCCESS:
-        case actionConst.UPDATE_SUCCESS:
-        case actionConst.DELETE_SUCCESS:
+        case userConst.ADD_MONEY_SUCCESS:
+        case crudConst.CREATE_SUCCESS:
+        case crudConst.UPDATE_SUCCESS:
+        case crudConst.DELETE_SUCCESS:
             return {...state, fetching: false, info: action.payload};
 
-        case actionConst.CREATE_FAILED:
-        case actionConst.GET_ONE_FAILED:
-        case actionConst.GET_FAILED:
-        case actionConst.SEARCH_FAILED:
-        case actionConst.UPDATE_FAILED:
-        case actionConst.DELETE_FAILED:
+        case userConst.ADD_MONEY_FAILED:
+        case crudConst.CREATE_FAILED:
+        case crudConst.GET_ONE_FAILED:
+        case crudConst.GET_FAILED:
+        case crudConst.SEARCH_FAILED:
+        case crudConst.UPDATE_FAILED:
+        case crudConst.DELETE_FAILED:
             return {...state, fetching: false, errors: action.payload};
 
         default:

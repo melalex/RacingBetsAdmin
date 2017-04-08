@@ -6,7 +6,7 @@ import {ajax} from "jquery"
 import {get, search} from './CrudUtil'
 import {refresh} from '../actions/AppUser'
 import {API_ROOT} from  '../constants/Api'
-import {UPDATE_REQUEST, UPDATE_SUCCESS, UPDATE_FAILED} from '../constants/Crud'
+import {ADD_MONEY_REQUEST, ADD_MONEY_SUCCESS, ADD_MONEY_FAILED} from '../constants/User'
 import {bearerAuthHeader, getErrorsFromResponse} from "../util";
 
 const path = '/api/account';
@@ -22,7 +22,7 @@ function searchUser(req, page) {
 function putMoney(id, amount) {
     return refresh((dispatch, getStore) => {
         dispatch({
-            type: UPDATE_REQUEST,
+            type: ADD_MONEY_REQUEST,
         });
 
         let {searchString, page} = getStore().crud;
@@ -36,7 +36,7 @@ function putMoney(id, amount) {
             success: [
                 response => {
                     dispatch({
-                        type: UPDATE_SUCCESS,
+                        type: ADD_MONEY_SUCCESS,
                         payload: response.result[0]
                     });
 
@@ -51,7 +51,7 @@ function putMoney(id, amount) {
                 response => {
                     let errors = getErrorsFromResponse(response);
                     dispatch({
-                        type: UPDATE_FAILED,
+                        type: ADD_MONEY_FAILED,
                         payload: errors
                     })
                 }

@@ -85,8 +85,8 @@ class UserPage extends React.Component {
                 </Container>
 
                 <UserList entities={content} page={page} limit={limit} count={count}
-                                putMoney={this.props.putMoney}
-                                fetchEntities={this.fetchEntities}/>
+                          putMoney={this.props.putMoney}
+                          fetchEntities={this.fetchEntities}/>
             </div>
         );
     }

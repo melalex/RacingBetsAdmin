@@ -1,0 +1,13 @@
+/**
+ * Created by melalex on 4/8/17.
+ */
+
+const ADD_MONEY_REQUEST = 'ADD_MONEY_REQUEST';
+const ADD_MONEY_SUCCESS = 'ADD_MONEY_SUCCESS';
+const ADD_MONEY_FAILED = 'ADD_MONEY_FAILED';
+
+export {
+    ADD_MONEY_REQUEST,
+    ADD_MONEY_SUCCESS,
+    ADD_MONEY_FAILED
+}

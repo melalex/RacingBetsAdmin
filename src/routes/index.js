@@ -18,6 +18,7 @@ import requireAuthentication from "../containers/AuthenticatedComponent"
 import {createHorse, getHorses, searchHorse, getOneHorse, updateHorse, deleteHorse} from '../actions/Horse'
 import {createJockey, getJockeys, searchJockey, getOneJockey, updateJockey, deleteJockey} from '../actions/Jockey'
 import {createOwner, getOwners, searchOwner, getOneOwner, updateOwner, deleteOwner} from '../actions/Owner'
+import {createRace, getRaces, searchRace, getOneRace, updateRace, deleteRace} from '../actions/Race'
 import {
     createTrainer,
     getTrainers,
@@ -48,6 +49,11 @@ import PersonView from "../components/person/PersonView"
 import RacecourseForm from "../components/racecourse/RacecourseForm"
 import RacecourseList from "../components/racecourse/RacecourseList"
 import RacecourseView from "../components/racecourse/RacecourseView"
+
+import RaceForm from "../components/race/RaceForm"
+import RaceList from "../components/race/RaceList"
+import RaceView from "../components/race/RaceView"
+
 
 import UserPage from '../containers/user/UserPage'
 
@@ -84,6 +90,11 @@ export default (
             <Route path='/racecourse/edit/:id'
                    component={edit('Racecourse', RacecourseForm, updateRacecourse, getOneRacecourse)}/>
             <Route path='/racecourse/view/:id' component={view('Racecourse', RacecourseView, getOneRacecourse)}/>
+
+            <Route path='/race/list' component={page('Race', RaceList, getRaces, searchRace, deleteRace)}/>
+            <Route path='/race/create' component={create('Race', RaceForm, createRace)}/>
+            <Route path='/race/edit/:id' component={edit('Race', RaceForm, updateRace, getOneRace)}/>
+            <Route path='/race/view/:id' component={view('Race', RaceView, getOneRace)}/>
 
             <Route path='/user/list' component={UserPage}/>
         </Route>
