@@ -31,6 +31,7 @@ export default function create(name, Component, create) {
             this.progress();
             return (
                 <div>
+                    <h1>{name}</h1>
                     <Breadcrumb>
                         <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                         <BreadcrumbItem><Link href={route(name, 'list')}>{name}</Link></BreadcrumbItem>

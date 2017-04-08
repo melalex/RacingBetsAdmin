@@ -42,7 +42,7 @@ function create(entity, path) {
 }
 
 function get(page, path) {
-    return refresh((dispatch, getStore)=> {
+    return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.GET_REQUEST,
             payload: page
@@ -71,6 +71,7 @@ function get(page, path) {
             ],
             error: [
                 response => {
+                    console.log(response);
                     let errors = getErrorsFromResponse(response);
                     dispatch({
                         type: crudAction.GET_FAILED,
@@ -83,7 +84,7 @@ function get(page, path) {
 }
 
 function getOne(id, path) {
-    return refresh((dispatch, getStore)=> {
+    return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.GET_ONE_REQUEST,
             payload: id

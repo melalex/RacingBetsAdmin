@@ -18,5 +18,6 @@ export default class RaceView extends Component {
 
 RaceView.propTypes = {
     entity: PropTypes.shape({
+
     }).isRequired,
 };

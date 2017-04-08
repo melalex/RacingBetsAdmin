@@ -44,6 +44,7 @@ export default function edit(name, Component, getOne) {
                     <h1 className="text-center no-result-text">Nothing to show</h1>
                 ) : (
                     <div>
+                        <h1>{name}</h1>
                         <Breadcrumb>
                             <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
                             <BreadcrumbItem><Link href={route(name, 'list')}>{name}</Link></BreadcrumbItem>
