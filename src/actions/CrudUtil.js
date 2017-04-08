@@ -3,9 +3,9 @@
  */
 
 import {ajax} from "jquery"
-import {refresh} from '../actions/AppUser'
 import {bearerAuthHeader, getErrorsFromResponse} from '../util'
 import * as crudAction from '../constants/Crud'
+import {refresh} from '../actions/AppUser'
 import {API_ROOT} from  '../constants/Api'
 
 function create(entity, path) {
@@ -42,7 +42,7 @@ function create(entity, path) {
 }
 
 function get(page, path) {
-    return refresh(dispatch => {
+    return refresh((dispatch, getStore)=> {
         dispatch({
             type: crudAction.GET_REQUEST,
             payload: page
@@ -53,6 +53,7 @@ function get(page, path) {
             url: API_ROOT + path,
             crossDomain: true,
             dataType: 'json',
+            headers: {'Authorization': bearerAuthHeader(getStore)},
             data: {page: page},
             success: [
                 response => {
@@ -82,7 +83,7 @@ function get(page, path) {
 }
 
 function getOne(id, path) {
-    return dispatch => {
+    return refresh((dispatch, getStore)=> {
         dispatch({
             type: crudAction.GET_ONE_REQUEST,
             payload: id
@@ -93,6 +94,7 @@ function getOne(id, path) {
             url: API_ROOT + path + '/' + id,
             crossDomain: true,
             dataType: 'json',
+            headers: {'Authorization': bearerAuthHeader(getStore)},
             success: [
                 response => dispatch({
                     type: crudAction.GET_ONE_SUCCESS,
@@ -109,11 +111,11 @@ function getOne(id, path) {
                 }
             ]
         });
-    }
+    })
 }
 
 function search(req, page, path) {
-    return dispatch => {
+    return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.SEARCH_REQUEST,
             payload: {
@@ -127,6 +129,7 @@ function search(req, page, path) {
             url: API_ROOT + path,
             crossDomain: true,
             dataType: 'json',
+            headers: {'Authorization': bearerAuthHeader(getStore)},
             data: {
                 query: req,
                 page: page
@@ -153,7 +156,7 @@ function search(req, page, path) {
                 }
             ]
         });
-    }
+    })
 }
 
 function update(entity, path) {

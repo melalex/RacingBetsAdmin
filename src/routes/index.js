@@ -8,34 +8,36 @@ import App from "../containers/App";
 import NotFound from "../containers/NotFound";
 import Home from "../containers/Home";
 
-import requireAuthentication from "../containers/AuthenticatedComponent";
+import requireAuthentication from "../containers/AuthenticatedComponent"
 
 import Login from "../containers/Login";
 
-import HorsePage from "../containers/horse/HorsePage";
+import HorsePage from "../containers/horse/HorsePage"
 import HorseCreate from "../containers/horse/HorseCreate"
 import HorseEdit from "../containers/horse/HorseEdit"
 import HorseView from "../containers/horse/HorseView"
 
-import JockeyPage from "../containers/jockey/JockeyPage";
+import JockeyPage from "../containers/jockey/JockeyPage"
 import JockeyCreate from "../containers/jockey/JockeyCreate"
 import JockeyEdit from "../containers/jockey/JockeyEdit"
 import JockeyView from "../containers/jockey/JockeyView"
 
-import OwnerPage from "../containers/owner/OwnerPage";
+import OwnerPage from "../containers/owner/OwnerPage"
 import OwnerCreate from "../containers/owner/OwnerCreate"
 import OwnerEdit from "../containers/owner/OwnerEdit"
 import OwnerView from "../containers/owner/OwnerView"
 
-import TrainerPage from "../containers/trainer/TrainerPage";
+import TrainerPage from "../containers/trainer/TrainerPage"
 import TrainerCreate from "../containers/trainer/TrainerCreate"
 import TrainerEdit from "../containers/trainer/TrainerEdit"
 import TrainerView from "../containers/trainer/TrainerView"
 
-import RacecoursePage from "../containers/racecourse/RacecoursePage";
+import RacecoursePage from "../containers/racecourse/RacecoursePage"
 import RacecourseCreate from "../containers/racecourse/RacecourseCreate"
 import RacecourseEdit from "../containers/racecourse/RacecourseEdit"
 import RacecourseView from "../containers/racecourse/RacecourseView"
+
+import UserPage from '../containers/user/UserPage'
 
 export default (
     <div>
@@ -67,6 +69,8 @@ export default (
             <Route path='/racecourse/create' component={RacecourseCreate}/>
             <Route path='/racecourse/edit/:id' component={RacecourseEdit}/>
             <Route path='/racecourse/view/:id' component={RacecourseView}/>
+
+            <Route path='/user/list' component={UserPage}/>
         </Route>
         <Route path='*' component={NotFound}/>
     </div>
