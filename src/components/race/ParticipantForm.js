@@ -83,7 +83,7 @@ export default class ParticipantForm extends Component {
                                 <Label for="horse" sm={2}>Horse</Label>
                                 <Col sm={10}>
                                     <AvField type="number" name="horse"
-                                             value={horse === undefined ? null : horse.id}
+                                             value={horse}
                                              placeholder="Horse's id"
                                              min={1}
                                              required/>
@@ -125,7 +125,7 @@ export default class ParticipantForm extends Component {
                                 <Label for="jockey" sm={2}>Jockey</Label>
                                 <Col sm={10}>
                                     <AvField type="number" name="jockey"
-                                             value={jockey === undefined ? null : jockey.id}
+                                             value={jockey}
                                              placeholder="Jockey's id"
                                              min={1}
                                              required/>
@@ -136,7 +136,7 @@ export default class ParticipantForm extends Component {
                                 <Label for="trainer" sm={2}>Trainer</Label>
                                 <Col sm={10}>
                                     <AvField type="number" name="trainer"
-                                             value={trainer === undefined ? null : trainer.id}
+                                             value={trainer}
                                              placeholder="Trainer's id"
                                              min={1}
                                              required/>
@@ -147,7 +147,7 @@ export default class ParticipantForm extends Component {
                                 <Label for="place" sm={2}>Place</Label>
                                 <Col sm={10}>
                                     <AvField type="number" name="place"
-                                             value={place === undefined ? null : place.id}
+                                             value={place}
                                              placeholder="place"
                                              min={1}/>
                                 </Col>

@@ -38,7 +38,11 @@ function dateTimeFromTimestamp(timestamp) {
 
 function getErrorsFromResponse(response) {
     if (response.responseText) {
-        return JSON.parse(response.responseText).result;
+        try {
+            return JSON.parse(response.responseText).result;
+        } catch (e) {
+            return [{message: "Invalid response"}]
+        }
     } else {
         return [{message: response.statusText}]
     }

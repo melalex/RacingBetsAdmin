@@ -51,7 +51,7 @@ class RaceCreate extends React.Component {
 
                 <h2 className="big-margin-top">Action</h2>
                 <hr/>
-                <Button className="elem-margin big-margin-bot" color="success" onClick={this.onCrete} block>
+                <Button className="elem-margin big-margin-bot" color="success" onClick={this.onCrete} block outline>
                     Create
                 </Button>
             </div>

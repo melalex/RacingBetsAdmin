@@ -4,6 +4,7 @@
 
 import * as crudConst from '../constants/Crud'
 import * as userConst from '../constants/User'
+import * as raceConst from '../constants/Race'
 
 const initialState = {
     content: [],
@@ -23,6 +24,7 @@ export default function crud(state = initialState, action) {
         case crudConst.UPDATE_REQUEST:
             return {...state, entity: action.payload, fetching: true, errors: [], info: ''};
 
+        case raceConst.RACE_UPDATE_REQUEST:
         case userConst.ADD_MONEY_REQUEST:
         case crudConst.CREATE_REQUEST:
         case crudConst.DELETE_REQUEST:
@@ -52,6 +54,10 @@ export default function crud(state = initialState, action) {
         case crudConst.DELETE_SUCCESS:
             return {...state, fetching: false, info: action.payload};
 
+        case raceConst.RACE_UPDATE_SUCCESS:
+            return {...state, fetching: false, info: action.payload.response, entity: action.payload.entity};
+
+        case raceConst.RACE_UPDATE_FAILED:
         case userConst.ADD_MONEY_FAILED:
         case crudConst.CREATE_FAILED:
         case crudConst.GET_ONE_FAILED:

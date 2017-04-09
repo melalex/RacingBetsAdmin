@@ -16,8 +16,8 @@ export default class RaceForm extends Component {
         this.state = {
             raceInfo: '',
             prizeInfo: '',
-            raceProperties: this.props.entity === undefined ? {} : this.props.entity,
-            participants: participants === undefined ? [{}] : participants,
+            raceProperties: RaceForm.mapRaceToProperties(this.props.entity),
+            participants: RaceForm.mapParticipants(participants),
             prizes: prizes === undefined ? [null] : RaceForm.mapPrizesMapToArray(prizes),
         };
 
@@ -31,6 +31,32 @@ export default class RaceForm extends Component {
 
     static mapPrizesMapToArray(prizes) {
         return Object.values(prizes);
+    }
+
+    static mapRaceToProperties(race) {
+        if (race) {
+            return {
+                ...race,
+                racecourse: race.racecourse ? (race.racecourse.id ? race.racecourse.id : race.racecourse) : null
+            }
+        } else {
+            return {}
+        }
+    }
+
+    static mapParticipants(participants) {
+        if (participants) {
+            return participants.map(e => {
+                return {
+                    ...e,
+                    horse: e.horse ? (e.horse.id ? e.horse.id : e.horse) : null,
+                    jockey: e.jockey ? (e.jockey.id ? e.jockey.id : e.jockey) : null,
+                    trainer: e.trainer ? (e.trainer.id ? e.trainer.id : e.trainer) : null
+                }
+            })
+        } else {
+            return [{}]
+        }
     }
 
     static mapPrizesArrayToMap(prizes) {
@@ -115,7 +141,7 @@ export default class RaceForm extends Component {
             minRating,
             maxRating,
             distance,
-        } = this.props.entity === undefined ? {} : this.props.entity;
+        } = this.state.raceProperties;
 
         let participants = this.state.participants.map((e, i) => <ParticipantForm key={i} index={i} entity={e}
                                                                                   onSave={this.onSaveParticipant}/>);
@@ -133,6 +159,8 @@ export default class RaceForm extends Component {
                 </AvGroup>
             )
         });
+
+        let isNew = this.props.entity.id === undefined;
 
         return (
             <div>
@@ -158,7 +186,7 @@ export default class RaceForm extends Component {
                             <Label for="racecourse" sm={2}>Racecourse</Label>
                             <Col sm={10}>
                                 <AvField type="number" name="racecourse"
-                                         value={racecourse === undefined ? null : racecourse.id}
+                                         value={racecourse}
                                          placeholder="Racecourse's id"
                                          min={1}
                                          required/>
@@ -325,19 +353,25 @@ export default class RaceForm extends Component {
                     </AvForm>
                 </Jumbotron>
 
-                <Button outline className="elem-margin" color="success" onClick={this.onAddPrize}>
-                    Add prize
-                </Button>
-
+                {
+                    isNew ? (
+                        <Button outline className="elem-margin" color="success" onClick={this.onAddPrize}>
+                            Add prize
+                        </Button>
+                    ) : null
+                }
 
                 <h2 className="big-margin-top">Participants</h2>
                 <hr/>
                 {participants}
 
-                <Button outline className="elem-margin" color="success" onClick={this.onAddParticipant}>
-                    Add participant
-                </Button>
-
+                {
+                    isNew ? (
+                        <Button outline className="elem-margin" color="success" onClick={this.onAddParticipant}>
+                            Add participant
+                        </Button>
+                    ) : null
+                }
             </div>
         );
     }

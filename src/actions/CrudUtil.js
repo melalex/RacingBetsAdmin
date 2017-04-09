@@ -181,6 +181,7 @@ function update(entity, path) {
             ],
             error: [
                 response => {
+                    console.log(response);
                     let errors = getErrorsFromResponse(response);
                     dispatch({
                         type: crudAction.UPDATE_FAILED,
