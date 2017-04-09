@@ -4,17 +4,19 @@
 
 import React, {PropTypes, Component} from 'react'
 import {AvForm, AvField, AvGroup} from 'availity-reactstrap-validation';
-import {Col, Button, FormGroup, Label, Jumbotron} from 'reactstrap';
-import {dateFromTimestampForm} from '../../util'
+import {Col, Button, FormGroup, Label, Jumbotron, Row} from 'reactstrap';
 import ParticipantForm from './ParticipantForm'
+import DateTimePicker from 'react-datetime'
 
 export default class RaceForm extends Component {
     constructor(props) {
         super(props);
         let {participants, prizes} = this.props.entity === undefined ? {} : this.props.entity;
 
-        this.raceProperties = {};
         this.state = {
+            raceInfo: '',
+            prizeInfo: '',
+            raceProperties: this.props.entity === undefined ? {} : this.props.entity,
             participants: participants === undefined ? [{}] : participants,
             prizes: prizes === undefined ? [null] : RaceForm.mapPrizesMapToArray(prizes),
         };
@@ -28,35 +30,40 @@ export default class RaceForm extends Component {
     }
 
     static mapPrizesMapToArray(prizes) {
-        return prizes.values();
+        return Object.values(prizes);
     }
 
     static mapPrizesArrayToMap(prizes) {
+        console.log(prizes);
         let result = {};
         for (let i = 0; i < prizes.length; i++) {
             result[i + 1] = prizes[i];
         }
+        console.log(result);
         return result;
     }
 
     onSaveRace(event, values) {
-        event.preventDefault();
-        let id = (this.props.entity === undefined) ? 0 : this.props.entity.id;
-        this.raceProperties = {
-            id: id,
-            name: values.name,
-            racecourse: values.racecourse,
-            start: values.start,
-            minBet: values.minBet,
-            commission: values.commission,
-            trackCondition: values.trackCondition,
-            raceType: values.raceType,
-            raceStatus: values.raceStatus,
-            minAge: values.minAge,
-            minRating: values.minRating,
-            maxRating: values.maxRating,
-            distance: values.distance,
-        }
+        let id = (this.props.entity.id === undefined) ? 0 : this.props.entity.id;
+        this.setState({
+            ...this.state,
+            raceInfo: 'Race properties saved successfully',
+            raceProperties: {
+                id: id,
+                name: values.name,
+                racecourse: values.racecourse,
+                start: this.start.state.inputValue,
+                minBet: values.minBet,
+                commission: values.commission,
+                trackCondition: values.trackCondition,
+                raceType: values.raceType,
+                raceStatus: values.raceStatus,
+                minAge: values.minAge,
+                minRating: values.minRating,
+                maxRating: values.maxRating,
+                distance: values.distance,
+            }
+        });
     }
 
     onSaveParticipant(index, participant) {
@@ -64,33 +71,35 @@ export default class RaceForm extends Component {
     }
 
     onSavePrizes(event, values) {
-        event.preventDefault();
         this.setState({
-            participants: this.state.participants,
-            prizes: values
+            ...this.state,
+            prizeInfo: 'Prizes saved successfully',
+            prizes: RaceForm.mapPrizesMapToArray(values)
         });
     }
 
     onAddParticipant() {
-        this.state.participants.push({});
+        let participants = this.state.participants.slice();
+        participants.push({});
         this.setState({
-            participants: this.state.participants,
-            prizes: this.state.prizes
+            ...this.state,
+            participants: participants,
         });
     }
 
     onAddPrize() {
-        this.state.prizes.push(null);
+        let prizes = this.state.prizes.slice();
+        prizes.push(null);
         this.setState({
-            participants: this.state.participants,
-            prizes: this.state.prizes
+            ...this.state,
+            prizes: prizes
         });
     }
 
 
     get race() {
         return {
-            ...this.raceProperties,
+            ...this.state.raceProperties,
             participants: this.state.participants,
             prizes: RaceForm.mapPrizesArrayToMap(this.state.prizes)
         }
@@ -113,8 +122,7 @@ export default class RaceForm extends Component {
         } = this.props.entity === undefined ? {} : this.props.entity;
 
         let participants = this.state.participants.map((e, i) => <ParticipantForm key={i} index={i} entity={e}
-                                                                                  onSave={this.onSaveParticipant()}/>);
-
+                                                                                  onSave={this.onSaveParticipant}/>);
         let prizes = this.state.prizes.map((e, i) => {
             return (
                 <AvGroup key={'prize#' + (i + 1)} row>
@@ -140,9 +148,11 @@ export default class RaceForm extends Component {
                         <AvGroup row>
                             <Label for="name" sm={2}>Name</Label>
                             <Col sm={10}>
-                                <AvField name="name"
+                                <AvField type="text"
+                                         name="name"
                                          value={name}
-                                         placeholder="Race's name" minLength="4"
+                                         placeholder="Race's name"
+                                         minLength="4"
                                          maxLength="45"
                                          required/>
                             </Col>
@@ -159,15 +169,16 @@ export default class RaceForm extends Component {
                             </Col>
                         </AvGroup>
 
-                        <AvGroup row>
-                            <Label for="start" sm={2}>Name</Label>
+                        <FormGroup row>
+                            <Label for="start" sm={2}>Start</Label>
                             <Col sm={10}>
-                                <AvField type="text" name="name"
-                                         value={dateFromTimestampForm(start)}
-                                         placeholder="Start time"
-                                         required/>
+                                <DateTimePicker name="start"
+                                                ref={dateTime => this.start = dateTime}
+                                                defaultValue={start ? new Date(start) : new Date()}
+                                                dateFormat="M/D/YYYY"
+                                                timeFormat="H:MM"/>
                             </Col>
-                        </AvGroup>
+                        </FormGroup>
 
                         <AvGroup row>
                             <Label for="minBet" sm={2}>Min bet</Label>
@@ -195,8 +206,8 @@ export default class RaceForm extends Component {
                             <Label for="trackCondition" sm={2}>Track condition</Label>
                             <Col sm={10}>
                                 <AvField type="select" name="trackCondition" value={trackCondition}
-                                         placeholder="Track condition">
-                                    <option> </option>
+                                         required>
+                                    <option>{''}</option>
                                     <option>Hard</option>
                                     <option>Firm</option>
                                     <option>Good to firm</option>
@@ -216,7 +227,8 @@ export default class RaceForm extends Component {
                         <AvGroup row>
                             <Label for="raceType" sm={2}>Race type</Label>
                             <Col sm={10}>
-                                <AvField type="select" name="raceType" value={raceType} placeholder="Race type">
+                                <AvField type="select" name="raceType" value={raceType} required>
+                                    <option>{''}</option>
                                     <option>flat</option>
                                     <option>jump</option>
                                     <option>harness</option>
@@ -228,7 +240,7 @@ export default class RaceForm extends Component {
                             <Label for="raceStatus" sm={2}>Race status</Label>
                             <Col sm={10}>
                                 <AvField type="select" name="raceStatus"
-                                         value={raceStatus}
+                                         value={raceStatus === undefined ? 'scheduled' : raceStatus}
                                          placeholder="Race status"
                                          min={0}
                                          disabled>
@@ -286,9 +298,22 @@ export default class RaceForm extends Component {
 
 
                         <FormGroup check row>
-                            <Col sm={{size: 10, offset: 2}}>
-                                <Button color="primary">Save</Button>
-                            </Col>
+                            <Row>
+                                <Col sm={{size: 2, offset: 2}}>
+                                    <Button color="primary">Save</Button>
+                                </Col>
+
+                                {
+                                    this.state.raceInfo
+                                        ?
+                                        (
+                                            <Col sm={{size: 6}}>
+                                                <p className="text-success">{this.state.raceInfo}</p>
+                                            </Col>
+                                        )
+                                        : null
+                                }
+                            </Row>
                         </FormGroup>
                     </AvForm>
                 </Jumbotron>
@@ -300,9 +325,22 @@ export default class RaceForm extends Component {
                         {prizes}
 
                         <FormGroup check row>
-                            <Col sm={{size: 10, offset: 2}}>
-                                <Button color="primary">Save</Button>
-                            </Col>
+                            <Row>
+                                <Col sm={{size: 2, offset: 2}}>
+                                    <Button color="primary">Save</Button>
+                                </Col>
+
+                                {
+                                    this.state.prizeInfo
+                                        ?
+                                        (
+                                            <Col sm={{size: 6}}>
+                                                <p className="text-success">{this.state.prizeInfo}</p>
+                                            </Col>
+                                        )
+                                        : null
+                                }
+                            </Row>
                         </FormGroup>
                     </AvForm>
                 </Jumbotron>

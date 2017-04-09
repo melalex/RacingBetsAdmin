@@ -28,7 +28,7 @@ export default class RaceView extends Component {
             prizes
         } = this.props.entity;
 
-        let participantsView = participants.map((e, i) => <ParticipantView key={i} entity={e}  index={i}/>);
+        let participantsView = participants.map((e, i) => <ParticipantView key={i} entity={e} index={i}/>);
 
         let prizesView = prizes.values().map((e, i) => {
             return (

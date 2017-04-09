@@ -3,9 +3,7 @@
  */
 
 import React, {PropTypes, Component} from 'react'
-import {Form, Label, FormGroup, Jumbotron, Col} from 'reactstrap';
-import Collapse from "bootstrap/js/src/collapse";
-import Button from "bootstrap/js/src/button";
+import {Form, Label, FormGroup, Jumbotron, Col, Collapse, Button} from 'reactstrap';
 
 export default class ParticipantView extends Component {
     constructor(props) {

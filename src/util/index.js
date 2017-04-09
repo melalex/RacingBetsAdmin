@@ -25,15 +25,15 @@ function isExpired(appUser) {
 }
 
 function dateFromTimestamp(timestamp) {
-    return dateformat(new Date(timestamp), "mmmm dS, yyyy");
+    return dateformat(timestamp ? new Date(timestamp) : new Date(), "mmmm dS, yyyy");
 }
 
 function dateFromTimestampForm(timestamp) {
-    return dateformat(new Date(timestamp ? timestamp : 0), "mm/dd/yyyy");
+    return dateformat(timestamp ? new Date(timestamp) : new Date(), "mm/dd/yyyy");
 }
 
 function dateTimeFromTimestamp(timestamp) {
-    return dateformat(new Date(timestamp), "mm/dd/yyyy H:mm");
+    return dateformat(timestamp ? new Date(timestamp) : new Date(), "mm/dd/yyyy HH:mm");
 }
 
 function getErrorsFromResponse(response) {

@@ -71,7 +71,6 @@ function get(page, path) {
             ],
             error: [
                 response => {
-                    console.log(response);
                     let errors = getErrorsFromResponse(response);
                     dispatch({
                         type: crudAction.GET_FAILED,

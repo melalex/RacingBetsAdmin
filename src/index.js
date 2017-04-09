@@ -4,7 +4,7 @@ import {Provider} from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'react-progress-2/main.css'
 import '../src/styles/App.css'
-import '../public/favicon.ico'
+import '../src/styles/DateTime.css'
 import configureStore from './store'
 import {Router, browserHistory} from 'react-router'
 import routes from "./routes"

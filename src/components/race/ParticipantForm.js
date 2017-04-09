@@ -4,20 +4,22 @@
 
 import React, {PropTypes, Component} from 'react'
 import {AvForm, AvField, AvGroup} from 'availity-reactstrap-validation';
-import {Col, Button, FormGroup, Label, Collapse, Jumbotron} from 'reactstrap';
+import {Col, Button, FormGroup, Label, Collapse, Jumbotron, Row} from 'reactstrap';
 
 export default class ParticipantForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {collapse: false};
+        this.state = {
+            collapse: false,
+            participantInfo: '',
+        };
 
         this.onSave = this.onSave.bind(this);
         this.toggle = this.toggle.bind(this);
     }
 
     onSave(event, values) {
-        event.preventDefault();
-        let id = (this.props.entity === undefined) ? 0 : this.props.entity.id;
+        let id = (this.props.entity.id === undefined) ? 0 : this.props.entity.id;
         this.props.onSave(
             this.props.index,
             {
@@ -32,11 +34,18 @@ export default class ParticipantForm extends Component {
                 trainer: values.trainer,
                 place: values.place,
             }
-        )
+        );
+        this.setState({
+            ...this.state,
+            participantInfo: 'Participants saved successfully'
+        });
     }
 
     toggle() {
-        this.setState({collapse: !this.state.collapse});
+        this.setState({
+            ...this.state,
+            collapse: !this.state.collapse
+        });
     }
 
     render() {
@@ -156,9 +165,22 @@ export default class ParticipantForm extends Component {
                             </AvGroup>
 
                             <FormGroup check row>
-                                <Col sm={{size: 10, offset: 2}}>
-                                    <Button ref={input => this.click = input} color="primary">Save</Button>
-                                </Col>
+                                <Row>
+                                    <Col sm={{size: 2, offset: 2}}>
+                                        <Button ref={input => this.click = input} color="primary">Save</Button>
+                                    </Col>
+
+                                    {
+                                        this.state.participantInfo
+                                            ?
+                                            (
+                                                <Col sm={{size: 6}}>
+                                                    <p className="text-success">{this.state.participantInfo}</p>
+                                                </Col>
+                                            )
+                                            : null
+                                    }
+                                </Row>
                             </FormGroup>
                         </AvForm>
                     </Jumbotron>
