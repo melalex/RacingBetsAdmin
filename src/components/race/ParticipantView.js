@@ -3,7 +3,7 @@
  */
 
 import React, {PropTypes, Component} from 'react'
-import {Form, Label, FormGroup, Jumbotron, Col, Collapse, Button} from 'reactstrap';
+import {Form, Label, FormGroup, Col, Collapse, Button} from 'reactstrap';
 
 export default class ParticipantView extends Component {
     constructor(props) {
@@ -37,7 +37,6 @@ export default class ParticipantView extends Component {
                     {'Participant #' + (this.props.index + 1)}
                 </Button>
                 <Collapse isOpen={this.state.collapse}>
-                    <Jumbotron>
                         <Form>
                             <FormGroup row>
                                 <Label for="id" sm={2}>Id</Label>
@@ -84,13 +83,13 @@ export default class ParticipantView extends Component {
                             <FormGroup row>
                                 <Label for="jockey" sm={2}>Jockey</Label>
                                 <Col sm={10}>
-                                    <p name="jockey" className="form-control-static">{jockey}</p>
+                                    <p name="jockey" className="form-control-static">{jockey.id}</p>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label for="trainer" sm={2}>Trainer</Label>
                                 <Col sm={10}>
-                                    <p name="trainer" className="form-control-static">{trainer}</p>
+                                    <p name="trainer" className="form-control-static">{trainer.id}</p>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -100,7 +99,6 @@ export default class ParticipantView extends Component {
                                 </Col>
                             </FormGroup>
                         </Form>
-                    </Jumbotron>
                 </Collapse>
             </div>
         );

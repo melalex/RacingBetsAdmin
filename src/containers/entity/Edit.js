@@ -40,20 +40,22 @@ export default function edit(name, Component, update, getOne) {
         render() {
             this.progress();
             return (
-                this.props.fetching ? (
-                    <h1 className="text-center no-result-text">Nothing to show</h1>
-                ) : (
-                    <div>
-                        <h1>{name}</h1>
-                        <Breadcrumb>
-                            <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-                            <BreadcrumbItem><Link href={route(name, 'list')}>{name}</Link></BreadcrumbItem>
-                            <BreadcrumbItem active>Edit</BreadcrumbItem>
-                        </Breadcrumb>
+                <div>
+                    <h1>{name}</h1>
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link href={route(name, 'list')}>{name}</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Edit</BreadcrumbItem>
+                    </Breadcrumb>
 
-                        <Component onSave={this.props.onSave} entity={this.props.entity}/>
-                    </div>
-                )
+                    {
+                        this.props.fetching ? (
+                            <h1 className="text-center no-result-text">Nothing to show</h1>
+                        ) : (
+                            <Component onSave={this.props.onSave} entity={this.props.entity}/>
+                        )
+                    }
+                </div>
             )
         }
     }

@@ -34,12 +34,10 @@ export default class RaceForm extends Component {
     }
 
     static mapPrizesArrayToMap(prizes) {
-        console.log(prizes);
         let result = {};
         for (let i = 0; i < prizes.length; i++) {
             result[i + 1] = prizes[i];
         }
-        console.log(result);
         return result;
     }
 
@@ -52,12 +50,11 @@ export default class RaceForm extends Component {
                 id: id,
                 name: values.name,
                 racecourse: values.racecourse,
-                start: this.start.state.inputValue,
+                start: new Date(this.start.state.inputValue).getTime(),
                 minBet: values.minBet,
                 commission: values.commission,
                 trackCondition: values.trackCondition,
                 raceType: values.raceType,
-                raceStatus: values.raceStatus,
                 minAge: values.minAge,
                 minRating: values.minRating,
                 maxRating: values.maxRating,
@@ -114,7 +111,6 @@ export default class RaceForm extends Component {
             commission,
             trackCondition,
             raceType,
-            raceStatus,
             minAge,
             minRating,
             maxRating,
@@ -164,7 +160,7 @@ export default class RaceForm extends Component {
                                 <AvField type="number" name="racecourse"
                                          value={racecourse === undefined ? null : racecourse.id}
                                          placeholder="Racecourse's id"
-                                         min={0}
+                                         min={1}
                                          required/>
                             </Col>
                         </AvGroup>
@@ -198,6 +194,7 @@ export default class RaceForm extends Component {
                                          value={commission}
                                          placeholder="Commission"
                                          min={0}
+                                         max={1}
                                          required/>
                             </Col>
                         </AvGroup>
@@ -205,8 +202,7 @@ export default class RaceForm extends Component {
                         <AvGroup row>
                             <Label for="trackCondition" sm={2}>Track condition</Label>
                             <Col sm={10}>
-                                <AvField type="select" name="trackCondition" value={trackCondition}
-                                         required>
+                                <AvField type="select" name="trackCondition" value={trackCondition}>
                                     <option>{''}</option>
                                     <option>Hard</option>
                                     <option>Firm</option>
@@ -232,22 +228,6 @@ export default class RaceForm extends Component {
                                     <option>flat</option>
                                     <option>jump</option>
                                     <option>harness</option>
-                                </AvField>
-                            </Col>
-                        </AvGroup>
-
-                        <AvGroup row>
-                            <Label for="raceStatus" sm={2}>Race status</Label>
-                            <Col sm={10}>
-                                <AvField type="select" name="raceStatus"
-                                         value={raceStatus === undefined ? 'scheduled' : raceStatus}
-                                         placeholder="Race status"
-                                         min={0}
-                                         disabled>
-                                    <option>scheduled</option>
-                                    <option>riding</option>
-                                    <option>finished</option>
-                                    <option>rejected</option>
                                 </AvField>
                             </Col>
                         </AvGroup>

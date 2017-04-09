@@ -20,19 +20,19 @@ export default class ParticipantForm extends Component {
 
     onSave(event, values) {
         let id = (this.props.entity.id === undefined) ? 0 : this.props.entity.id;
+        console.log(values);
         this.props.onSave(
             this.props.index,
             {
                 id: id,
-                number: values.number,
-                horse: values.horse,
-                carriedWeight: values.carriedWeight,
-                topSpeed: values.topSpeed,
-                officialRating: values.officialRating,
-                odds: values.odds,
-                jockey: values.jockey,
-                trainer: values.trainer,
-                place: values.place,
+                number: Number(values.number ? values.number : 0),
+                horse: Number(values.horse ? values.horse : 0),
+                carriedWeight: Number(values.carriedWeight ? values.carriedWeight : 0),
+                topSpeed: Number(values.topSpeed ? values.topSpeed : 0),
+                officialRating: Number(values.officialRating ? values.officialRating : 0),
+                jockey: Number(values.jockey ? values.jockey : 0),
+                trainer: Number(values.trainer ? values.trainer : 0),
+                place: Number(values.place ? values.place : 0),
             }
         );
         this.setState({
@@ -55,7 +55,6 @@ export default class ParticipantForm extends Component {
             carriedWeight,
             topSpeed,
             officialRating,
-            odds,
             jockey,
             trainer,
             place
@@ -86,15 +85,16 @@ export default class ParticipantForm extends Component {
                                     <AvField type="number" name="horse"
                                              value={horse === undefined ? null : horse.id}
                                              placeholder="Horse's id"
-                                             min={0}
+                                             min={1}
                                              required/>
                                 </Col>
                             </AvGroup>
 
                             <AvGroup row>
-                                <Label for="racecourse" sm={2}>Carried weight</Label>
+                                <Label for="carriedWeight" sm={2}>Carried weight</Label>
                                 <Col sm={10}>
-                                    <AvField type="number" name="carriedWeight"
+                                    <AvField type="number"
+                                             name="carriedWeight"
                                              value={carriedWeight}
                                              placeholder="Carried weight"
                                              min={0}/>
@@ -122,23 +122,12 @@ export default class ParticipantForm extends Component {
                             </AvGroup>
 
                             <AvGroup row>
-                                <Label for="odds" sm={2}>Odds</Label>
-                                <Col sm={10}>
-                                    <AvField type="number" name="odds"
-                                             value={odds}
-                                             placeholder="Odds"
-                                             min={0}
-                                             disabled/>
-                                </Col>
-                            </AvGroup>
-
-                            <AvGroup row>
                                 <Label for="jockey" sm={2}>Jockey</Label>
                                 <Col sm={10}>
                                     <AvField type="number" name="jockey"
                                              value={jockey === undefined ? null : jockey.id}
                                              placeholder="Jockey's id"
-                                             min={0}
+                                             min={1}
                                              required/>
                                 </Col>
                             </AvGroup>
@@ -149,7 +138,7 @@ export default class ParticipantForm extends Component {
                                     <AvField type="number" name="trainer"
                                              value={trainer === undefined ? null : trainer.id}
                                              placeholder="Trainer's id"
-                                             min={0}
+                                             min={1}
                                              required/>
                                 </Col>
                             </AvGroup>
@@ -160,7 +149,7 @@ export default class ParticipantForm extends Component {
                                     <AvField type="number" name="place"
                                              value={place === undefined ? null : place.id}
                                              placeholder="place"
-                                             min={0}/>
+                                             min={1}/>
                                 </Col>
                             </AvGroup>
 

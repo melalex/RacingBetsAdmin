@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import {Breadcrumb, BreadcrumbItem, Button} from 'reactstrap';
 import RaceForm from '../../components/race/RaceForm'
+import {createRace} from '../../actions/Race';
 
 class RaceCreate extends React.Component {
 
@@ -22,9 +23,7 @@ class RaceCreate extends React.Component {
     }
 
     onCrete() {
-        console.log(this.form);
-        let race = this.form.race;
-        console.log(race);
+        this.props.onSave(this.form.race);
     }
 
     progress() {
@@ -52,7 +51,9 @@ class RaceCreate extends React.Component {
 
                 <h2 className="big-margin-top">Action</h2>
                 <hr/>
-                <Button className="elem-margin" color="success" onClick={this.onCrete} block>Create</Button>
+                <Button className="elem-margin big-margin-bot" color="success" onClick={this.onCrete} block>
+                    Create
+                </Button>
             </div>
         )
     }
@@ -64,11 +65,10 @@ function mapStateToProps(state) {
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         onSave: bindActionCreators(create, dispatch),
-//     }
-// }
+function mapDispatchToProps(dispatch) {
+    return {
+        onSave: bindActionCreators(createRace, dispatch),
+    }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(RaceCreate);
-export default connect(mapStateToProps)(RaceCreate);
+export default connect(mapStateToProps, mapDispatchToProps)(RaceCreate);

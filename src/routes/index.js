@@ -18,7 +18,7 @@ import requireAuthentication from "../containers/AuthenticatedComponent"
 import {createHorse, getHorses, searchHorse, getOneHorse, updateHorse, deleteHorse} from '../actions/Horse'
 import {createJockey, getJockeys, searchJockey, getOneJockey, updateJockey, deleteJockey} from '../actions/Jockey'
 import {createOwner, getOwners, searchOwner, getOneOwner, updateOwner, deleteOwner} from '../actions/Owner'
-import {createRace, getRaces, searchRace, getOneRace, updateRace, deleteRace} from '../actions/Race'
+import {getRaces, searchRace, getOneRace, deleteRace} from '../actions/Race'
 import {
     createTrainer,
     getTrainers,

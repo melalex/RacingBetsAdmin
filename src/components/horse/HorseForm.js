@@ -58,7 +58,8 @@ export default class HorseForm extends Component {
                 <AvGroup row>
                     <Label for="gender" sm={2}>Gender</Label>
                     <Col sm={10}>
-                        <AvField type="select" name="gender" id="gender">
+                        <AvField type="select" name="gender" id="gender" required>
+                            <option>{''}</option>
                             <option>mare</option>
                             <option>stallion</option>
                         </AvField>

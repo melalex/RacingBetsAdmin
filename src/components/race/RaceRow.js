@@ -7,7 +7,7 @@ import {Button, Col, Row} from 'reactstrap'
 import Delete from '../shared/DeleteModal'
 import {dateTimeFromTimestamp} from '../../util';
 
-export default class PersonRow extends Component {
+export default class RaceRow extends Component {
 
     onClickDelete(e, id) {
         e.preventDefault();
@@ -45,7 +45,7 @@ export default class PersonRow extends Component {
     }
 }
 
-PersonRow.propTypes = {
+RaceRow.propTypes = {
     entity: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
@@ -60,7 +60,7 @@ PersonRow.propTypes = {
         start: PropTypes.number.isRequired,
         minBet: PropTypes.number.isRequired,
         commission: PropTypes.number.isRequired,
-        trackCondition: PropTypes.string.isRequired,
+        trackCondition: PropTypes.string,
         raceType: PropTypes.string.isRequired,
         raceStatus: PropTypes.string.isRequired,
         minAge: PropTypes.number.isRequired,

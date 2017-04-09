@@ -9,9 +9,9 @@ import {Link} from 'react-router'
 import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {route} from "../../util";
 
-export default function edit(name, Component, getOne) {
+export default function view(name, Component, getOne) {
 
-    class HorseEdit extends React.Component {
+    class View extends React.Component {
 
         componentWillMount() {
             this.isProgressShown = false;
@@ -39,21 +39,24 @@ export default function edit(name, Component, getOne) {
 
         render() {
             this.progress();
+            console.log(this.props.entity);
             return (
-                this.props.fetching ? (
-                    <h1 className="text-center no-result-text">Nothing to show</h1>
-                ) : (
-                    <div>
-                        <h1>{name}</h1>
-                        <Breadcrumb>
-                            <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-                            <BreadcrumbItem><Link href={route(name, 'list')}>{name}</Link></BreadcrumbItem>
-                            <BreadcrumbItem active>View</BreadcrumbItem>
-                        </Breadcrumb>
+                <div>
+                    <h1>{name}</h1>
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link href={route(name, 'list')}>{name}</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>View</BreadcrumbItem>
+                    </Breadcrumb>
 
-                        <Component entity={this.props.entity}/>
-                    </div>
-                )
+                    {
+                        this.props.fetching ? (
+                            <h1 className="text-center no-result-text">Nothing to show</h1>
+                        ) : (
+                            <Component entity={this.props.entity}/>
+                        )
+                    }
+                </div>
             )
         }
     }
@@ -72,5 +75,5 @@ export default function edit(name, Component, getOne) {
         }
     }
 
-    return connect(mapStateToProps, mapDispatchToProps)(HorseEdit)
+    return connect(mapStateToProps, mapDispatchToProps)(View)
 }
