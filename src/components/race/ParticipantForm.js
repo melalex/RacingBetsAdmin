@@ -9,7 +9,6 @@ import {Col, Button, FormGroup, Label, Collapse, Jumbotron} from 'reactstrap';
 export default class ParticipantForm extends Component {
     constructor(props) {
         super(props);
-        this.race = {};
         this.state = {collapse: false};
 
         this.onSave = this.onSave.bind(this);

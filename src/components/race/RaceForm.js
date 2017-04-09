@@ -134,6 +134,7 @@ export default class RaceForm extends Component {
             <div>
                 <h2 className="big-margin-top">Race properties</h2>
                 <hr/>
+
                 <Jumbotron>
                     <AvForm onValidSubmit={this.onSaveRace} className="table-margin">
                         <AvGroup row>
@@ -292,7 +293,7 @@ export default class RaceForm extends Component {
                     </AvForm>
                 </Jumbotron>
 
-                <h2 className="big-margin-top">Participants</h2>
+                <h2 className="big-margin-top">Prizes</h2>
                 <hr/>
                 <Jumbotron>
                     <AvForm onValidSubmit={this.onSavePrizes}>
@@ -311,7 +312,7 @@ export default class RaceForm extends Component {
                 </Button>
 
 
-                <h2 className="big-margin-top">Prizes</h2>
+                <h2 className="big-margin-top">Participants</h2>
                 <hr/>
                 {participants}
 

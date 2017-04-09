@@ -54,8 +54,11 @@ import RaceForm from "../components/race/RaceForm"
 import RaceList from "../components/race/RaceList"
 import RaceView from "../components/race/RaceView"
 
+import RaceCreate from '../containers/race/RaceCreate'
+import RaceEdit from '../containers/race/RaceEdit'
 
 import UserPage from '../containers/user/UserPage'
+
 
 export default (
     <div>
@@ -92,8 +95,8 @@ export default (
             <Route path='/racecourse/view/:id' component={view('Racecourse', RacecourseView, getOneRacecourse)}/>
 
             <Route path='/race/list' component={page('Race', RaceList, getRaces, searchRace, deleteRace)}/>
-            <Route path='/race/create' component={create('Race', RaceForm, createRace)}/>
-            <Route path='/race/edit/:id' component={edit('Race', RaceForm, updateRace, getOneRace)}/>
+            <Route path='/race/create' component={RaceCreate}/>
+            <Route path='/race/edit/:id' component={RaceEdit}/>
             <Route path='/race/view/:id' component={view('Race', RaceView, getOneRace)}/>
 
             <Route path='/user/list' component={UserPage}/>

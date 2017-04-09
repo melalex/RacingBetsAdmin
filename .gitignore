@@ -19,3 +19,4 @@ src/containers/race/
 src/containers/user/
 !/public/fonts/
 !/src/containers/user/
+!/src/containers/race/
