@@ -34,9 +34,18 @@ body {
     margin-top: 3%;
 }
 
+.big-margin-bot {
+    margin-bottom: 3%;
+}
+
 .table-margin {
     margin-top: 2%;
     margin-bottom: 3%;
+}
+
+.elem-margin {
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .loader-60devs .loader-60devs-progress {
