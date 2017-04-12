@@ -34,7 +34,7 @@ export default function create(name, Component, create) {
                     <h1>{name}</h1>
                     <Breadcrumb>
                         <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem><Link href={route(name, 'list')}>{name}</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to={route(name, 'list')}>{name}</Link></BreadcrumbItem>
                         <BreadcrumbItem active>Create</BreadcrumbItem>
                     </Breadcrumb>
 

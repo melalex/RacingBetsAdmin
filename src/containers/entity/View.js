@@ -39,13 +39,12 @@ export default function view(name, Component, getOne) {
 
         render() {
             this.progress();
-            console.log(this.props.entity);
             return (
                 <div>
                     <h1>{name}</h1>
                     <Breadcrumb>
                         <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem><Link href={route(name, 'list')}>{name}</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to={route(name, 'list')}>{name}</Link></BreadcrumbItem>
                         <BreadcrumbItem active>View</BreadcrumbItem>
                     </Breadcrumb>
 

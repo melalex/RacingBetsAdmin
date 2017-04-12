@@ -6,12 +6,12 @@ import 'react-progress-2/main.css'
 import '../src/styles/App.css'
 import '../src/styles/DateTime.css'
 import configureStore from './store'
-import {Router, browserHistory} from 'react-router'
+import {Router, hashHistory} from 'react-router'
 import routes from "./routes"
 import {syncHistoryWithStore} from 'react-router-redux'
 
-const store = configureStore(browserHistory);
-const history = syncHistoryWithStore(browserHistory, store);
+const store = configureStore(hashHistory);
+const history = syncHistoryWithStore(hashHistory, store);
 
 ReactDom.render(
     <Provider store={store}>

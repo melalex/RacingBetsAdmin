@@ -6,7 +6,7 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
-import {Breadcrumb, BreadcrumbItem, Button, Container, Row, Col} from 'reactstrap';
+import {Breadcrumb, BreadcrumbItem, Container, Row, Col} from 'reactstrap';
 import {getUsers, searchUser, putMoney} from '../../actions/User'
 import UserList from '../../components/user/UserList'
 
@@ -75,11 +75,6 @@ class UserPage extends React.Component {
                                     </span>
                                 </div>
                             </form>
-                        </Col>
-                        <Col md={{size: 2}}>
-                            <Button href="/racecourse/create" outline color="primary">
-                                Create
-                            </Button>
                         </Col>
                     </Row>
                 </Container>

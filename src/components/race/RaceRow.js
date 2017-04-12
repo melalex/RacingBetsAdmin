@@ -6,6 +6,7 @@ import React, {PropTypes, Component} from 'react'
 import {Button, Col, Row} from 'reactstrap'
 import Delete from '../shared/DeleteModal'
 import {dateTimeFromTimestamp} from '../../util';
+import {Link} from "react-router";
 
 export default class RaceRow extends Component {
 
@@ -26,14 +27,10 @@ export default class RaceRow extends Component {
                 <td>
                     <Row>
                         <Col md={{size: 2, offset: 1}}>
-                            <Button outline color="info" href={"/race/view/" + id}>
-                                View
-                            </Button>
+                            <Link type="button" to={"/race/view/" + id} className="btn btn-outline-info">View</Link>
                         </Col>
                         <Col md={{size: 2, offset: 1}}>
-                            <Button outline color="primary" href={"/race/edit/" + id}>
-                                Edit
-                            </Button>
+                            <Link type="button" to={"/race/edit/" + id} className="btn btn-outline-primary">Edit</Link>
                         </Col>
                         <Col md={{size: 2, offset: 1}}>
                             <Delete onDelete={() => this.props.deleteEntity(id)}/>

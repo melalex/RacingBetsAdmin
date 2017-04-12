@@ -43,7 +43,7 @@ class RaceCreate extends React.Component {
                 <h1>Race</h1>
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem><Link href='/race/list'>Race</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to='/race/list'>Race</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Create</BreadcrumbItem>
                 </Breadcrumb>
 

@@ -8,6 +8,7 @@ import {bindActionCreators} from 'redux'
 import {signOut} from '../actions/AppUser'
 import {Navbar, NavbarBrand, NavItem, NavLink, Nav, UncontrolledAlert, Collapse} from 'reactstrap';
 import Progress from "react-progress-2";
+import {push} from 'react-router-redux';
 
 class App extends React.Component {
     logout(e) {
@@ -16,7 +17,7 @@ class App extends React.Component {
     }
 
     render() {
-        let {errors, info, login} = this.props;
+        let {errors, info, login, redirect} = this.props;
 
         let children = React.Children.map(this.props.children,
             child => React.cloneElement(child, {
@@ -27,7 +28,7 @@ class App extends React.Component {
         return (
             <div className="wrapper">
                 <Navbar color="inverse" inverse toggleable>
-                    <NavbarBrand href="/">Racing Bets Admin</NavbarBrand>
+                    <NavbarBrand href="#" onClick={() => redirect('/')}>Racing Bets Admin</NavbarBrand>
                     <Collapse isOpen={false} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
@@ -74,7 +75,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        signOut: bindActionCreators(signOut, dispatch)
+        signOut: bindActionCreators(signOut, dispatch),
+        redirect: bindActionCreators(push, dispatch),
     }
 }
 

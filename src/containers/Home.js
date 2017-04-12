@@ -4,6 +4,7 @@
 
 import React from 'react';
 import {Breadcrumb, BreadcrumbItem, ListGroup, ListGroupItem} from 'reactstrap'
+import {Link} from "react-router";
 
 export default class Home extends React.Component {
     render() {
@@ -16,13 +17,13 @@ export default class Home extends React.Component {
                 </Breadcrumb>
 
                 <ListGroup>
-                    <ListGroupItem tag="a" href="/horse/list">Horses</ListGroupItem>
-                    <ListGroupItem tag="a" href="/jockey/list">Jockeys</ListGroupItem>
-                    <ListGroupItem tag="a" href="/owner/list">Owners</ListGroupItem>
-                    <ListGroupItem tag="a" href="/race/list">Races</ListGroupItem>
-                    <ListGroupItem tag="a" href="/racecourse/list">Racecourses</ListGroupItem>
-                    <ListGroupItem tag="a" href="/trainer/list">Trainers</ListGroupItem>
-                    <ListGroupItem tag="a" href="/user/list">Users</ListGroupItem>
+                    <ListGroupItem tag="a"><Link to="/horse/list">Horses</Link></ListGroupItem>
+                    <ListGroupItem tag="a"><Link to="/jockey/list">Jockeys</Link></ListGroupItem>
+                    <ListGroupItem tag="a"><Link to="/owner/list">Owners</Link></ListGroupItem>
+                    <ListGroupItem tag="a"><Link to="/race/list">Races</Link></ListGroupItem>
+                    <ListGroupItem tag="a"><Link to="/racecourse/list">Racecourses</Link></ListGroupItem>
+                    <ListGroupItem tag="a"><Link to="/trainer/list">Trainers</Link></ListGroupItem>
+                    <ListGroupItem tag="a"><Link to="/user/list">Users</Link></ListGroupItem>
                 </ListGroup>
             </div>
         )

@@ -1,10 +1,11 @@
 /**
-* Created by Alexander Melashchenko on 4/1/17.
-*/
+ * Created by Alexander Melashchenko on 4/1/17.
+ */
 
 import React, {PropTypes, Component} from 'react'
 import {Button, Col, Row} from 'reactstrap';
 import Delete from '../shared/DeleteModal'
+import {Link} from "react-router";
 
 export default class RacecourseRow extends Component {
 
@@ -26,14 +27,12 @@ export default class RacecourseRow extends Component {
                 <td>
                     <Row>
                         <Col md={{size: 2, offset: 1}}>
-                            <Button outline color="info" href={"/racecourse/view/" + id}>
-                                View
-                            </Button>
+                            <Link type="button" to={"/racecourse/view/" + id}
+                                  className="btn btn-outline-info">View</Link>
                         </Col>
                         <Col md={{size: 2, offset: 1}}>
-                            <Button outline color="primary" href={"/racecourse/edit/" + id}>
-                                Edit
-                            </Button>
+                            <Link type="button" to={"/racecourse/edit/" + id}
+                                  className="btn btn-outline-primary">Edit</Link>
                         </Col>
                         <Col md={{size: 2, offset: 1}}>
                             <Delete onDelete={() => this.props.deleteEntity(id)}/>
@@ -45,14 +44,14 @@ export default class RacecourseRow extends Component {
     }
 }
 
- RacecourseRow.propTypes = {
-     entity: PropTypes.shape({
-         id: PropTypes.number,
-         name: PropTypes.string.isRequired,
-         latitude: PropTypes.number.isRequired,
-         longitude: PropTypes.number.isRequired,
-         contact: PropTypes.string.isRequired,
-         clerk: PropTypes.string.isRequired,
-     }).isRequired,
+RacecourseRow.propTypes = {
+    entity: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string.isRequired,
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        contact: PropTypes.string.isRequired,
+        clerk: PropTypes.string.isRequired,
+    }).isRequired,
     deleteEntity: PropTypes.func.isRequired,
 };

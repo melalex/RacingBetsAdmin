@@ -10,8 +10,9 @@ import Pager from '../shared/Pager'
 export default class PersonList extends Component {
 
     render() {
-        let {entities, page, limit, count, deleteEntity} = this.props;
-        let rows = entities.map((entity, i) => <PersonRow key={i} entity={entity} deleteEntity={deleteEntity}/>);
+        let {entities, page, limit, count, deleteEntity, type} = this.props;
+        let rows = entities.map((entity, i) => <PersonRow key={i} entity={entity} deleteEntity={deleteEntity}
+                                                          type={type}/>);
         return (
             rows.length === 0
                 ?
@@ -43,5 +44,6 @@ PersonList.propTypes = {
     limit: PropTypes.number.isRequired,
     count: PropTypes.number.isRequired,
     deleteEntity: PropTypes.func.isRequired,
-    fetchEntities: PropTypes.func.isRequired
+    fetchEntities: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired
 };

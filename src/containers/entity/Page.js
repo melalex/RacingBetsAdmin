@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import {Breadcrumb, BreadcrumbItem, Button, Container, Row, Col} from 'reactstrap';
 import {route} from "../../util";
+import {push} from 'react-router-redux';
 
 
 export default function page(name, Component, get, search, remove) {
@@ -53,7 +54,7 @@ export default function page(name, Component, get, search, remove) {
         }
 
         render() {
-            let {content, page, count, limit, searchString} = this.props;
+            let {content, page, count, limit, searchString, redirect} = this.props;
 
             this.progress();
 
@@ -81,14 +82,15 @@ export default function page(name, Component, get, search, remove) {
                                 </form>
                             </Col>
                             <Col md={{size: 2}}>
-                                <Button href={route(name, 'create')} outline color="primary">
+                                <Button onClick={() => redirect(route(name, 'create'))} outline color="primary">
                                     Create
                                 </Button>
                             </Col>
                         </Row>
                     </Container>
 
-                    <Component {...this.props} entities={content} page={page} limit={limit} count={count}
+                    <Component {...this.props} type={name.toLowerCase()} entities={content} page={page} limit={limit}
+                               count={count}
                                deleteEntity={this.props.deleteEntity} fetchEntities={this.fetchEntities}/>
                 </div>
             );
@@ -111,6 +113,7 @@ export default function page(name, Component, get, search, remove) {
             getAll: bindActionCreators(get, dispatch),
             search: bindActionCreators(search, dispatch),
             deleteEntity: bindActionCreators(remove, dispatch),
+            redirect: bindActionCreators(push, dispatch),
         }
     }
 

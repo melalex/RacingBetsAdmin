@@ -37,6 +37,7 @@ function dateTimeFromTimestamp(timestamp) {
 }
 
 function getErrorsFromResponse(response) {
+    console.log(response);
     if (response.responseText) {
         try {
             return JSON.parse(response.responseText).result;
