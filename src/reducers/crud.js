@@ -8,6 +8,7 @@ import * as raceConst from '../constants/Race'
 
 const initialState = {
     content: [],
+    type: '',
     errors: [],
     page: 1,
     count: 0,
@@ -28,10 +29,12 @@ export default function crud(state = initialState, action) {
         case userConst.ADD_MONEY_REQUEST:
         case crudConst.CREATE_REQUEST:
         case crudConst.DELETE_REQUEST:
+            return {...state, fetching: true, errors: [], info: ''};
+
         case crudConst.GET_ONE_REQUEST:
         case crudConst.GET_REQUEST:
         case crudConst.SEARCH_REQUEST:
-            return {...state, fetching: true, errors: [], info: ''};
+            return {...state, type: action.payload, fetching: true, errors: [], info: ''};
 
         case crudConst.GET_ONE_SUCCESS:
             return {...state, fetching: false, entity: action.payload};

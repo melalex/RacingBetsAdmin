@@ -3,6 +3,7 @@
  */
 
 import {create, get, getOne, search, update, remove} from './CrudUtil'
+import {RACECOURSE_TYPE} from '../constants/Crud'
 
 const path = '/api/racecourse';
 
@@ -11,15 +12,15 @@ function createRacecourse(racecourse) {
 }
 
 function getRacecourses(page) {
-    return get(page, path)
+    return get(RACECOURSE_TYPE, page, path)
 }
 
 function getOneRacecourse(id) {
-    return getOne(id, path)
+    return getOne(RACECOURSE_TYPE, id, path)
 }
 
 function searchRacecourse(req, page) {
-    return search(req, page, path)
+    return search(RACECOURSE_TYPE, req, page, path)
 }
 
 function updateRacecourse(racecourse) {

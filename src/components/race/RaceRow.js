@@ -10,11 +10,6 @@ import {Link} from "react-router";
 
 export default class RaceRow extends Component {
 
-    onClickDelete(e, id) {
-        e.preventDefault();
-        this.props.deleteEntity(id);
-    }
-
     render() {
         let {id, name, racecourse, start, raceStatus} = this.props.entity;
         return (
@@ -29,11 +24,8 @@ export default class RaceRow extends Component {
                         <Col md={{size: 2, offset: 1}}>
                             <Link type="button" to={"/race/view/" + id} className="btn btn-outline-info">View</Link>
                         </Col>
-                        <Col md={{size: 2, offset: 1}}>
+                        <Col md={{size: 2, offset: 2}}>
                             <Link type="button" to={"/race/edit/" + id} className="btn btn-outline-primary">Edit</Link>
-                        </Col>
-                        <Col md={{size: 2, offset: 1}}>
-                            <Delete onDelete={() => this.props.deleteEntity(id)}/>
                         </Col>
                     </Row>
                 </td>

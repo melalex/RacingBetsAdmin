@@ -8,6 +8,7 @@ import {create, get, getOne, search, update, remove} from './CrudUtil'
 import {bearerAuthHeader, getErrorsFromResponse} from "../util/index";
 import {API_ROOT} from "../constants/Api";
 import {refresh} from "./AppUser";
+import {RACE_TYPE} from '../constants/Crud'
 
 const path = '/api/race';
 
@@ -16,15 +17,15 @@ function createRace(race) {
 }
 
 function getRaces(page) {
-    return get(page, path)
+    return get(RACE_TYPE, page, path)
 }
 
 function getOneRace(id) {
-    return getOne(id, path)
+    return getOne(RACE_TYPE, id, path)
 }
 
 function searchRace(req, page) {
-    return search(req, page, path)
+    return search(RACE_TYPE, req, page, path)
 }
 
 function updateRace(race) {

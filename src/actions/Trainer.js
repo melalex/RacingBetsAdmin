@@ -3,6 +3,7 @@
  */
 
 import {create, get, getOne, search, update, remove} from './CrudUtil'
+import {TRAINER_TYPE} from '../constants/Crud'
 
 const path = '/api/trainer';
 
@@ -11,15 +12,15 @@ function createTrainer(trainer) {
 }
 
 function getTrainers(page) {
-    return get(page, path)
+    return get(TRAINER_TYPE, page, path)
 }
 
 function getOneTrainer(id) {
-    return getOne(id, path)
+    return getOne(TRAINER_TYPE, id, path)
 }
 
 function searchTrainer(req, page) {
-    return search(req, page, path)
+    return search(TRAINER_TYPE, req, page, path)
 }
 
 function updateTrainer(trainer) {

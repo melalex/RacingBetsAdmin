@@ -3,6 +3,7 @@
  */
 
 import {create, get, getOne, search, update, remove} from './CrudUtil'
+import {OWNER_TYPE} from '../constants/Crud'
 
 const path = '/api/owner';
 
@@ -11,15 +12,15 @@ function createOwner(owner) {
 }
 
 function getOwners(page) {
-    return get(page, path)
+    return get(OWNER_TYPE, page, path)
 }
 
 function getOneOwner(id) {
-    return getOne(id, path)
+    return getOne(OWNER_TYPE, id, path)
 }
 
 function searchOwner(req, page) {
-    return search(req, page, path)
+    return search(OWNER_TYPE, req, page, path)
 }
 
 function updateOwner(owner) {

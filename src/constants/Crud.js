@@ -26,6 +26,14 @@ const DELETE_REQUEST = 'DELETE_REQUEST';
 const DELETE_SUCCESS = 'DELETE_SUCCESS';
 const DELETE_FAILED = 'DELETE_FAILED';
 
+const HORSE_TYPE = 'horse';
+const JOCKEY_TYPE = 'jockey';
+const OWNER_TYPE = 'owner';
+const RACE_TYPE = 'race';
+const RACECOURSE_TYPE = 'racecourse';
+const TRAINER_TYPE = 'trainer';
+const USER_TYPE = 'user';
+
 export {
     CREATE_REQUEST,
     CREATE_SUCCESS,
@@ -45,4 +53,11 @@ export {
     DELETE_REQUEST,
     DELETE_SUCCESS,
     DELETE_FAILED,
+    HORSE_TYPE,
+    JOCKEY_TYPE,
+    OWNER_TYPE,
+    RACE_TYPE,
+    RACECOURSE_TYPE,
+    TRAINER_TYPE,
+    USER_TYPE
 }

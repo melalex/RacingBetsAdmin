@@ -3,6 +3,7 @@
  */
 
 import {create, get, getOne, search, update, remove} from './CrudUtil'
+import {JOCKEY_TYPE} from '../constants/Crud'
 
 const path = '/api/jockey';
 
@@ -11,15 +12,15 @@ function createJockey(jockey) {
 }
 
 function getJockeys(page) {
-    return get(page, path)
+    return get(JOCKEY_TYPE, page, path)
 }
 
 function getOneJockey(id) {
-    return getOne(id, path)
+    return getOne(JOCKEY_TYPE, id, path)
 }
 
 function searchJockey(req, page) {
-    return search(req, page, path)
+    return search(JOCKEY_TYPE, req, page, path)
 }
 
 function updateJockey(jockey) {

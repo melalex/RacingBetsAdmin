@@ -46,5 +46,6 @@ RacecourseList.propTypes = {
     limit: PropTypes.number.isRequired,
     count: PropTypes.number.isRequired,
     deleteEntity: PropTypes.func.isRequired,
-    fetchEntities: PropTypes.func.isRequired
+    fetchEntities: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired
 };

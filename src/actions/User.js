@@ -8,15 +8,16 @@ import {refresh} from '../actions/AppUser'
 import {API_ROOT} from  '../constants/Api'
 import {ADD_MONEY_REQUEST, ADD_MONEY_SUCCESS, ADD_MONEY_FAILED} from '../constants/User'
 import {bearerAuthHeader, getErrorsFromResponse} from "../util";
+import {USER_TYPE} from '../constants/Crud'
 
 const path = '/api/account';
 
 function getUsers(page) {
-    return get(page, path)
+    return get(USER_TYPE, page, path)
 }
 
 function searchUser(req, page) {
-    return search(req, page, path)
+    return search(USER_TYPE, req, page, path)
 }
 
 function putMoney(id, amount) {

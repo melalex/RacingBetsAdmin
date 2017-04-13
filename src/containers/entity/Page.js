@@ -54,7 +54,8 @@ export default function page(name, Component, get, search, remove) {
         }
 
         render() {
-            let {content, page, count, limit, searchString, redirect} = this.props;
+            let {content, page, count, limit, searchString, redirect, type} = this.props;
+            let typeName = name.toLowerCase();
 
             this.progress();
 
@@ -89,9 +90,15 @@ export default function page(name, Component, get, search, remove) {
                         </Row>
                     </Container>
 
-                    <Component {...this.props} type={name.toLowerCase()} entities={content} page={page} limit={limit}
-                               count={count}
-                               deleteEntity={this.props.deleteEntity} fetchEntities={this.fetchEntities}/>
+                    {
+                        type === typeName ? (
+                            <Component {...this.props} type={typeName} entities={content} page={page}
+                                       limit={limit}
+                                       count={count}
+                                       deleteEntity={this.props.deleteEntity} fetchEntities={this.fetchEntities}/>
+                        ) : null
+                    }
+
                 </div>
             );
         }
@@ -104,7 +111,8 @@ export default function page(name, Component, get, search, remove) {
             count: state.crud.count,
             limit: state.crud.limit,
             searchString: state.crud.searchString,
-            fetching: state.crud.fetching
+            fetching: state.crud.fetching,
+            type: state.crud.type
         }
     }
 

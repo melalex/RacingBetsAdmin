@@ -41,11 +41,11 @@ function create(entity, path) {
     });
 }
 
-function get(page, path) {
+function get(type, page, path) {
     return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.GET_REQUEST,
-            payload: page
+            payload: type
         });
 
         ajax({
@@ -82,11 +82,11 @@ function get(page, path) {
     });
 }
 
-function getOne(id, path) {
+function getOne(type, id, path) {
     return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.GET_ONE_REQUEST,
-            payload: id
+            payload: type
         });
 
         ajax({
@@ -114,13 +114,13 @@ function getOne(id, path) {
     })
 }
 
-function search(req, page, path) {
+function search(type, req, page, path) {
     return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.SEARCH_REQUEST,
             payload: {
                 query: req,
-                page: page
+                page: type
             }
         });
 
@@ -200,7 +200,7 @@ function remove(id, path) {
             payload: id
         });
 
-        let {searchString, page} = getStore().crud;
+        let {searchString, page, type} = getStore().crud;
 
         ajax({
             type: 'DELETE',
@@ -216,9 +216,9 @@ function remove(id, path) {
                     });
 
                     if (searchString) {
-                        dispatch(search(searchString, page, path));
+                        dispatch(search(type, searchString, page, path));
                     } else {
-                        dispatch(get(page, path));
+                        dispatch(get(type, page, path));
                     }
                 }
             ],

@@ -50,7 +50,7 @@ class UserPage extends React.Component {
     }
 
     render() {
-        let {content, page, count, limit, searchString} = this.props;
+        let {content, page, count, limit, searchString, type} = this.props;
 
         this.progress();
 
@@ -81,7 +81,7 @@ class UserPage extends React.Component {
 
                 <UserList entities={content} page={page} limit={limit} count={count}
                           putMoney={this.props.putMoney}
-                          fetchEntities={this.fetchEntities}/>
+                          fetchEntities={this.fetchEntities} type={type}/>
             </div>
         );
     }
@@ -94,7 +94,8 @@ function mapStateToProps(state) {
         count: state.crud.count,
         limit: state.crud.limit,
         searchString: state.crud.searchString,
-        fetching: state.crud.fetching
+        fetching: state.crud.fetching,
+        type: state.crud.type
     }
 }
 

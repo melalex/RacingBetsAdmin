@@ -3,6 +3,7 @@
  */
 
 import {create, get, getOne, search, update, remove} from './CrudUtil'
+import {HORSE_TYPE} from '../constants/Crud'
 
 const path = '/api/horse';
 
@@ -11,15 +12,15 @@ function createHorse(horse) {
 }
 
 function getHorses(page) {
-    return get(page, path)
+    return get(HORSE_TYPE, page, path)
 }
 
 function getOneHorse(id) {
-    return getOne(id, path)
+    return getOne(HORSE_TYPE, id, path)
 }
 
 function searchHorse(req, page) {
-    return search(req, page, path)
+    return search(HORSE_TYPE, req, page, path)
 }
 
 function updateHorse(horse) {
