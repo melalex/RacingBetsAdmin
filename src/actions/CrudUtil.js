@@ -118,10 +118,7 @@ function search(type, req, page, path) {
     return refresh((dispatch, getStore) => {
         dispatch({
             type: crudAction.SEARCH_REQUEST,
-            payload: {
-                query: req,
-                page: type
-            }
+            payload: type
         });
 
         ajax({

@@ -4,7 +4,7 @@
 
 import React, {PropTypes, Component} from 'react'
 import {fullName} from '../../util'
-import {Button, Col, Row} from 'reactstrap'
+import {Col, Row} from 'reactstrap'
 import Delete from '../shared/DeleteModal'
 import {dateFromTimestamp} from "../../util";
 import {Link} from "react-router";
