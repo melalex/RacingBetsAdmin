@@ -9,6 +9,7 @@ import {bearerAuthHeader, getErrorsFromResponse} from "../util/index";
 import {API_ROOT} from "../constants/Api";
 import {refresh} from "./AppUser";
 import {RACE_TYPE} from '../constants/Crud'
+import * as crudAction from "../constants/Crud";
 
 const path = '/api/race';
 
@@ -25,8 +26,45 @@ function getOneRace(id) {
 }
 
 function searchRace(req, page) {
-    return search(RACE_TYPE, req, page, path)
-}
+    return refresh((dispatch, getStore) => {
+        dispatch({
+            type: crudAction.SEARCH_REQUEST,
+            payload: 'race'
+        });
+
+        ajax({
+            type: 'GET',
+            url: API_ROOT + path,
+            crossDomain: true,
+            dataType: 'json',
+            headers: bearerAuthHeader(getStore),
+            data: {
+                name: req,
+                page: page
+            },
+            success: [
+                response => dispatch({
+                    type: crudAction.SEARCH_SUCCESS,
+                    payload: {
+                        count: response.count,
+                        limit: response.limit,
+                        page: page,
+                        searchString: req,
+                        content: response.result
+                    }
+                })
+            ],
+            error: [
+                response => {
+                    let errors = getErrorsFromResponse(response);
+                    dispatch({
+                        type: crudAction.SEARCH_FAILED,
+                        payload: errors
+                    })
+                }
+            ]
+        });
+    })}
 
 function updateRace(race) {
     return update(race, path)
