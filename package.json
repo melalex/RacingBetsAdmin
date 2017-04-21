@@ -1,6 +1,6 @@
 {
   "name": "racing-bets-admin",
-  "homepage": "http://localhost:8080/racing/admin",
+  "homepage": "http://localhost:8080/admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
